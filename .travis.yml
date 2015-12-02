@@ -11,6 +11,10 @@ matrix:
   fast_finish: true
   allow_failures:
   - rvm: ruby-head
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
+
 # deploy:
 #   provider: heroku
 #   api_key:
