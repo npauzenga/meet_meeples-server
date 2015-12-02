@@ -1,0 +1,21 @@
+language: ruby
+sudo: false
+cache: bundler
+rvm:
+- 2.1
+- 2.2
+- ruby-head
+install:
+- bundle install --retry=3
+matrix:
+  fast_finish: true
+  allow_failures:
+  - rvm: ruby-head
+# deploy:
+#   provider: heroku
+#   api_key:
+#     secure: ukNKneFagdljb51q7/W41fU5PL+FQVWkN8LtzV1jx+g/oe3l6JppPLiIpTelXO/3GjbraW/h06RIY9Hh9YVphhDMTHN9fuIadtMilX+ix2ndI1AUQZOqLKOr8s92cT1xcYtCRJ9vVav+Er8nM8UunHhHyibgGZtCpS46piFOpPMcYYvnSENg9kySVtAVNHrG+K2lro7A87qXGPhuUNpLSLTL6gEXegMa2jQ2N/7olpc8xT3WHwemFJCylmcXtFcNLbk9qJk0TKIEqteLUEcrSICCmH94UZIdfbtCanip+Mn6b9RjizpYtK09h9opwurqn/+zx1T1yCWe+6DC+nGq60wOcGGJtEvgTUEfMWAOhKi/3oINRTlh+ogPk4lHHKVqHTi7+m3Artf8Ksez17QlQFyIsMHVQ80CCWRcuDU3qzubFecLErOum4ajUE4HApGen4OKJx3afyLffsyI4fs37veApXVFBpIAq8P6zR9oCbSyW8nnWPlkXoDa4hlQlcVKbTpTKzYOqTNhfKqCqRNT6a77cGMn0ENgtdzZMK1WwN9kPav5ikTjbkvRZ0eSEA9gdfjsH8IIBTe8zmZ4e2okdGy4YwerYJEXfMriO4POu4CSvvboHPJ04fm0BavJfFsbh2vkb2MpZVKVIeOMWoBHVGyMSjb8F/1NgCjwfkyO8Nw=
+#   app:
+#     master: meetmeeples-production
+#     staging: meetmeeples-staging
+#   run: "rake db:migrate"
