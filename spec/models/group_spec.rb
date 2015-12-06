@@ -33,13 +33,11 @@ RSpec.describe Group do
   describe "associations" do
     let(:user1)  { create(:confirmed_user) }
     let(:user2)  { create(:confirmed_user) }
-    let(:group)   { create(:group, moderator_email: user1.email) }
+    let(:group)  { create(:group, moderator_email: user1.email) }
 
     before do
-      membership1 = UserGroupMembership.new(user_id: user1.id,
-                                            group_id: group.id)
-      membership2 = UserGroupMembership.new(user_id: user2.id,
-                                            group_id: group.id)
+      UserGroupMembership.create(user_id: user1.id, group_id: group.id)
+      UserGroupMembership.create(user_id: user2.id, group_id: group.id)
     end
 
     it "has many user_group_memberships" do
@@ -48,10 +46,6 @@ RSpec.describe Group do
 
     it "has many users through user_group_memberships" do
       expect(described_class.users.count).to eq(2)
-    end
-
-    it "has one moderator" do
-      expect(group.moderator_email).to be(user1.email)
     end
   end
 end
