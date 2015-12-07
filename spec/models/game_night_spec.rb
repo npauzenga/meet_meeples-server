@@ -30,7 +30,7 @@ RSpec.describe GameNight do
     let(:user1)      { create(:user) }
     let(:user2)      { create(:user) }
     let(:group)      { create(:group) }
-    let(:game_night) { create(:game_night, group_id: group.id }
+    let(:game_night) { create(:game_night, group_id: group.id) }
 
     before do
       UserGameNightAttendee.create(user_id: user1.id, game_night_id: group.id)
