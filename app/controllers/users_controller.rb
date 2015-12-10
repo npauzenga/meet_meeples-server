@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def create
     result = CreateUser.call(user_params: user_params)
     if result.success
-      token = Knock::AuthToken.new(payload: { sub: user.id }).token
+      token = CreateAuthToken.call(user: result.user).token
       render json: { jwt: token }, status: :created
     else
       render json: result.user.errors, status: :unprocessable_entity
