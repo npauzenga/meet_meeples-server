@@ -11,6 +11,7 @@ class UsersController < AuthenticationController
   # curl -i -H "Content-Type: application/json" -d '{"user": {"email": "test@test.com"}}'
 
 
+  # POST /users
   def create
     result = CreateUser.call(user_params: user_params)
     if result.success?
@@ -18,6 +19,26 @@ class UsersController < AuthenticationController
       render json: { jwt: token }, status: :created
     else
       render json: result.user.errors, status: :unprocessable_entity
+    end
+  end
+
+  # GET /users/1
+  def show
+    result = ShowUser.call(id: params[:id])
+    if result.success?
+      render json: result.user, status: :ok
+    else
+      render json: result.error, status: :not_found
+    end
+  end
+
+  # DELETE /users/1
+  def destroy
+    result = DeleteUser.call(id: @current_user.id)
+    if result.success?
+      render json: result.message, status: :ok
+    else
+      render json: result.error, status: :not_found
     end
   end
 

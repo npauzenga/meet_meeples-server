@@ -32,6 +32,10 @@ RSpec.describe CreateUser do
       it "fails" do
         is_expected.to be_a_failure
       end
+
+      it "returns an error" do
+        expect(subject.error).to eq("invalid user")
+      end
     end
 
     context "when invalid input is provided" do
@@ -41,6 +45,10 @@ RSpec.describe CreateUser do
 
       it "fails" do
         is_expected.to be_a_failure
+      end
+
+      it "returns an error" do
+        expect(subject.error).to eq("invalid user params")
       end
     end
   end

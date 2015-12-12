@@ -1,3 +1,5 @@
+include Helpers
+
 RSpec.describe UsersController do
   let(:user) { create(:unconfirmed_user) }
 
@@ -91,70 +93,139 @@ RSpec.describe UsersController do
   end
 
   describe "GET #show" do
-    let(:user) { create(:confirmed_user) }
+    let(:user)            { create(:confirmed_user) }
+    let(:params)          { { id: user.id } }
+    let(:show_user_input) { { id: params.fetch(:id).to_s } }
 
-    context "when user is signed in" do
-      def authenticate
-        token = Knock::AuthToken.new(payload: { sub: user.id }).token
-        request.env['HTTP_AUTHORIZATION'] = "bearer #{token}"
-      end
+    let(:show_user_context) do
+      Interactor::Context.new(errors: :val, user: user)
+    end
 
-      before do
-        authenticate
-      end
+    before(:example) do
+      allow(ShowUser).to receive(:call).with(show_user_input).
+        and_return(show_user_context)
+    end
 
+    before do
+      authenticate
+    end
+
+    context "when succesful" do
       it "calls the ShowUser interactor" do
-        get :show
         expect(ShowUser).to receive(:call)
+        get :show, params
+      end
+
+      it "returns HTTP status 200" do
+        get :show, params
+        expect(response).to have_http_status(200)
+      end
+
+      it "render the user as JSON" do
+        get :show, params
+        expect(response.body).to eq(user.to_json)
       end
     end
 
-    context "when user is not signed in" do
-      it "displays an error" do
-        user.errors.add(:email, message = "error")
-        get :show
-        expect(JSON.parse(response.body)).to eq({"email"=>["error"]})
+    context "when ShowUser fails" do
+      let(:show_user_context) { double(:context, error: "invalid",
+                                                 success?: false) }
+
+      it "returns HTTP status 404" do
+        get :show, params
+        expect(response).to have_http_status(404)
       end
 
-      it "redirects to sign in" do
-        expect(get :show).to redirect_to("/signin")
+      it "renders an error" do
+        get :show, params
+        expect(response.body).to eq("invalid")
       end
     end
 
   end
 
   describe "DELETE #destroy" do
-    context "when user is signed in" do
+    let(:user)   { create(:confirmed_user) }
+    let(:params) { { id: user.id } }
+    let(:delete_user_input) { { id: params.fetch(:id) } }
+
+    let(:delete_user_context) do
+      Interactor::Context.new(errors: :val, user: user)
+    end
+
+    before(:example) do
+      allow(DeleteUser).to receive(:call).with(delete_user_input).
+        and_return(delete_user_context)
+    end
+
+    before do
+      authenticate
+    end
+
+    context "when successful" do
       it "calls the DeleteUser interactor" do
+        expect(DeleteUser).to receive(:call)
+        delete :destroy, params
+      end
 
+      it "returns HTTP status 200" do
+        delete :destroy, params
+        expect(response).to have_http_status(200)
       end
     end
 
-    context "when user is not signed in" do
-      it "displays an error" do
+    context "when DeleteUser fails" do
+      let(:delete_user_context) { double(:context, error: "invalid",
+                                                   success?: false) }
 
+      it "renders an error" do
+        delete :destroy, params
+        expect(response.body).to eq("invalid")
       end
 
-      it "redirects to login" do
-
+      it "returns HTTP status 404" do
+        delete :destroy, params
+        expect(response).to have_http_status(404)
       end
     end
-
   end
 
   describe "PATCH #update" do
-    context "when user is signed in" do
-      it "calls the UpdateUser interactor" do
+    let(:user)   { create(:confirmed_user) }
+    let(:params) { { id: user.id } }
+    let(:update_user_input) { { id: params.fetch(:id) } }
 
+    let(:update_user_context) do
+      Interactor::Context.new(errors: :val, user: user)
+    end
+
+    before(:example) do
+      allow(UpdateUser).to receive(:call).with(update_user_input).
+        and_return(update_user_context)
+    end
+
+    before do
+      authenticate
+    end
+
+    context "when successful" do
+      it "calls the UpdateUser interactor" do
+        expect(UpdateUser).to receive(:call)
+        patch :update, params
+      end
+
+      it "returns HTTP status 200" do
+        patch :update, params
+        expect(response).to have_http_status(200)
       end
     end
 
-    context "user is not signed in" do
-      it "displays an error" do
+    context "when Update User fails" do
+      it "renders an error" do
 
       end
 
-      it "redirects to login" do
+      it "returns HTTP status ___" do
 
       end
     end
