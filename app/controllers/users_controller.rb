@@ -1,4 +1,5 @@
-class UsersController < ApplicationController
+class UsersController < AuthenticationController
+  skip_before_action :authenticate, only: :create
   # valid user creation curl --
   #
   # curl -X POST -F user[first_name]=Nate \
@@ -7,9 +8,12 @@ class UsersController < ApplicationController
   # -F user[last_name]=Bates  -F user[password]=Helloworld \
   # http://localhost:3000/users.json -H "Accept: application/json"
 
+  # curl -i -H "Content-Type: application/json" -d '{"user": {"email": "test@test.com"}}'
+
+
   def create
     result = CreateUser.call(user_params: user_params)
-    if result.success
+    if result.success?
       token = CreateAuthToken.call(user: result.user).token
       render json: { jwt: token }, status: :created
     else

@@ -10,7 +10,7 @@ class CreateUser
   private
 
   def validate_input
-    context.fail! unless context.user_params
+    context.fail!(errors: context.user.errors) unless context.user_params
   end
 
   def execute
@@ -20,6 +20,6 @@ class CreateUser
   end
 
   def validate_output
-    context.fail! unless context.user
+    context.fail!(errors: context.user.errors) unless context.user
   end
 end
