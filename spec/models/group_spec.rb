@@ -38,11 +38,11 @@ RSpec.describe Group do
     end
 
     it "has many user_group_memberships" do
-      expect { described_class.user_group_memberships.count }.to eq(2)
+      expect(group.user_group_memberships.count).to eq(2)
     end
 
     it "has many users through user_group_memberships" do
-      expect(described_class.users.count).to eq(2)
+      expect(group.users.count).to eq(2)
     end
   end
 end
