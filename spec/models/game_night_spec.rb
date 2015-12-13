@@ -27,8 +27,8 @@ RSpec.describe GameNight do
   end
 
   describe "associations" do
-    let(:user1)      { create(:user) }
-    let(:user2)      { create(:user) }
+    let(:user1)      { create(:confirmed_user) }
+    let(:user2)      { create(:confirmed_user) }
     let(:group)      { create(:group) }
     let(:game_night) { create(:game_night, group_id: group.id) }
 
