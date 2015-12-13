@@ -5,20 +5,24 @@ RSpec.describe CreateUser do
     let(:user_params) do
       {
         first_name: "John",
-        email: "test@test.com",
-        last_name: "Doe",
-        city: "Annapolis",
-        state: "MD",
-        country: "USA",
-        password: "helloworld"
+        email:      "test@test.com",
+        last_name:  "Doe",
+        city:       "Annapolis",
+        state:      "MD",
+        country:    "USA",
+        password:   "helloworld"
       }
     end
 
     subject do
-      CreateUser.call(user_params: user_params)
+      described_class.call(user_params: user_params)
     end
 
     context "when successful" do
+      it "returns a successful context" do
+        is_expected.to be_a_success
+      end
+
       it "creates a new user" do
         expect(subject.user).to be_a User
       end
@@ -40,7 +44,7 @@ RSpec.describe CreateUser do
 
     context "when invalid input is provided" do
       subject do
-        CreateUser.call(user_params: nil)
+        described_class.call(user_params: nil)
       end
 
       it "fails" do

@@ -4,7 +4,7 @@ RSpec.describe ShowUser do
 
     context "when successful" do
       subject do
-        ShowUser.call(id: user.id)
+        described_class.call(id: user.id)
       end
 
       it "returns a successful context" do
@@ -18,7 +18,7 @@ RSpec.describe ShowUser do
 
     context "when invalid id is provided" do
       subject do
-        ShowUser.call(id: nil)
+        described_class.call(id: nil)
       end
 
       it "fails" do
@@ -32,7 +32,7 @@ RSpec.describe ShowUser do
 
     context "when user output is invalid" do
       subject do
-        ShowUser.call(id: 0)
+        described_class.call(id: 0)
       end
 
       it "fails" do

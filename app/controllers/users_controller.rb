@@ -8,8 +8,8 @@ class UsersController < AuthenticationController
   # -F user[last_name]=Bates  -F user[password]=Helloworld \
   # http://localhost:3000/users.json -H "Accept: application/json"
 
-  # curl -i -H "Content-Type: application/json" -d '{"user": {"email": "test@test.com"}}'
-
+  # curl -i -H "Content-Type: application/json" \
+  # -d '{"user": {"email": "test@test.com"}}'
 
   # POST /users
   def create
@@ -32,9 +32,19 @@ class UsersController < AuthenticationController
     end
   end
 
+  # PATCH /users/1
+  def update
+    result = UpdateUser.call(user: current_user, params: user_params)
+    if result.success?
+      render json: result.user, status: :ok
+    else
+      render json: result.error, status: :internal_server_error
+    end
+  end
+
   # DELETE /users/1
   def destroy
-    result = DeleteUser.call(id: @current_user.id)
+    result = DeleteUser.call(id: current_user.id)
     if result.success?
       render json: result.message, status: :ok
     else

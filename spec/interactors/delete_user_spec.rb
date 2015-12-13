@@ -4,7 +4,7 @@ RSpec.describe DeleteUser do
 
     context "when successful" do
       subject do
-        DeleteUser.call(id: user.id)
+        described_class.call(id: user.id)
       end
 
       it "returns a successful context" do
@@ -18,7 +18,7 @@ RSpec.describe DeleteUser do
 
     context "when user id is invalid" do
       subject do
-        DeleteUser.call(id: nil)
+        described_class.call(id: nil)
       end
 
       it "fails" do

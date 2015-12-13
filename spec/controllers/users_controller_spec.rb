@@ -9,20 +9,16 @@ RSpec.describe UsersController do
     let(:create_user_input) do
       { user_params: {
         first_name: user.first_name,
-        email: user.email,
-        last_name: user.last_name,
-        city: user.city,
-        state: user.state,
-        country: user.country,
-        password: user.password }
+        email:      user.email,
+        last_name:  user.last_name,
+        city:       user.city,
+        state:      user.state,
+        country:    user.country,
+        password:   user.password }
       }
     end
 
-    let(:create_auth_token_input) do
-      {
-        user: user
-      }
-    end
+    let(:create_auth_token_input) { { user: user } }
 
     let(:create_user_context) do
       Interactor::Context.new(errors: :val, user: user)
@@ -40,7 +36,7 @@ RSpec.describe UsersController do
         and_return(create_auth_token_context)
     end
 
-    context "when valid params are provided" do
+    context "when called" do
       it "calls the CreateUser interactor" do
         expect(CreateUser).to receive(:call)
         post :create, params
@@ -59,25 +55,15 @@ RSpec.describe UsersController do
       end
     end
 
-    context "when invalid params are provided" do
-      before do
-        params = nil
-      end
-
-      it "calls the CreateUser interactor" do
-        expect(CreateUser).to receive(:call)
-        post :create, params
-      end
-    end
-
     context "when CreateUser is a failure" do
-      let(:create_user_context) { double(:context, success?: false,
-                                                   user: user) }
+      let(:create_user_context) do
+        double(:context, success?: false, user: user)
+      end
 
       before(:example) do
         allow(CreateUser).to receive(:call).with(create_user_input).
           and_return(create_user_context)
-        end
+      end
 
       it "returns HTTP status 422" do
         post :create, params
@@ -85,9 +71,9 @@ RSpec.describe UsersController do
       end
 
       it "returns an error" do
-        user.errors.add(:email, message = "error")
+        user.errors.add(:email, "error")
         post :create, params
-        expect(JSON.parse(response.body)).to eq({"email"=>["error"]})
+        expect(JSON.parse(response.body)).to eq("email" => ["error"])
       end
     end
   end
@@ -128,8 +114,9 @@ RSpec.describe UsersController do
     end
 
     context "when ShowUser fails" do
-      let(:show_user_context) { double(:context, error: "invalid",
-                                                 success?: false) }
+      let(:show_user_context) do
+        double(:context, error: "invalid", success?: false)
+      end
 
       it "returns HTTP status 404" do
         get :show, params
@@ -141,12 +128,11 @@ RSpec.describe UsersController do
         expect(response.body).to eq("invalid")
       end
     end
-
   end
 
   describe "DELETE #destroy" do
-    let(:user)   { create(:confirmed_user) }
-    let(:params) { { id: user.id } }
+    let(:user)              { create(:confirmed_user) }
+    let(:params)            { { id: user.id } }
     let(:delete_user_input) { { id: params.fetch(:id) } }
 
     let(:delete_user_context) do
@@ -175,8 +161,9 @@ RSpec.describe UsersController do
     end
 
     context "when DeleteUser fails" do
-      let(:delete_user_context) { double(:context, error: "invalid",
-                                                   success?: false) }
+      let(:delete_user_context) do
+        double(:context, error: "invalid", success?: false)
+      end
 
       it "renders an error" do
         delete :destroy, params
@@ -192,8 +179,20 @@ RSpec.describe UsersController do
 
   describe "PATCH #update" do
     let(:user)   { create(:confirmed_user) }
-    let(:params) { { id: user.id } }
-    let(:update_user_input) { { id: params.fetch(:id) } }
+    let(:params) { { id: user.id, user: update_user_input.fetch(:params) } }
+
+    let(:update_user_input) do
+      { user:   user,
+        params: {
+          first_name: user.first_name,
+          email:      user.email,
+          last_name:  user.last_name,
+          city:       user.city,
+          state:      user.state,
+          country:    user.country,
+          password:   user.password }
+      }
+    end
 
     let(:update_user_context) do
       Interactor::Context.new(errors: :val, user: user)
@@ -221,12 +220,18 @@ RSpec.describe UsersController do
     end
 
     context "when Update User fails" do
-      it "renders an error" do
-
+      let(:update_user_context) do
+        double(:context, error: "invalid", success?: false)
       end
 
-      it "returns HTTP status ___" do
+      it "renders an error" do
+        patch :update, params
+        expect(response.body).to eq("invalid")
+      end
 
+      it "returns HTTP status 500" do
+        patch :update, params
+        expect(response).to have_http_status(500)
       end
     end
   end
