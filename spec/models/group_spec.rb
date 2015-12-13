@@ -1,8 +1,5 @@
 RSpec.describe Group do
-  required_props = %i(
-    name
-    moderator_email
-  )
+  required_props = %i(name)
 
   properties = required_props + %i(
     city
@@ -33,7 +30,7 @@ RSpec.describe Group do
   describe "associations" do
     let(:user1)  { create(:confirmed_user) }
     let(:user2)  { create(:confirmed_user) }
-    let(:group)  { create(:group, moderator_email: user1.email) }
+    let(:group)  { create(:group) }
 
     before do
       UserGroupMembership.create(user_id: user1.id, group_id: group.id)
