@@ -33,7 +33,7 @@ RSpec.describe PasswordResetsController do
     end
 
     context "when unsuccessful" do
-      let(:context)   { double(:context, success?: false) }
+      let(:context) { double(:context, success?: false) }
 
       it "returns HTTP status 404" do
         post :create, params
@@ -90,7 +90,7 @@ RSpec.describe PasswordResetsController do
     end
 
     context "when unsuccessful" do
-      let(:context)   { double(:context, success?: false) }
+      let(:context) { double(:context, success?: false) }
 
       it "returns HTTP status 500" do
         patch :update, params
