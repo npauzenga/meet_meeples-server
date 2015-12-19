@@ -231,7 +231,7 @@ RSpec.describe UsersController do
 
       it "returns HTTP status 500" do
         patch :update, params
-        expect(response).to have_http_status(500)
+        expect(response).to have_http_status(422)
       end
     end
   end

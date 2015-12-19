@@ -31,12 +31,12 @@ RSpec.describe DeleteUser do
     end
 
     context "when destroy fails" do
-      subject do
-        described_class.call(id: user.id)
+      before do
+        allow_any_instance_of(User).to receive(:destroyed?).and_return(false)
       end
 
-      before do
-        allow(user).to receive(:destroyed?).and_return(false)
+      subject do
+        described_class.call(id: user.id)
       end
 
       it "fails" do
