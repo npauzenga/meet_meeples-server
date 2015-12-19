@@ -6,6 +6,7 @@ FactoryGirl.define do
     city Faker::Address.city
     state Faker::Address.state
     country Faker::Address.country
+    password "helloworld"
     email_confirmed true
   end
 

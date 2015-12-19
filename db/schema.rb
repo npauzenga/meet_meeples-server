@@ -11,10 +11,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203030146) do
+ActiveRecord::Schema.define(version: 20151213031714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "game_nights", force: :cascade do |t|
+    t.datetime "time"
+    t.string   "location_name"
+    t.string   "location_address"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "moderator_id"
+  end
+
+  create_table "user_game_night_attendees", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "game_night_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "user_game_night_attendees", ["game_night_id"], name: "index_user_game_night_attendees_on_game_night_id", using: :btree
+  add_index "user_game_night_attendees", ["user_id"], name: "index_user_game_night_attendees_on_user_id", using: :btree
+
+  create_table "user_group_memberships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "user_group_memberships", ["group_id"], name: "index_user_group_memberships_on_group_id", using: :btree
+  add_index "user_group_memberships", ["user_id"], name: "index_user_group_memberships_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -32,4 +72,8 @@ ActiveRecord::Schema.define(version: 20151203030146) do
     t.string   "country"
   end
 
+  add_foreign_key "user_game_night_attendees", "game_nights"
+  add_foreign_key "user_game_night_attendees", "users"
+  add_foreign_key "user_group_memberships", "groups"
+  add_foreign_key "user_group_memberships", "users"
 end
