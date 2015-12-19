@@ -7,6 +7,7 @@ gem "pg"
 gem "puma"
 gem "interactor"
 gem "figaro"
+gem "knock"
 
 group :developemnt, :test do
   gem "pry-byebug"
