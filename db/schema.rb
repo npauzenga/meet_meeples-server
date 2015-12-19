@@ -31,9 +31,10 @@ ActiveRecord::Schema.define(version: 20151213031714) do
     t.string   "country"
     t.string   "facebook"
     t.string   "twitter"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "moderator_id"
+    t.string   "moderator_email"
   end
 
   create_table "user_game_night_attendees", force: :cascade do |t|
