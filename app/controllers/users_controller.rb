@@ -38,7 +38,7 @@ class UsersController < AuthenticationController
     if result.success?
       render json: result.user, status: :ok
     else
-      render json: result.error, status: :internal_server_error
+      render json: result.error, status: :unprocessable_entity
     end
   end
 

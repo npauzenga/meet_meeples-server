@@ -4,16 +4,21 @@ class DeleteUser
   def call
     validate_input
     execute
+    validate_output
   end
 
   private
 
   def validate_input
-    context.fail!(error: "invalid input") unless context.id
+    context.fail!(errors: "invalid input") unless context.id
   end
 
   def execute
     context.user = User.find(context.id)
-    context.fail!(error: "user not deleted") unless context.user.destroy
+    context.user.destroy
+  end
+
+  def validate_output
+    context.fail!(errors: "user not deleted") unless context.user.destroyed?
   end
 end

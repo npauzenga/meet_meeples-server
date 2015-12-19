@@ -38,7 +38,7 @@ RSpec.describe CreateUser do
       end
 
       it "returns an error" do
-        expect(subject.error).to eq("invalid user")
+        expect(subject.errors).to eq([:email])
       end
     end
 

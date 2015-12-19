@@ -26,7 +26,25 @@ RSpec.describe DeleteUser do
       end
 
       it "returns an error" do
-        expect(subject.error).to eq("invalid input")
+        expect(subject.errors).to eq("invalid input")
+      end
+    end
+
+    context "when destroy fails" do
+      subject do
+        described_class.call(id: user.id)
+      end
+
+      before do
+        allow(user).to receive(:destroy).and_return(false)
+      end
+
+      it "fails" do
+        is_expected.to be_a_failure
+      end
+
+      it "returns an error" do
+        expect(subject.errors).to eq("user not deleted")
       end
     end
   end
