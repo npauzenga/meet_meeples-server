@@ -14,8 +14,7 @@ class DeleteUser
   end
 
   def execute
-    context.user = User.find(context.id)
-    context.user.destroy
+    context.user = User.find(context.id).destroy
   end
 
   def validate_output

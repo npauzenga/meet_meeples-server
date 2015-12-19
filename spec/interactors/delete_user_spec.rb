@@ -36,7 +36,7 @@ RSpec.describe DeleteUser do
       end
 
       before do
-        allow(user).to receive(:destroy).and_return(false)
+        allow(user).to receive(:destroyed?).and_return(false)
       end
 
       it "fails" do
