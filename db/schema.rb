@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151213031714) do
+ActiveRecord::Schema.define(version: 20151219215255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,11 @@ ActiveRecord::Schema.define(version: 20151213031714) do
     t.string   "location_address"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "group_id"
+    t.integer  "organizer_id"
   end
+
+  add_index "game_nights", ["group_id"], name: "index_game_nights_on_group_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -31,10 +35,9 @@ ActiveRecord::Schema.define(version: 20151213031714) do
     t.string   "country"
     t.string   "facebook"
     t.string   "twitter"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "moderator_id"
-    t.string   "moderator_email"
   end
 
   create_table "user_game_night_attendees", force: :cascade do |t|
@@ -73,6 +76,7 @@ ActiveRecord::Schema.define(version: 20151213031714) do
     t.string   "country"
   end
 
+  add_foreign_key "game_nights", "groups"
   add_foreign_key "user_game_night_attendees", "game_nights"
   add_foreign_key "user_game_night_attendees", "users"
   add_foreign_key "user_group_memberships", "groups"

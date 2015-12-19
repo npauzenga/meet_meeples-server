@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   has_many :user_group_memberships
   has_many :groups, through: :user_group_memberships
 
+  has_many :user_game_night_attendees
+  has_many :game_nights, through: :user_game_night_attendees
+
   validates :first_name, presence: true
   validates :last_name,  presence: true
   validates :email,      presence: true
