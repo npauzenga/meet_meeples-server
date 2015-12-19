@@ -8,7 +8,6 @@ FactoryGirl.define do
     country Faker::Address.country
     password "helloworld"
     email_confirmed true
-    password "helloworld"
   end
 
   factory :unconfirmed_user, class: User do
