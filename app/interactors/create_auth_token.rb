@@ -1,13 +1,4 @@
-class CreateAuthToken
-  include Interactor
-  def call
-    validate_input
-    execute
-    validate_output
-  end
-
-  private
-
+class CreateAuthToken < StandardInteraction
   def validate_input
     context.fail! unless context.user
   end

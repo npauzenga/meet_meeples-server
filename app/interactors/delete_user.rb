@@ -1,14 +1,4 @@
-class DeleteUser
-  include Interactor
-
-  def call
-    validate_input
-    execute
-    validate_output
-  end
-
-  private
-
+class DeleteUser < StandardInteraction
   def validate_input
     context.fail!(errors: "invalid input") unless context.id
   end

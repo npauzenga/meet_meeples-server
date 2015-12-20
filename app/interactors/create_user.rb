@@ -1,14 +1,4 @@
-class CreateUser
-  include Interactor
-
-  def call
-    validate_input
-    execute
-    validate_output
-  end
-
-  private
-
+class CreateUser < StandardInteraction
   def validate_input
     context.fail!(errors: "invalid user params") unless context.user_params
   end

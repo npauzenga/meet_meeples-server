@@ -1,13 +1,4 @@
-class UpdateUser
-  include Interactor
-
-  def call
-    validate_input
-    execute
-  end
-
-  private
-
+class UpdateUser < StandardInteraction
   def validate_input
     context.fail!(error: "invalid input") unless context.user && context.params
   end

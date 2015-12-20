@@ -1,14 +1,4 @@
-class ShowUser
-  include Interactor
-
-  def call
-    validate_input
-    execute
-    validate_output
-  end
-
-  private
-
+class ShowUser < StandardInteraction
   def validate_input
     context.fail!(error: "invalid user id") unless context.id
   end
