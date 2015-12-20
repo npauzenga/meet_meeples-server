@@ -220,13 +220,15 @@ RSpec.describe UsersController do
     end
 
     context "when Update User fails" do
+      let(:error) { InvalidParamsError.new }
+
       let(:update_user_context) do
-        double(:context, error: "invalid", success?: false)
+        double(:context, errors: error, success?: false)
       end
 
       it "renders an error" do
         patch :update, params
-        expect(response.body).to eq("invalid")
+        expect(response.body).to eq(error.to_json)
       end
 
       it "returns HTTP status 500" do

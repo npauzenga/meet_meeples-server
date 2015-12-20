@@ -18,7 +18,7 @@ class UsersController < AuthenticationController
       token = CreateAuthToken.call(user: result.user).token
       render json: { jwt: token }, status: :created
     else
-      render json: result.user.errors, status: :unprocessable_entity
+      render json: result.errors, status: :unprocessable_entity
     end
   end
 
@@ -28,7 +28,7 @@ class UsersController < AuthenticationController
     if result.success?
       render json: result.user, status: :ok
     else
-      render json: result.error, status: :not_found
+      render json: result.errors, status: :not_found
     end
   end
 
@@ -38,7 +38,7 @@ class UsersController < AuthenticationController
     if result.success?
       render json: result.user, status: :ok
     else
-      render json: result.error, status: :unprocessable_entity
+      render json: result.errors, status: :unprocessable_entity
     end
   end
 
@@ -48,7 +48,7 @@ class UsersController < AuthenticationController
     if result.success?
       render json: result.message, status: :ok
     else
-      render json: result.error, status: :not_found
+      render json: result.errors, status: :not_found
     end
   end
 

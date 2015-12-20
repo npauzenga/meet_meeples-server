@@ -9,14 +9,12 @@ class UpdateUser
   private
 
   def validate_input
-    context.fail!(error: "invalid input") unless context.user && context.params
+    context.fail!(errors: "invalid input") unless context.user && context.params
   end
 
   def execute
-    context.fail!(errors: context.user.errors) unless update_user
+    context.fail!(errors: InvalidParamsError.new) unless update_user
   end
-
-  private
 
   def update_user
     context.user.update(context.params.fetch(:user))
