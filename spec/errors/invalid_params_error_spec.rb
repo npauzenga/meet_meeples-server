@@ -1,8 +1,8 @@
 RSpec.describe InvalidParamsError do
   let(:error_hash) do
     {
-      title: "Invalid Params",
-      code: :invalid_params,
+      title:   "Invalid Params",
+      code:    :invalid_params,
       details: "One or more of the parameters was missing or failed valiation."
     }
   end
