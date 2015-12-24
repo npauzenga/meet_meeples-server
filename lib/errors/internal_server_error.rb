@@ -1,0 +1,2 @@
+class InternalServerError < Error
+end

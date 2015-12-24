@@ -10,7 +10,7 @@ class DeleteUser
   private
 
   def validate_input
-    context.fail!(errors: "invalid input") unless context.id
+    context.fail!(errors: MissingParamsError.new) unless context.id
   end
 
   def execute
@@ -18,6 +18,6 @@ class DeleteUser
   end
 
   def validate_output
-    context.fail!(errors: "user not deleted") unless context.user.destroyed?
+    context.fail!(errors: InternalServerError.new) unless context.user.destroyed?
   end
 end

@@ -9,7 +9,7 @@ class CreateAuthToken
   private
 
   def validate_input
-    context.fail! unless context.user
+    context.fail!(errors: MissingParamsError.new) unless context.user
   end
 
   def execute
@@ -17,6 +17,6 @@ class CreateAuthToken
   end
 
   def validate_output
-    context.fail! unless context.token
+    context.fail!(errors: InvalidToken.new) unless context.token
   end
 end
