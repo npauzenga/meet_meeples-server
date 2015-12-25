@@ -46,21 +46,24 @@ RSpec.describe PasswordResetsController do
   end
 
   describe "PATCH #udpate" do
-    let(:user)      { create(:confirmed_user) }
     let(:params)    do
       {
-	id: "token123", 
-	user: { password:  user.password } 
+        id:   "token123",
+        user: { password:  user.password }
       }
     end
 
-    let(:arguments) { { password: params[:user][:password], token: params[:id] } }
+    let(:arguments) do
+      { password: params[:user][:password],
+        token:    params[:id] }
+    end
+
     let(:context)   { double(:context, success?: true) }
+    let(:user)      { create(:confirmed_user) }
 
     before(:example) do
       allow(UpdatePasswordOrganizer).to receive(:call).with(arguments).
         and_return(context)
-      
       allow(context).to receive(:message).and_return(["password updated"])
       allow(context).to receive(:errors).and_return(["update failed"])
     end
