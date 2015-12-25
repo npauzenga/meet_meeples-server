@@ -9,9 +9,20 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
+    update = UpdatePasswordOrganizer.call(password: params[:user][:password],
+					  token:    params[:id]) 
+    if update.success?
+      render json: update.message, status: :ok
+    else
+      render json: update.errors, status: :internal_server_error
+    end
   end
 
   private
+
+  def user_params
+    params.require(:user).permit(:password)
+  end
 
   def password_params
     params.require(:password_reset).permit(:email)

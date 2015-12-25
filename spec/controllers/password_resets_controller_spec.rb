@@ -47,21 +47,26 @@ RSpec.describe PasswordResetsController do
 
   describe "PATCH #udpate" do
     let(:user)      { create(:confirmed_user) }
-    let(:params)    { { password_reset: { email: user.email } } }
-    let(:arguments) { { user_params: user_params, user: user } }
-    let(:context)   { double(:context, success?: true) }
-
-    let(:user_params) do
-      { password: user.password }
+    let(:params)    do
+      {
+	id: "token123", 
+	user: { password:  user.password } 
+      }
     end
 
+    let(:arguments) { { password: params[:user][:password], token: params[:id] } }
+    let(:context)   { double(:context, success?: true) }
+
     before(:example) do
-      allow(UpdatePassword).to receive(:call).with(arguments).
+      allow(UpdatePasswordOrganizer).to receive(:call).with(arguments).
         and_return(context)
+      
+      allow(context).to receive(:message).and_return(["password updated"])
+      allow(context).to receive(:errors).and_return(["update failed"])
     end
 
     it "calls UpdatePassword interactor" do
-      expect(UpdatePassword).to receive(:call)
+      expect(UpdatePasswordOrganizer).to receive(:call)
       patch :update, params
     end
 
@@ -71,14 +76,9 @@ RSpec.describe PasswordResetsController do
         expect(response).to have_http_status(200)
       end
 
-      it "redirects to /signin" do
-        patch :update, params
-        expect(response).to redirect_to("/signin")
-      end
-
       it "renders a success notice" do
         patch :update, params
-        expect(JSON.parse(response.body)).to eq(password: ["password updated"])
+        expect(JSON.parse(response.body)).to eq(["password updated"])
       end
     end
 
@@ -90,14 +90,9 @@ RSpec.describe PasswordResetsController do
         expect(response).to have_http_status(500)
       end
 
-      it "redirects to index" do
-        patch :update, params
-        expect(response).to redirect_to("/")
-      end
-
       it "renders an error" do
         patch :update, params
-        expect(JSON.parse(response.body)).to eq(password: ["update failed"])
+        expect(JSON.parse(response.body)).to eq(["update failed"])
       end
     end
   end
