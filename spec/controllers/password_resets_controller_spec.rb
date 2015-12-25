@@ -8,6 +8,9 @@ RSpec.describe PasswordResetsController do
     before(:example) do
       allow(PasswordResetOrganizer).to receive(:call).with(arguments).
         and_return(context)
+
+      allow(context).to receive(:message).and_return(["reset sent"])
+      allow(context).to receive(:errors).and_return(["reset failed"])
     end
 
     it "calls PasswordResetOrganizer" do
@@ -21,14 +24,9 @@ RSpec.describe PasswordResetsController do
         expect(response).to have_http_status(201)
       end
 
-      it "redirects to index" do
-        post :create, params
-        expect(response).to redirect_to("/")
-      end
-
       it "renders a success notice" do
         post :create, params
-        expect(JSON.parse(response.body)).to eq(password: ["reset sent"])
+        expect(JSON.parse(response.body)).to eq(["reset sent"])
       end
     end
 
@@ -40,14 +38,9 @@ RSpec.describe PasswordResetsController do
         expect(response).to have_http_status(404)
       end
 
-      it "redirects to index" do
-        post :create, params
-        expect(response).to redirect_to("/")
-      end
-
       it "renders an error" do
         post :create, params
-        expect(JSON.parse(response.body)).to eq(password: ["reset failed"])
+        expect(JSON.parse(response.body)).to eq(["reset failed"])
       end
     end
   end
