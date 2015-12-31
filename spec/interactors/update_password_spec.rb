@@ -1,11 +1,11 @@
 RSpec.describe UpdatePassword do
   describe ".call" do
     let(:user)        { create(:confirmed_user) }
-    let(:user_params) { { password: "newpassword" } }
+    let(:password)    { "newpassword" }
 
     context "when successful" do
       subject do
-        described_class.call(user_params: user_params, user: user)
+        described_class.call(user: user, password: password)
       end
 
       it "sets the user's reset digest to nil" do
@@ -17,18 +17,13 @@ RSpec.describe UpdatePassword do
         expect(subject.user.password).to eq("newpassword")
       end
 
-      it "updates the user's password salt" do
-        is_expected.to change(user.password_salt)
-      end
-
-      it "updates the user's password hash" do
-        is_expected.to change(user.password_hash)
+      it "updates the user's password digest" do
       end
     end
 
     context "when user not provided" do
       subject do
-        described_class.call(user_params: user_params, user: nil)
+        described_class.call(password: password)
       end
 
       it "fails" do
@@ -36,13 +31,13 @@ RSpec.describe UpdatePassword do
       end
 
       it "returns an error" do
-        expect(subject.error).to eq("invalid user")
+        expect(subject.errors).to eq("invalid input")
       end
     end
 
-    context "when user params not provided" do
+    context "when user password  not provided" do
       subject do
-        described_class.call(user_params: nil, user: user)
+        described_class.call(user: user)
       end
 
       it "fails" do
@@ -50,17 +45,17 @@ RSpec.describe UpdatePassword do
       end
 
       it "returns an error" do
-        expect(subject.error).to eq("invalid password")
+        expect(subject.errors).to eq("invalid input")
       end
     end
 
     context "when update fails" do
       subject do
-        described_class.call(user_params: user_params, user: user)
+        described_class.call(password: password, user: user)
       end
 
       before do
-        allow(user).to receive(:update_attributes).and_return(false)
+        allow(user).to receive(:update).and_return(false)
       end
 
       it "fails" do
@@ -68,7 +63,7 @@ RSpec.describe UpdatePassword do
       end
 
       it "returns an error" do
-        expect(subject.error).to eq("there was a problem saving the user")
+        expect(subject.errors).to eq("internal server error")
       end
     end
   end
