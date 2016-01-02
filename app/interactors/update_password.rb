@@ -9,7 +9,7 @@ class UpdatePassword
 
   def validate_input
     # TODO replace with Error object
-    context.fail!(errors: "invalid input") unless context.user && context.password 
+    context.fail!(errors: "invalid input") unless valid_input?
   end
 
   def execute
@@ -26,5 +26,9 @@ class UpdatePassword
   # TODO move to Encryptor class?
   def passwords_match?
     context.user.password == context.password
+  end
+
+  def valid_input?
+    context.user && context.password
   end
 end
