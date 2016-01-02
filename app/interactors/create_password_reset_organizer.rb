@@ -1,3 +1,3 @@
-class PasswordResetOrganizer
+class CreatePasswordResetOrganizer
   include Interactor::Organizer
 end

@@ -6,15 +6,15 @@ RSpec.describe PasswordResetsController do
     let(:context)   { double(:context, success?: true) }
 
     before(:example) do
-      allow(PasswordResetOrganizer).to receive(:call).with(arguments).
+      allow(CreatePasswordResetOrganizer).to receive(:call).with(arguments).
         and_return(context)
 
       allow(context).to receive(:message).and_return(["reset sent"])
       allow(context).to receive(:errors).and_return(["reset failed"])
     end
 
-    it "calls PasswordResetOrganizer" do
-      expect(PasswordResetOrganizer).to receive(:call)
+    it "calls CreatePasswordResetOrganizer" do
+      expect(CreatePasswordResetOrganizer).to receive(:call)
       post :create, params
     end
 

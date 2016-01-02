@@ -1,6 +1,6 @@
 class PasswordResetsController < ApplicationController
   def create
-    reset = PasswordResetOrganizer.call(email: password_params[:email])
+    reset = CreatePasswordResetOrganizer.call(email: password_params[:email])
     if reset.success?
       render json: reset.message, status: :created
     else
