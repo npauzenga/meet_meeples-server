@@ -8,6 +8,7 @@ gem "puma"
 gem "interactor"
 gem "figaro"
 gem "knock"
+gem "active_model_serializers"
 
 group :developemnt, :test do
   gem "pry-byebug"
