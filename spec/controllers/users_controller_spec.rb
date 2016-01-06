@@ -98,7 +98,7 @@ RSpec.describe UsersController do
 
     context "when succesful" do
       let(:serializer) { UserSerializer.new(user) }
-      
+
       let(:serialization) do
         ActiveModel::Serializer::Adapter.create(serializer)
       end
