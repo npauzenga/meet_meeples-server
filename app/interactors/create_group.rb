@@ -1,0 +1,2 @@
+class CreateGroup < StandardInteraction
+end
