@@ -4,7 +4,7 @@ RSpec.describe UserMailer do
     let(:user)  { create(:confirmed_user, reset_token: token[1]) }
 
     let(:mail) do
-      UserMailer.password_reset(user: user)
+      described_class.password_reset(user: user)
     end
 
     it "renders the subject" do

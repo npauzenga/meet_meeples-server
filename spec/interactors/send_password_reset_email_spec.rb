@@ -10,8 +10,8 @@ RSpec.describe SendPasswordResetEmail do
     subject(:send_email) do
       described_class.call(user: user)
     end
-    
-    before do 
+
+    before do
       ActionMailer::Base.deliveries.clear
     end
 
@@ -41,8 +41,10 @@ RSpec.describe SendPasswordResetEmail do
     end
 
     context "when user does not have a valid reset_digest" do
-      let(:user) { create(:confirmed_user, reset_digest: nil,
-                                           reset_token:  token[1]) }
+      let(:user) do
+        create(:confirmed_user, reset_digest: nil,
+                                reset_token:  token[1])
+      end
 
       it "fails" do
         is_expected.to be_a_failure
@@ -54,8 +56,10 @@ RSpec.describe SendPasswordResetEmail do
     end
 
     context "when user does not have a valid reset_token" do
-      let(:user) { create(:confirmed_user, reset_digest: token[0],
-                                           reset_token:  nil) }
+      let(:user) do
+        create(:confirmed_user, reset_digest: token[0],
+                                reset_token:  nil)
+      end
 
       it "fails" do
         is_expected.to be_a_failure
