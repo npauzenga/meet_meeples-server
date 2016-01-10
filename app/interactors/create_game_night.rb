@@ -1,0 +1,2 @@
+class CreateGameNight < StandardInteraction
+end

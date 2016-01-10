@@ -1,0 +1,2 @@
+class DeleteGameNight < StandardInteraction
+end

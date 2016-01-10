@@ -1,0 +1,2 @@
+class UpdateGameNight < StandardInteraction
+end
