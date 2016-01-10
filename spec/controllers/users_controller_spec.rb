@@ -95,6 +95,12 @@ RSpec.describe UsersController do
     end
 
     context "when succesful" do
+      let(:serializer) { UserSerializer.new(user) }
+
+      let(:serialization) do
+        ActiveModel::Serializer::Adapter.create(serializer)
+      end
+
       it "calls the ShowUser interactor" do
         expect(ShowUser).to receive(:call)
         get :show, params
@@ -107,7 +113,7 @@ RSpec.describe UsersController do
 
       it "render the user as JSON" do
         get :show, params
-        expect(response.body).to eq(user.to_json)
+        expect(serialization.to_json).to eq(response.body)
       end
     end
 
