@@ -9,6 +9,6 @@ module RequestHelpers
   end
 
   def serialize(resource)
-    SerializableResource.new(resource).to_json
+    ActiveModel::SerializableResource.new(resource).to_json
   end
 end
