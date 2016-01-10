@@ -26,7 +26,7 @@ RSpec.describe PasswordResetsController do
 
       it "renders a success notice" do
         post :create, params
-        expect(JSON.parse(response.body)).to eq(["reset sent"])
+        expect(json).to eq(["reset sent"])
       end
     end
 
@@ -40,7 +40,7 @@ RSpec.describe PasswordResetsController do
 
       it "renders an error" do
         post :create, params
-        expect(JSON.parse(response.body)).to eq(["reset failed"])
+        expect(json).to eq(["reset failed"])
       end
     end
   end
@@ -81,7 +81,7 @@ RSpec.describe PasswordResetsController do
 
       it "renders a success notice" do
         patch :update, params
-        expect(JSON.parse(response.body)).to eq(["password updated"])
+        expect(json).to eq(["password updated"])
       end
     end
 
@@ -95,7 +95,7 @@ RSpec.describe PasswordResetsController do
 
       it "renders an error" do
         patch :update, params
-        expect(JSON.parse(response.body)).to eq(["update failed"])
+        expect(json).to eq(["update failed"])
       end
     end
   end

@@ -1,5 +1,3 @@
-include Helpers
-
 RSpec.describe UsersController do
   let(:user) { create(:unconfirmed_user) }
 
@@ -73,7 +71,7 @@ RSpec.describe UsersController do
       it "returns an error" do
         user.errors.add(:email, "error")
         post :create, params
-        expect(JSON.parse(response.body)).to eq("email" => ["error"])
+        expect(json["email"]).to eq(["error"])
       end
     end
   end
