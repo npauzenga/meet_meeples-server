@@ -1,6 +1,7 @@
 include Helpers
 
 RSpec.describe GroupsController do
+  let(:user) { create(:confirmed_user) }
   let(:group) { create(:group) }
   let(:serializer) { GroupSerializer.new(group) }
 
@@ -95,7 +96,7 @@ RSpec.describe GroupsController do
     end
 
     context "when ShowGroup is successful" do
-      it "returns HTTP status 201" do
+      it "returns HTTP status 200" do
         get :show, params
         expect(response).to have_http_status(200)
       end
@@ -106,7 +107,11 @@ RSpec.describe GroupsController do
       end
     end
 
-    context "when ShowGroup fails" do
+    context "when ShowGroup is a failure" do
+      let(:show_group_context) do
+        double(:context, success?: false, group: group)
+      end
+
       it "returns HTTP status 404" do
         get :show, params
         expect(response).to have_http_status(404)
@@ -120,31 +125,108 @@ RSpec.describe GroupsController do
   end
 
   describe "PATCH #update" do
+    let(:params) { { group: update_group_input.fetch(:group_params) } }
+
+    let(:update_group_input) do
+      { group_params: {
+        name: group.name }
+      }
+    end
+
+    let(:update_group_context) do
+      Interactor::Context.new(errors: :val, group: group)
+    end
+
+    let(:serializer) { GroupSerializer.new(group) }
+
+    let(:serialization) do
+      ActiveModel::Serializer::Adapter.create(serializer)
+    end
+
+    before do
+      allow(UpdateGroup).to receive(:call).with(update_group_input).
+        and_return(update_group_context)
+    end
+
     context "when called" do
       it "calls the UpdateGroup Interactor" do
+        expect(UpdateGroup).to receive(:call)
+        patch :update, params
       end
     end
 
     context "when UpdateGroup is successful" do
-      it "returns HTTP status 201" do
+      it "returns HTTP status 200" do
+        patch :update, params
+        expect(response).to have_http_status(200)
       end
 
       it "renders the group as JSON" do
+        patch :update, params
+        expect(serialization.to_json).to eq(response.body)
       end
     end
 
-    context "when UpdateGroup fails" do
-      it "returns HTTP status xxx" do
+    context "when UpdateGroup is a failure" do
+      let(:update_group_context) do
+        double(:context, success?: false, group: group)
+      end
+
+      it "returns HTTP status 404" do
+        patch :update, params
+        expect(response).to have_http_status(404)
       end
 
       it "renders an error" do
+        group.errors.add("error")
+        patch :update, params
+        expect(JSON.parse(response.body)).to eq("error")
       end
     end
   end
 
   describe "DELETE #delete" do
-  end
+    let(:params) { { group: delete_group_input.fetch(:group_params) } }
 
-  describe "GET #index" do
+    let(:delete_group_input) do
+      { group_params: {
+        name: group.name }
+      }
+    end
+
+    let(:delete_group_context) do
+      Interactor::Context.new(errors: :val, group: group)
+    end
+
+    context "when called" do
+      it "calls the DeleteGroup Interactor" do
+        expect(DeleteGroup).to receive(:call)
+        delete :delete, params
+      end
+    end
+
+    context "when DeleteGroup is successful" do
+      it "returns HTTP status 200" do
+        delete :delete, params
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context "when DeleteGroup is a failure" do
+      let(:delete_group_context) do
+        double(:context, success?: false, group: group)
+      end
+
+      it "returns HTTP status 500" do
+        delete :delete, params
+        expect(response).to have_http_status(500)
+      end
+
+      it "renders an error" do
+        group.errors.add("error")
+        patch :update, params
+        expect(JSON.parse(response.body)).to eq("error")
+      end
+    end
   end
 end
