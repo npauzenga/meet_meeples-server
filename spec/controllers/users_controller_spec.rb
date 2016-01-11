@@ -1,5 +1,3 @@
-include Helpers
-
 RSpec.describe UsersController do
   let(:user) { create(:unconfirmed_user) }
 
@@ -73,7 +71,7 @@ RSpec.describe UsersController do
       it "returns an error" do
         user.errors.add(:email, "error")
         post :create, params
-        expect(JSON.parse(response.body)).to eq("email" => ["error"])
+        expect(json["email"]).to eq(["error"])
       end
     end
   end
@@ -97,12 +95,6 @@ RSpec.describe UsersController do
     end
 
     context "when succesful" do
-      let(:serializer) { UserSerializer.new(user) }
-
-      let(:serialization) do
-        ActiveModel::Serializer::Adapter.create(serializer)
-      end
-
       it "calls the ShowUser interactor" do
         expect(ShowUser).to receive(:call)
         get :show, params
@@ -115,7 +107,7 @@ RSpec.describe UsersController do
 
       it "render the user as JSON" do
         get :show, params
-        expect(serialization.to_json).to eq(response.body)
+        expect(serialize(user)).to eq(response.body)
       end
     end
 
