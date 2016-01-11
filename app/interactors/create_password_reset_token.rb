@@ -1,6 +1,4 @@
 class CreatePasswordResetToken < StandardInteraction
-  include Interactor
-
   def validate_input
     context.fail!(errors: "invalid input") unless context.user
   end
