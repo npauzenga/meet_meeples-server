@@ -4,7 +4,7 @@ RSpec.describe FindUserByResetToken do
 
     context "when successful" do
       before do
-        create(:confirmed_user, reset_digest: token[0])
+        @user = create(:confirmed_user, reset_digest: token[0])
       end
 
       subject do
@@ -16,7 +16,7 @@ RSpec.describe FindUserByResetToken do
       end
 
       it "find the user" do
-        expect(subject.user).to eq(user)
+        expect(subject.user).to eq(@user)
       end
     end
 
