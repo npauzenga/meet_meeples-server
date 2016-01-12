@@ -85,6 +85,15 @@ RSpec.describe PasswordResetsController do
       end
     end
 
+    context "when no user param is given" do
+      let(:paramz) { { id: "token123" } }
+
+      it "throws an error" do
+        expect { patch :update, paramz }.
+          to raise_error ActionController::ParameterMissing
+      end
+    end
+
     context "when unsuccessful" do
       let(:context) { double(:context, success?: false) }
 
