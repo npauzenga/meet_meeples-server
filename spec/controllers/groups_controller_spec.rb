@@ -1,25 +1,16 @@
-include Helpers
-
 RSpec.describe GroupsController do
   let(:user) { create(:confirmed_user) }
   let(:group) { create(:group) }
-  let(:serializer) { GroupSerializer.new(group) }
-
-  let(:serialization) do
-    ActiveModel::Serializer::Adapter.create(serializer)
-  end
 
   before do
     authenticate
   end
 
   describe "POST #create" do
-    let(:params) { { group: create_group_input.fetch(:group_params) } }
+    let(:params) { { group: create_group_input } }
 
     let(:create_group_input) do
-      { group_params: {
-        name: group.name }
-      }
+      { name: group.name }
     end
 
     let(:create_group_context) do
@@ -52,7 +43,7 @@ RSpec.describe GroupsController do
 
       it "renders the group as JSON" do
         post :create, params
-        expect(serialization.to_json).to eq(response.body)
+        expect(serialize(group)).to eq(response.body)
       end
     end
 
@@ -67,9 +58,9 @@ RSpec.describe GroupsController do
       end
 
       it "returns an error" do
-        group.errors.add("error")
+        group.errors.add(:name, "error")
         post :create, params
-        expect(JSON.parse(response.body)).to eq("error")
+        expect(json["name"]).to eq(["error"])
       end
     end
   end
@@ -103,13 +94,16 @@ RSpec.describe GroupsController do
 
       it "renders the group as JSON" do
         get :show, params
-        expect(serialization.to_json).to eq(response.body)
+        expect(serialize(group)).to eq(response.body)
       end
     end
 
     context "when ShowGroup is a failure" do
       let(:show_group_context) do
-        double(:context, success?: false, group: group)
+        double(:context,
+               errors:   { name: ["invalid"] },
+               success?: false,
+               group:    group)
       end
 
       it "returns HTTP status 404" do
@@ -119,28 +113,20 @@ RSpec.describe GroupsController do
 
       it "renders an error" do
         get :show, params
-        expect(response.body).to eq("invalid")
+        expect(json["name"]).to eq(["invalid"])
       end
     end
   end
 
   describe "PATCH #update" do
-    let(:params) { { group: update_group_input.fetch(:group_params) } }
+    let(:params) { { id: group.id, group: update_group_input } }
 
     let(:update_group_input) do
-      { group_params: {
-        name: group.name }
-      }
+      { name: group.name }
     end
 
     let(:update_group_context) do
       Interactor::Context.new(errors: :val, group: group)
-    end
-
-    let(:serializer) { GroupSerializer.new(group) }
-
-    let(:serialization) do
-      ActiveModel::Serializer::Adapter.create(serializer)
     end
 
     before do
@@ -163,7 +149,7 @@ RSpec.describe GroupsController do
 
       it "renders the group as JSON" do
         patch :update, params
-        expect(serialization.to_json).to eq(response.body)
+        expect(serialize(group)).to eq(response.body)
       end
     end
 
@@ -172,60 +158,67 @@ RSpec.describe GroupsController do
         double(:context, success?: false, group: group)
       end
 
-      it "returns HTTP status 404" do
+      it "returns HTTP status 422" do
         patch :update, params
-        expect(response).to have_http_status(404)
+        expect(response).to have_http_status(422)
       end
 
       it "renders an error" do
-        group.errors.add("error")
+        group.errors.add(:name, "error")
         patch :update, params
-        expect(JSON.parse(response.body)).to eq("error")
+        expect(json["name"]).to eq(["error"])
       end
     end
   end
 
-  describe "DELETE #delete" do
-    let(:params) { { group: delete_group_input.fetch(:group_params) } }
+  describe "DELETE #destroy" do
+    let(:params) do
+      { id: group.id }
+    end
 
     let(:delete_group_input) do
-      { group_params: {
-        name: group.name }
-      }
+      { id: params.fetch(:id).to_s }
     end
 
     let(:delete_group_context) do
       Interactor::Context.new(errors: :val, group: group)
     end
 
+    before do
+      allow(DeleteGroup).to receive(:call).with(delete_group_input).
+        and_return(delete_group_context)
+    end
+
     context "when called" do
       it "calls the DeleteGroup Interactor" do
         expect(DeleteGroup).to receive(:call)
-        delete :delete, params
+        delete :destroy, params
       end
     end
 
     context "when DeleteGroup is successful" do
       it "returns HTTP status 200" do
-        delete :delete, params
+        delete :destroy, params
         expect(response).to have_http_status(200)
       end
     end
 
     context "when DeleteGroup is a failure" do
       let(:delete_group_context) do
-        double(:context, success?: false, group: group)
+        double(:context,
+               errors:   { id: ["invalid"] },
+               success?: false,
+               group:    group)
       end
 
       it "returns HTTP status 500" do
-        delete :delete, params
+        delete :destroy, params
         expect(response).to have_http_status(500)
       end
 
       it "renders an error" do
-        group.errors.add("error")
-        patch :update, params
-        expect(JSON.parse(response.body)).to eq("error")
+        delete :destroy, params
+        expect(json["id"]).to eq(["invalid"])
       end
     end
   end
