@@ -31,6 +31,7 @@ class GroupsController < AuthenticationController
 
   def destroy
     result = DeleteGroup.call(id: params[:id])
+    
     unless result.success?
       render json: result.errors, status: :internal_server_error
     end
