@@ -4,28 +4,23 @@ RSpec.describe UserMailer do
     let(:user)  { create(:confirmed_user, reset_token: token[1]) }
 
     let(:mail) do
-      described_class.password_reset(user: user)
+      described_class.password_reset(user)
     end
 
-    it "renders the subject" do
+    it "sets the subject" do
       expect(mail.subject).to eq("Meet Meeples Password Reset")
     end
 
-    it "renders the receiver email" do
-      expect(mail.to).to eq(user.email)
+    it "sets the receiver email" do
+      expect(mail.to).to eq([user.email])
     end
 
-    it "renders the sender email" do
-      expect(mail.from).to eq("admin@meetmeeples.com")
+    it "sets the sender email" do
+      expect(mail.from).to eq(["admin@meetmeeples.com"])
     end
 
-    it "assigns @reset_token" do
-      expect(mail.body.encoded).to match(user.reset_token)
-    end
-
-    it "assigns @password_reset_url" do
-      expect(mail.body.encoded).
-        to match("http://www.meetmeeples.com/#{user.id}/password_reset")
+    it "assigns @first_name" do
+      expect(mail.body.encoded).to match(user.first_name)
     end
   end
 end

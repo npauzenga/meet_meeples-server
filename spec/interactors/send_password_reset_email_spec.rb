@@ -69,15 +69,5 @@ RSpec.describe SendPasswordResetEmail do
         expect(subject.errors).to eq("invalid input")
       end
     end
-
-    context "when send fails" do
-      it "fails" do
-        is_expected.to be_a_failure
-      end
-
-      it "adds an error to errors" do
-        expect(subject.errors).to eq("invalid output")
-      end
-    end
   end
 end
