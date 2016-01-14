@@ -10,11 +10,17 @@ RSpec.describe CreatePasswordResetToken do
       end
 
       it "sets the reset digest" do
-        expect { subject }.to change(subject.user.reset_digest)
+        expect { subject }.to change { user.reset_digest }
+      end
+
+      it "sets the reset digest to a string" do
+        expect(subject.user.reset_digest).to be_a(String)
       end
     end
 
-    context "when input is invalid" do
+    context "when user is not valid" do
+      subject { described_class.call(user: nil) }
+
       it "fails" do
         is_expected.to be_a_failure
       end
@@ -24,13 +30,19 @@ RSpec.describe CreatePasswordResetToken do
       end
     end
 
-    context "when output is invalid" do
+    context "when update fails" do
+      subject { described_class.call(user: user) }
+
+      before do
+        allow(user).to receive(:update).and_return(false)
+      end
+
       it "fails" do
         is_expected.to be_a_failure
       end
 
       it "adds an error to errors" do
-        expect(subject.errors).to eq("internal server error")
+        expect(subject.errors).to eq("server error")
       end
     end
   end
