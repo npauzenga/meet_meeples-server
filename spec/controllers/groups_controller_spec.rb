@@ -197,9 +197,9 @@ RSpec.describe GroupsController do
     end
 
     context "when DeleteGroup is successful" do
-      it "returns HTTP status 200" do
+      it "returns HTTP status 204" do
         delete :destroy, params
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(204)
       end
     end
 
