@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  attr_accessor :reset_token
+
   has_secure_password
 
   has_many :user_group_memberships
