@@ -1,27 +1,20 @@
-include Helpers
-
 RSpec.describe GameNightsController do
   let(:user)       { create(:confirmed_user) }
   let(:game_night) { create(:game_night) }
-  let(:serializer) { GameNightSerializer.new(game_night) }
-  let(:serialization) do
-    ActiveModel::Serializer::Adapter.create(serializer)
-  end
 
   before do
     authenticate
   end
 
   describe "POST #create" do
-    let(:params) do
-      { game_night: create_game_night_input.fetch(:game_night_params) }
-    end
+    let(:params) { { game_night: create_game_night_input } }
 
     let(:create_game_night_input) do
-      { game_night_params: {
-        name:          game_night.name,
-        time:          game_night.time,
-        location_name: game_night.location_name }
+      {
+        name:             game_night.name,
+        time:             game_night.time,
+        location_name:    game_night.location_name,
+        location_address: game_night.location_address
       }
     end
 
@@ -49,7 +42,7 @@ RSpec.describe GameNightsController do
 
       it "renders the game_night as JSON" do
         post :create, params
-        expect(serialization.to_json).to eq(response.body)
+        expect(serialize(game_night)).to eq(response.body)
       end
     end
 
@@ -64,24 +57,24 @@ RSpec.describe GameNightsController do
       end
 
       it "returns an error" do
-        game_night.errors.add("error")
+        game_night.errors.add(:name, "error")
         post :create, params
-        expect(JSON.parse(response.body)).to eq("error")
+        expect(json["name"]).to eq(["error"])
       end
     end
   end
 
   describe "PATCH #update" do
     let(:params) do
-      { id:         game_night.id,
-        game_night: update_game_night_input.fetch(:game_night_params) }
+      { id: game_night.id, game_night: update_game_night_input }
     end
 
     let(:update_game_night_input) do
-      { game_night_params: {
-        name:          game_night.name,
-        time:          game_night.time,
-        location_name: game_night.location_name }
+      {
+        name:             game_night.name,
+        time:             game_night.time,
+        location_name:    game_night.location_name,
+        location_address: game_night.location_address
       }
     end
 
@@ -109,23 +102,24 @@ RSpec.describe GameNightsController do
 
       it "renders the GameNight as JSON" do
         patch :update, params
-        expect(serialization.to_json).to eq(response.body)
+        expect(serialize(game_night)).to eq(response.body)
       end
     end
 
     context "when UpdateGameNight is a failure" do
       let(:update_game_night_context) do
-        double(:context, error: "invalid", success?: false)
+        double(:context, success?: false, game_night: game_night)
       end
 
       it "renders an error" do
+        game_night.errors.add(:name, "error")
         patch :update, params
-        expect(response.body).to eq("invalid")
+        expect(json["name"]).to eq(["error"])
       end
 
-      it "returns HTTP status 500" do
+      it "returns HTTP status 422" do
         patch :update, params
-        expect(response).to have_http_status(500)
+        expect(response).to have_http_status(422)
       end
     end
   end
@@ -158,13 +152,15 @@ RSpec.describe GameNightsController do
 
       it "renders the GameNight as JSON" do
         get :show, params
-        expect(serialization.to_json).to eq(response.body)
+        expect(serialize(game_night)).to eq(response.body)
       end
     end
 
     context "when ShowGameNight is a failure" do
       let(:show_game_night_context) do
-        double(:context, success?: false, game_night: game_night)
+        double(:context, errors:     { name: ["invalid"] },
+                         success?:   false,
+                         game_night: game_night)
       end
 
       it "returns HTTP status 404" do
@@ -174,12 +170,12 @@ RSpec.describe GameNightsController do
 
       it "renders an error" do
         get :show, params
-        expect(response.body).to eq("invalid")
+        expect(json["name"]).to eq(["invalid"])
       end
     end
   end
 
-  describe "DELETE #delete" do
+  describe "DELETE #destroy" do
     let(:params) { { id: game_night.id } }
     let(:delete_game_night_input) { { id: params.fetch(:id).to_s } }
 
@@ -187,10 +183,15 @@ RSpec.describe GameNightsController do
       Interactor::Context.new(errors: :val, game_night: game_night)
     end
 
+    before do
+      allow(DeleteGameNight).to receive(:call).with(delete_game_night_input).
+        and_return(delete_game_night_context)
+    end
+
     context "when called" do
       it "calls the DeleteGameNight Interactor" do
         expect(DeleteGameNight).to receive(:call)
-        delete :delete, params
+        delete :destroy, params
       end
     end
 
@@ -203,7 +204,9 @@ RSpec.describe GameNightsController do
 
     context "when DeleteGameNight is a failure" do
       let(:delete_game_night_context) do
-        double(:context, success?: false, game_night: game_night)
+        double(:context, success?:   false,
+                         game_night: game_night,
+                         errors:     { id: ["invalid"] })
       end
 
       it "returns HTTP status 500" do
@@ -212,9 +215,8 @@ RSpec.describe GameNightsController do
       end
 
       it "renders an error" do
-        game_night.errors.add("error")
         delete :destroy, params
-        expect(JSON.parse(response.body)).to eq("error")
+        expect(json["id"]).to eq(["invalid"])
       end
     end
   end
