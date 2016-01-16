@@ -3,9 +3,7 @@ RSpec.describe FindUserByResetToken do
     let(:token) { Encryptor.generate_token }
 
     context "when successful" do
-      before do
-        @user = create(:confirmed_user, reset_digest: token[0])
-      end
+      let!(:user) { create(:confirmed_user, reset_digest: token[0]) }
 
       subject do
         described_class.call(reset_token: token[1])
@@ -16,7 +14,7 @@ RSpec.describe FindUserByResetToken do
       end
 
       it "find the user" do
-        expect(subject.user).to eq(@user)
+        expect(subject.user).to eq(user)
       end
     end
 
