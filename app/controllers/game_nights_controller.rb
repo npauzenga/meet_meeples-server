@@ -32,7 +32,9 @@ class GameNightsController < AuthenticationController
   def destroy
     result = DeleteGameNight.call(id: params[:id])
 
-    unless result.success?
+    if result.success?
+      head :no_content
+    else
       render json: result.errors, status: :internal_server_error
     end
   end

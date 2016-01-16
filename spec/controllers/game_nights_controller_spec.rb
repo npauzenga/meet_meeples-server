@@ -196,9 +196,9 @@ RSpec.describe GameNightsController do
     end
 
     context "when DeleteGameNight is a success" do
-      it "returns HTTP status 200" do
+      it "returns HTTP status 204" do
         delete :destroy, params
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(204)
       end
     end
 
