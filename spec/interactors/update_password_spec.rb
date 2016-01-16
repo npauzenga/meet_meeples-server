@@ -35,7 +35,7 @@ RSpec.describe UpdatePassword do
       end
     end
 
-    context "when user password  not provided" do
+    context "when user password not provided" do
       subject do
         described_class.call(user: user)
       end
