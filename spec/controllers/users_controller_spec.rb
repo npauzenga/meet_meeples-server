@@ -2,10 +2,8 @@ RSpec.describe UsersController do
   let(:user) { create(:unconfirmed_user) }
 
   describe "POST #create" do
-    let(:params) { { user: create_user_input.fetch(:user_params) } }
-
-    let(:create_user_input) do
-      { user_params: {
+    let(:params) do
+      { user: {
         first_name: user.first_name,
         email:      user.email,
         last_name:  user.last_name,
@@ -14,24 +12,6 @@ RSpec.describe UsersController do
         country:    user.country,
         password:   user.password }
       }
-    end
-
-    let(:create_auth_token_input) { { user: user } }
-
-    let(:create_user_context) do
-      Interactor::Context.new(errors: :val, user: user)
-    end
-
-    let(:create_auth_token_context) do
-      Interactor::Context.new(errors: :val, token: "token")
-    end
-
-    before(:example) do
-      allow(CreateUser).to receive(:call).with(create_user_input).
-        and_return(create_user_context)
-
-      allow(CreateAuthToken).to receive(:call).with(create_auth_token_input).
-        and_return(create_auth_token_context)
     end
 
     context "when called" do

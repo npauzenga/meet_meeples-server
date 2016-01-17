@@ -14,17 +14,19 @@ class UsersController < AuthenticationController
   # POST /users
   def create
     result = CreateUser.call(user_params: user_params)
+
     if result.success?
       token = CreateAuthToken.call(user: result.user).token
       render json: { jwt: token }, status: :created
     else
-      render json: result.user.errors, status: :unprocessable_entity
+      render json: result.errors, status: :unprocessable_entity
     end
   end
 
   # GET /users/1
   def show
     result = ShowUser.call(id: params[:id])
+
     if result.success?
       render json: result.user, status: :ok
     else
@@ -35,6 +37,7 @@ class UsersController < AuthenticationController
   # PATCH /users/1
   def update
     result = UpdateUser.call(user: current_user, params: user_params)
+
     if result.success?
       render json: result.user, status: :ok
     else
@@ -45,6 +48,7 @@ class UsersController < AuthenticationController
   # DELETE /users/1
   def destroy
     result = DeleteUser.call(id: current_user.id)
+
     if result.success?
       render json: result.message, status: :ok
     else
