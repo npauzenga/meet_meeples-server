@@ -1,15 +1,15 @@
 require "rspec_api_documentation/dsl"
 
 RSpec.resource "Users" do
+  let(:authenticated_user) do
+    create(:confirmed_user)
+  end
+
+  let(:auth_token) do
+    token = Knock::AuthToken.new(payload: { sub: authenticated_user.id }).token
+  end
+
   shared_context "user parameters" do
-    parameter "type", <<-DESC, required: true
-      The type of resource. Must be users.
-    DESC
-
-    let "type" do
-      "users"
-    end
-
     parameter "first_name", <<-DESC, scope: :user, required: true
       The first name of the user.
     DESC
@@ -51,27 +51,50 @@ RSpec.resource "Users" do
     end
   end
 
-  patch "/users/:user_id" do
+  patch "/users/:id" do
     include_context "user parameters"
 
-    let!(:user) { create(:confirmed_user) }
-    let(:token) { token = Knock::AuthToken.new(payload: { sub: user.id }).token }
-
-    header "Authorization", :token
-
-
-    parameter "id", <<-DESC, scope: :user, required: true
-      The id of the user.
-    DESC
-
-    let(:id) { user.id.to_s }
-
-    let(:first_name) { "Xavier" }
+    let(:first_name) { "John Doe" }
+    let(:email)      { "admin@test.com" }
+    let(:last_name)  { "Pauzenga" }
+    let(:city)       { "Annapolis" }
+    let(:state)      { "MD" }
+    let(:country)    { "USA" }
+    let(:password)   { "helloworld" }
+    
+    header "Authorization", :auth_token
+    
+    # Currently update will only update the current user, no matter the id
+    let(:id) { authenticated_user.id }
     
     example_request "PATCH /users/:id" do
       expect(status).to eq 200
       user = JSON.parse(response_body)
-      expect(user["data"]["attributes"]["first_name"]).to eq public_send(:first_name)
+      expect(user["data"]["attributes"]["first_name"]).
+        to eq public_send(:first_name)
+    end
+  end
+
+  get "/users/:id" do
+    header "Authorization", :auth_token
+
+    let(:id) { authenticated_user.id }
+
+    example_request "GET /users/:id" do
+      expect(status).to eq 200
+      user = JSON.parse(response_body)
+      expect(user["data"]["attributes"]["first_name"]).
+        to eq(authenticated_user.first_name) 
+    end
+  end
+
+  delete "/users/:id" do
+    header "Authorization", :auth_token
+
+    let(:id) { authenticated_user.id }
+
+    example_request "DELETE /users/:id" do
+      expect(status).to eq 204
     end
   end
 end

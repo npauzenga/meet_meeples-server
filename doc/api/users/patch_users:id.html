@@ -109,8 +109,8 @@ table th, table td {
       <h1>Users API</h1>
 
       <div class="article">
-        <h2>POST /users</h2>
-        <h3>POST /users</h3>
+        <h2>PATCH /users/:id</h2>
+        <h3>PATCH /users/:id</h3>
 
           <h3>Parameters</h3>
           <table class="parameters table table-striped table-bordered table-condensed">
@@ -191,16 +191,17 @@ table th, table td {
           <h3>Request</h3>
 
             <h4>Headers</h4>
-            <pre class="request headers">Host: example.org
+            <pre class="request headers">Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTMyMjY1OTQsImF1ZCI6bnVsbCwic3ViIjo2MjgzfQ.0vNkmnpKa083jdWT1Ke0Fkq_ub-j13K-e8x3ZZ5wfGw
+Host: example.org
 Content-Type: application/x-www-form-urlencoded
 Cookie: </pre>
 
           <h4>Route</h4>
-          <pre class="request route highlight">POST /users</pre>
+          <pre class="request route highlight">PATCH /users/6283</pre>
 
 
             <h4>Body</h4>
-            <pre class="request body">user[first_name]=Nate&user[email]=admin%40test.com&user[last_name]=Pauzenga&user[password]=helloworld&user[city]=Annapolis&user[state]=MD&user[country]=USA</pre>
+            <pre class="request body">user[first_name]=John+Doe&user[email]=admin%40test.com&user[last_name]=Pauzenga&user[password]=helloworld&user[city]=Annapolis&user[state]=MD&user[country]=USA</pre>
 
 
             <h3>Response</h3>
@@ -209,20 +210,26 @@ Cookie: </pre>
 X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;ce59823d6c5b78f8b4461728d6011206&quot;
+ETag: W/&quot;90f6d7540c80a29f389383115a64249a&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: c92b843c-1530-4e38-9f1b-37adc9d7e91d
-X-Runtime: 0.030419
-Content-Length: 178</pre>
+X-Request-Id: 3ae88207-3b49-47d4-b69a-92ab6307a0cc
+X-Runtime: 0.013612
+Content-Length: 172</pre>
             <h4>Status</h4>
-            <pre class="response status">201 Created</pre>
+            <pre class="response status">200 OK</pre>
               <h4>Body</h4>
               <pre class="response body">{
-  &quot;jwt&quot;: {
-    &quot;payload&quot;: {
-      &quot;sub&quot;: 6282
-    },
-    &quot;token&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTMyMjY1OTQsImF1ZCI6bnVsbCwic3ViIjo2MjgyfQ.lxfT-0CJhZ6Stu8RpcpWVDXCJxDxtJe2uZv94nAHLt0&quot;
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;6283&quot;,
+    &quot;type&quot;: &quot;users&quot;,
+    &quot;attributes&quot;: {
+      &quot;first_name&quot;: &quot;John Doe&quot;,
+      &quot;last_name&quot;: &quot;Pauzenga&quot;,
+      &quot;email&quot;: &quot;admin@test.com&quot;,
+      &quot;city&quot;: &quot;Annapolis&quot;,
+      &quot;state&quot;: &quot;MD&quot;,
+      &quot;country&quot;: &quot;USA&quot;
+    }
   }
 }</pre>
       </div>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>API Documentation</title>
-  <meta charset="utf-8">
-  <style>
-    
+  <head>
+    <title>Users API</title>
+    <meta charset="utf-8">
+    <style>
+      
 body {
   font-family: Helvetica,Arial,sans-serif;
   font-size: 13px;
@@ -39,7 +39,7 @@ pre {
 
 td.required .name:after {
   float: right;
-  content: &quot;required&quot;;
+  content: "required";
   font-weight: normal;
   color: #F08080;
 }
@@ -102,30 +102,43 @@ table th, table td {
   text-align: left;
 }
 
-  </style>
-</head>
-<body>
-<div class="container">
-  <h1>API Documentation</h1>
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Users API</h1>
 
-  <div class="article">
-    <h2>Users</h2>
+      <div class="article">
+        <h2>DELETE /users/:id</h2>
+        <h3>DELETE /users/:id</h3>
 
-    <ul>
-      <li>
-        <a href="users/delete_users:id.html">DELETE /users/:id</a>
-      </li>
-      <li>
-        <a href="users/get_users:id.html">GET /users/:id</a>
-      </li>
-      <li>
-        <a href="users/patch_users:id.html">PATCH /users/:id</a>
-      </li>
-      <li>
-        <a href="users/post_users.html">POST /users</a>
-      </li>
-    </ul>
-  </div>
-</div>
-</body>
+
+
+          <h3>Request</h3>
+
+            <h4>Headers</h4>
+            <pre class="request headers">Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTMyMjY1OTQsImF1ZCI6bnVsbCwic3ViIjo2Mjg1fQ.UlF6u15LgRnWJVzbW84XHpXND9g3TXNPph2EeYOsTDg
+Host: example.org
+Content-Type: application/x-www-form-urlencoded
+Cookie: </pre>
+
+          <h4>Route</h4>
+          <pre class="request route highlight">DELETE /users/6285</pre>
+
+
+
+
+            <h3>Response</h3>
+              <h4>Headers</h4>
+              <pre class="response headers">X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Cache-Control: no-cache
+X-Request-Id: 366d5055-25b3-470f-8d6c-0d41a0984888
+X-Runtime: 0.004432</pre>
+            <h4>Status</h4>
+            <pre class="response status">204 No Content</pre>
+      </div>
+    </div>
+  </body>
 </html>
