@@ -54,7 +54,7 @@ RSpec.describe UsersController do
 
       it "renders the JWT as json" do
         post :create, params
-        expect(json["jwt"]).to include("token") 
+        expect(json["jwt"]).to include("token")
       end
     end
 
@@ -182,10 +182,12 @@ RSpec.describe UsersController do
 
   describe "PATCH #update" do
     let(:user)   { create(:confirmed_user) }
-    let(:params) { { id: user.id, user: update_user_input.fetch(:user_params) } }
+    let(:params) do
+      { id: user.id, user: update_user_input.fetch(:user_params) }
+    end
 
     let(:update_user_input) do
-      { user:   user,
+      { user:        user,
         user_params: {
           first_name: user.first_name,
           email:      user.email,

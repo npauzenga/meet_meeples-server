@@ -2,7 +2,7 @@ RSpec.describe UpdateUser do
   describe ".call" do
     let(:user) { create(:confirmed_user) }
     let(:user_params) do
-      { 
+      {
         first_name: "John",
         email:      "test@test.com",
         last_name:  "Doe",
@@ -55,7 +55,7 @@ RSpec.describe UpdateUser do
       subject do
         described_class.call(user: user, user_params: user_params)
       end
-      
+
       before do
         allow(user).to receive(:update).and_return(false)
       end

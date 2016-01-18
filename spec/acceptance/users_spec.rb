@@ -6,7 +6,7 @@ RSpec.resource "Users" do
   end
 
   let(:auth_token) do
-    token = Knock::AuthToken.new(payload: { sub: authenticated_user.id }).token
+    Knock::AuthToken.new(payload: { sub: authenticated_user.id }).token
   end
 
   shared_context "user parameters" do
@@ -47,7 +47,7 @@ RSpec.resource "Users" do
     example_request "POST /users" do
       expect(status).to eq 201
       json_response = JSON.parse(response_body)
-      expect(json_response["jwt"]).to include("payload") 
+      expect(json_response["jwt"]).to include("payload")
     end
   end
 
@@ -61,12 +61,12 @@ RSpec.resource "Users" do
     let(:state)      { "MD" }
     let(:country)    { "USA" }
     let(:password)   { "helloworld" }
-    
+
     header "Authorization", :auth_token
-    
+
     # Currently update will only update the current user, no matter the id
     let(:id) { authenticated_user.id }
-    
+
     example_request "PATCH /users/:id" do
       expect(status).to eq 200
       user = JSON.parse(response_body)
@@ -84,7 +84,7 @@ RSpec.resource "Users" do
       expect(status).to eq 200
       user = JSON.parse(response_body)
       expect(user["data"]["attributes"]["first_name"]).
-        to eq(authenticated_user.first_name) 
+        to eq(authenticated_user.first_name)
     end
   end
 

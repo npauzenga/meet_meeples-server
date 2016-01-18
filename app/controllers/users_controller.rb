@@ -1,6 +1,6 @@
 class UsersController < AuthenticationController
   skip_before_action :authenticate, only: :create
-  
+
   # POST /users
   def create
     result = CreateUser.call(user_params: user_params)
@@ -40,7 +40,7 @@ class UsersController < AuthenticationController
     result = DeleteUser.call(id: current_user.id)
 
     if result.success?
-     head :no_content 
+      head :no_content
     else
       render json: result.errors, status: :internal_server_error
     end
