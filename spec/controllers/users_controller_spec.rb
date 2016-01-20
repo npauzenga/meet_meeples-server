@@ -1,5 +1,10 @@
 RSpec.describe UsersController do
+  include Committee::Test::Methods
+
   let(:user) { create(:unconfirmed_user) }
+  let(:schema_path) { "#{Rails.root}/config/schema/api.json" }
+  let(:last_response) { response }
+  let(:last_request) { request }
 
   describe "POST #create" do
     let(:params) { { user: create_user_input.fetch(:user_params) } }

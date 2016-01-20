@@ -23,6 +23,7 @@ group :developemnt, :test do
   gem "guard-rspec"
   gem "factory_girl_rails", "~> 4.0"
   gem "prmd"
+  gem "committee"
 end
 
 group :development do

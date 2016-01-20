@@ -54,6 +54,9 @@ GEM
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
     coderay (1.1.0)
+    committee (1.13.0)
+      json_schema (~> 0.6, >= 0.6.1)
+      rack (~> 1.5)
     coveralls (0.8.9)
       json (~> 1.8)
       rest-client (>= 1.6.8, < 2)
@@ -246,6 +249,7 @@ DEPENDENCIES
   active_model_serializers
   bcrypt (~> 3.1.7)
   capybara
+  committee
   coveralls
   factory_girl_rails (~> 4.0)
   faker
