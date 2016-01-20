@@ -1,0 +1,9 @@
+{
+  "description": "Meet Meeples API",
+  "id": "meet-meeples",
+  "links": [{
+    "href": "http://localhost:3000",
+    "rel": "self"
+  }],
+  "title": "Meet Meeples"
+}
