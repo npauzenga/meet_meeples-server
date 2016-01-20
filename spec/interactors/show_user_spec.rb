@@ -29,19 +29,5 @@ RSpec.describe ShowUser do
         expect(subject.error).to eq("invalid user id")
       end
     end
-
-    context "when user output is invalid" do
-      subject do
-        described_class.call(id: 0)
-      end
-
-      it "fails" do
-        is_expected.to be_a_failure
-      end
-
-      it "returns an error" do
-        expect(subject.error).to eq("invalid user")
-      end
-    end
   end
 end
