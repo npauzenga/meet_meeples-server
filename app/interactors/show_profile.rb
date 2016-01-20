@@ -1,4 +1,4 @@
-class ShowUser < StandardInteraction
+class ShowProfile < StandardInteraction
   def validate_input
     context.fail!(error: "invalid user id") unless context.id
   end

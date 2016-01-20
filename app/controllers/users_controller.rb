@@ -1,17 +1,7 @@
 class UsersController < AuthenticationController
   skip_before_action :authenticate, only: :create
-  # valid user creation curl --
-  #
-  # curl -X POST -F user[first_name]=Nate \
-  # -F user[state]=MD -F user[country]=USA \
-  # -F user[city]=Annapolis -F user[email]=test@test.com \
-  # -F user[last_name]=Bates  -F user[password]=Helloworld \
-  # http://localhost:3000/users.json -H "Accept: application/json"
 
-  # curl -i -H "Content-Type: application/json" \
-  # -d '{"user": {"email": "test@test.com"}}'
-
-  # POST /users
+  # POST /user
   def create
     result = CreateUser.call(user_params: user_params)
     if result.success?
@@ -22,17 +12,7 @@ class UsersController < AuthenticationController
     end
   end
 
-  # GET /users/1
-  def show
-    result = ShowUser.call(id: params[:id])
-    if result.success?
-      render json: result.user, status: :ok
-    else
-      render json: result.error, status: :not_found
-    end
-  end
-
-  # PATCH /users/1
+  # PATCH /user
   def update
     result = UpdateUser.call(user: current_user, params: user_params)
     if result.success?
@@ -42,7 +22,7 @@ class UsersController < AuthenticationController
     end
   end
 
-  # DELETE /users/1
+  # DELETE /user
   def destroy
     result = DeleteUser.call(id: current_user.id)
     if result.success?

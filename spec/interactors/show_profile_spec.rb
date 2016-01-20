@@ -1,4 +1,4 @@
-RSpec.describe ShowUser do
+RSpec.describe ShowProfile do
   describe ".call" do
     let(:user) { create(:confirmed_user) }
 
