@@ -1,7 +1,5 @@
 RSpec.describe CreateGroup do
   describe ".call" do
-    let(:params) { { group: interactor_input.fetch(:user_params) } }
-
     let(:group_params) do
       {
         name:     "Weasley's Kneesleys",
