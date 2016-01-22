@@ -7,14 +7,16 @@ RSpec.describe GameNightsController do
   end
 
   describe "POST #create" do
-    let(:params) { { game_night: create_game_night_input } }
+    let(:params) do
+      { game_night: create_game_night_input.fetch(:game_night_params) }
+    end
 
     let(:create_game_night_input) do
-      {
+      { game_night_params: {
         name:             game_night.name,
         time:             game_night.time,
         location_name:    game_night.location_name,
-        location_address: game_night.location_address
+        location_address: game_night.location_address }
       }
     end
 
@@ -66,15 +68,16 @@ RSpec.describe GameNightsController do
 
   describe "PATCH #update" do
     let(:params) do
-      { id: game_night.id, game_night: update_game_night_input }
+      { id:         game_night.id,
+        game_night: update_game_night_input.fetch(:game_night_params) }
     end
 
     let(:update_game_night_input) do
-      {
+      { game_night_params: {
         name:             game_night.name,
         time:             game_night.time,
         location_name:    game_night.location_name,
-        location_address: game_night.location_address
+        location_address: game_night.location_address }
       }
     end
 
