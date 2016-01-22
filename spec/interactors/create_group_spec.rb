@@ -22,7 +22,7 @@ RSpec.describe CreateGroup do
         is_expected.to be_a_success
       end
 
-      it "creates a new user" do
+      it "creates a new group" do
         expect(subject.group).to be_a Group
       end
     end
