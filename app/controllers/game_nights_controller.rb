@@ -1,36 +1,41 @@
 class GameNightsController < AuthenticationController
   def create
-    result = CreateGameNight.call(game_night_params: game_night_params)
+    result = CreateModel.call(active_record_class: GameNight,
+                              model_params:        game_night_params)
 
     if result.success?
-      render json: result.game_night, status: :created
+      render json: result.model, status: :created
     else
-      render json: result.game_night.errors, status: :unprocessable_entity
+      render json: result.model.errors, status: :unprocessable_entity
     end
   end
 
   def update
-    result = UpdateGameNight.call(id: params[:id], game_night_params: game_night_params)
+    result = UpdateModel.call(active_record_class: GameNight,
+                              id:                  params[:id],
+                              model_params:        game_night_params)
 
     if result.success?
-      render json: result.game_night, status: :ok
+      render json: result.model, status: :ok
     else
-      render json: result.game_night.errors, status: :unprocessable_entity
+      render json: result.model.errors, status: :unprocessable_entity
     end
   end
 
   def show
-    result = ShowGameNight.call(id: params[:id])
+    result = ShowModel.call(active_record_class: GameNight,
+                            id:                  params[:id])
 
     if result.success?
-      render json: result.game_night, status: :ok
+      render json: result.model, status: :ok
     else
       render json: result.errors, status: :not_found
     end
   end
 
   def destroy
-    result = DeleteGameNight.call(id: params[:id])
+    result = DeleteModel.call(active_record_class: GameNight,
+                              id:                  params[:id])
 
     if result.success?
       head :no_content

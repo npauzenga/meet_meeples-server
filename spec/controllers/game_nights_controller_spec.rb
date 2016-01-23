@@ -8,30 +8,31 @@ RSpec.describe GameNightsController do
 
   describe "POST #create" do
     let(:params) do
-      { game_night: create_game_night_input.fetch(:game_night_params) }
+      { game_night: create_model_input.fetch(:model_params) }
     end
 
-    let(:create_game_night_input) do
-      { game_night_params: {
-        name:             game_night.name,
-        time:             game_night.time,
-        location_name:    game_night.location_name,
-        location_address: game_night.location_address }
+    let(:create_model_input) do
+      { active_record_class: GameNight,
+        model_params:        {
+          name:             game_night.name,
+          time:             game_night.time,
+          location_name:    game_night.location_name,
+          location_address: game_night.location_address }
       }
     end
 
-    let(:create_game_night_context) do
-      Interactor::Context.new(errors: :val, game_night: game_night)
+    let(:create_model_context) do
+      Interactor::Context.new(errors: :val, model: game_night)
     end
 
     before do
-      allow(CreateGameNight).to receive(:call).with(create_game_night_input).
-        and_return(create_game_night_context)
+      allow(CreateModel).to receive(:call).with(create_model_input).
+        and_return(create_model_context)
     end
 
     context "when called" do
-      it "calls the CreateGameNight interactor" do
-        expect(CreateGameNight).to receive(:call)
+      it "calls the CreateModel interactor" do
+        expect(CreateModel).to receive(:call)
         post :create, params
       end
     end
@@ -49,8 +50,8 @@ RSpec.describe GameNightsController do
     end
 
     context "when CreateGameNight is a failure" do
-      let(:create_game_night_context) do
-        double(:context, success?: false, game_night: game_night)
+      let(:create_model_context) do
+        double(:context, success?: false, model: game_night)
       end
 
       it "returns HTTP status 422" do
@@ -69,30 +70,32 @@ RSpec.describe GameNightsController do
   describe "PATCH #update" do
     let(:params) do
       { id:         game_night.id,
-        game_night: update_game_night_input.fetch(:game_night_params) }
+        game_night: update_model_input.fetch(:model_params) }
     end
 
-    let(:update_game_night_input) do
-      { game_night_params: {
-        name:             game_night.name,
-        time:             game_night.time,
-        location_name:    game_night.location_name,
-        location_address: game_night.location_address }
+    let(:update_model_input) do
+      { active_record_class: GameNight,
+        id:                  game_night.id.to_s,
+        model_params:        {
+          name:             game_night.name,
+          time:             game_night.time,
+          location_name:    game_night.location_name,
+          location_address: game_night.location_address }
       }
     end
 
-    let(:update_game_night_context) do
-      Interactor::Context.new(errors: :val, game_night: game_night)
+    let(:update_model_context) do
+      Interactor::Context.new(errors: :val, model: game_night)
     end
 
     before do
-      allow(UpdateGameNight).to receive(:call).with(update_game_night_input).
-        and_return(update_game_night_context)
+      allow(UpdateModel).to receive(:call).with(update_model_input).
+        and_return(update_model_context)
     end
 
     context "when called" do
-      it "calls the UpdateGameNight Interactor" do
-        expect(UpdateGameNight).to receive(:call)
+      it "calls the UpdateModel Interactor" do
+        expect(UpdateModel).to receive(:call)
         patch :update, params
       end
     end
@@ -110,8 +113,8 @@ RSpec.describe GameNightsController do
     end
 
     context "when UpdateGameNight is a failure" do
-      let(:update_game_night_context) do
-        double(:context, success?: false, game_night: game_night)
+      let(:update_model_context) do
+        double(:context, success?: false, model: game_night)
       end
 
       it "renders an error" do
@@ -129,25 +132,27 @@ RSpec.describe GameNightsController do
 
   describe "GET #show" do
     let(:params) { { id: game_night.id } }
-    let(:show_game_night_input) { { id: params.fetch(:id).to_s } }
+    let(:show_model_input) do
+      { active_record_class: GameNight, id: params.fetch(:id).to_s }
+    end
 
-    let(:show_game_night_context) do
-      Interactor::Context.new(errors: :val, game_night: game_night)
+    let(:show_model_context) do
+      Interactor::Context.new(errors: :val, model: game_night)
     end
 
     before do
-      allow(ShowGameNight).to receive(:call).with(show_game_night_input).
-        and_return(show_game_night_context)
+      allow(ShowModel).to receive(:call).with(show_model_input).
+        and_return(show_model_context)
     end
 
     context "when called" do
-      it "calls the ShowGameNight Interactor" do
-        expect(ShowGameNight).to receive(:call)
+      it "calls the ShowModel Interactor" do
+        expect(ShowModel).to receive(:call)
         get :show, params
       end
     end
 
-    context "when ShowGameNight is a success" do
+    context "when ShowModel is a success" do
       it "returns HTTP status 200" do
         get :show, params
         expect(response).to have_http_status(200)
@@ -159,11 +164,11 @@ RSpec.describe GameNightsController do
       end
     end
 
-    context "when ShowGameNight is a failure" do
-      let(:show_game_night_context) do
-        double(:context, errors:     { name: ["invalid"] },
-                         success?:   false,
-                         game_night: game_night)
+    context "when ShowModel is a failure" do
+      let(:show_model_context) do
+        double(:context, errors:   { name: ["invalid"] },
+                         success?: false,
+                         model:    game_night)
       end
 
       it "returns HTTP status 404" do
@@ -180,36 +185,38 @@ RSpec.describe GameNightsController do
 
   describe "DELETE #destroy" do
     let(:params) { { id: game_night.id } }
-    let(:delete_game_night_input) { { id: params.fetch(:id).to_s } }
+    let(:delete_model_input) do
+      { active_record_class: GameNight, id: params.fetch(:id).to_s }
+    end
 
-    let(:delete_game_night_context) do
-      Interactor::Context.new(errors: :val, game_night: game_night)
+    let(:delete_model_context) do
+      Interactor::Context.new(errors: :val, model: game_night)
     end
 
     before do
-      allow(DeleteGameNight).to receive(:call).with(delete_game_night_input).
-        and_return(delete_game_night_context)
+      allow(DeleteModel).to receive(:call).with(delete_model_input).
+        and_return(delete_model_context)
     end
 
     context "when called" do
-      it "calls the DeleteGameNight Interactor" do
-        expect(DeleteGameNight).to receive(:call)
+      it "calls the DeleteModel Interactor" do
+        expect(DeleteModel).to receive(:call)
         delete :destroy, params
       end
     end
 
-    context "when DeleteGameNight is a success" do
+    context "when DeleteModel is a success" do
       it "returns HTTP status 204" do
         delete :destroy, params
         expect(response).to have_http_status(204)
       end
     end
 
-    context "when DeleteGameNight is a failure" do
-      let(:delete_game_night_context) do
-        double(:context, success?:   false,
-                         game_night: game_night,
-                         errors:     { id: ["invalid"] })
+    context "when DeleteModel is a failure" do
+      let(:delete_model_context) do
+        double(:context, success?: false,
+                         model:    game_night,
+                         errors:   { id: ["invalid"] })
       end
 
       it "returns HTTP status 500" do
