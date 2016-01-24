@@ -37,10 +37,10 @@ RSpec.describe GameNight do
 
     before do
       UserGameNightAttendance.create(user_id:       user1.id,
-                                   game_night_id: game_night.id)
+                                     game_night_id: game_night.id)
 
       UserGameNightAttendance.create(user_id:       user2.id,
-                                   game_night_id: game_night.id)
+                                     game_night_id: game_night.id)
     end
 
     it "belongs to group" do

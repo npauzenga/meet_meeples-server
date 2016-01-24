@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160124173547) do
+ActiveRecord::Schema.define(version: 20160124193205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,15 +50,15 @@ ActiveRecord::Schema.define(version: 20160124173547) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
-  create_table "user_game_night_attendance", force: :cascade do |t|
+  create_table "user_game_night_attendances", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "game_night_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
-  add_index "user_game_night_attendance", ["game_night_id"], name: "index_user_game_night_attendance_on_game_night_id", using: :btree
-  add_index "user_game_night_attendance", ["user_id"], name: "index_user_game_night_attendance_on_user_id", using: :btree
+  add_index "user_game_night_attendances", ["game_night_id"], name: "index_user_game_night_attendances_on_game_night_id", using: :btree
+  add_index "user_game_night_attendances", ["user_id"], name: "index_user_game_night_attendances_on_user_id", using: :btree
 
   create_table "user_group_memberships", force: :cascade do |t|
     t.integer  "user_id"
@@ -94,8 +94,8 @@ ActiveRecord::Schema.define(version: 20160124173547) do
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
   add_foreign_key "game_nights", "groups"
-  add_foreign_key "user_game_night_attendance", "game_nights"
-  add_foreign_key "user_game_night_attendance", "users"
+  add_foreign_key "user_game_night_attendances", "game_nights"
+  add_foreign_key "user_game_night_attendances", "users"
   add_foreign_key "user_group_memberships", "groups"
   add_foreign_key "user_group_memberships", "users"
 end
