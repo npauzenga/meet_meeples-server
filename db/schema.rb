@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151219215255) do
+ActiveRecord::Schema.define(version: 20160124173547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20151219215255) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "group_id"
-    t.integer  "organizer_id"
+    t.string   "name"
   end
 
   add_index "game_nights", ["group_id"], name: "index_game_nights_on_group_id", using: :btree
@@ -35,20 +35,30 @@ ActiveRecord::Schema.define(version: 20151219215255) do
     t.string   "country"
     t.string   "facebook"
     t.string   "twitter"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "moderator_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "user_game_night_attendees", force: :cascade do |t|
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "user_game_night_attendance", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "game_night_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
-  add_index "user_game_night_attendees", ["game_night_id"], name: "index_user_game_night_attendees_on_game_night_id", using: :btree
-  add_index "user_game_night_attendees", ["user_id"], name: "index_user_game_night_attendees_on_user_id", using: :btree
+  add_index "user_game_night_attendance", ["game_night_id"], name: "index_user_game_night_attendance_on_game_night_id", using: :btree
+  add_index "user_game_night_attendance", ["user_id"], name: "index_user_game_night_attendance_on_user_id", using: :btree
 
   create_table "user_group_memberships", force: :cascade do |t|
     t.integer  "user_id"
@@ -76,9 +86,16 @@ ActiveRecord::Schema.define(version: 20151219215255) do
     t.string   "country"
   end
 
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+  end
+
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+
   add_foreign_key "game_nights", "groups"
-  add_foreign_key "user_game_night_attendees", "game_nights"
-  add_foreign_key "user_game_night_attendees", "users"
+  add_foreign_key "user_game_night_attendance", "game_nights"
+  add_foreign_key "user_game_night_attendance", "users"
   add_foreign_key "user_group_memberships", "groups"
   add_foreign_key "user_group_memberships", "users"
 end
