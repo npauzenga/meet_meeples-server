@@ -5,7 +5,7 @@ class CreateGroupMembership < StandardInteraction
 
   def execute
     context.membership = UserGroupMembership.create(user_id:  context.user_id,
-                                                   group_id: context.group_id)
+                                                    group_id: context.group_id)
   end
 
   def validate_output

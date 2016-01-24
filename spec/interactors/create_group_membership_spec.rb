@@ -55,9 +55,6 @@ RSpec.describe CreateGroupMembership do
       it "returns an error" do
         expect(subject.errors).to eq("invalid input")
       end
-
     end
   end
 end
-
-
