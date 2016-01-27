@@ -14,7 +14,7 @@
       "type": [
         "integer"
       ],
-      "example": "1294"
+      "example": 1294
     },
     "first_name": {
       "description": "first name of user",
@@ -112,6 +112,7 @@
       "rel": "create",
       "schema": {
         "properties": {
+          "id": { "$ref": "/schemata/user#/definitions/id" },
           "first_name": { "$ref": "/schemata/user#/definitions/first_name" },
           "last_name": { "$ref": "/schemata/user#/definitions/last_name" },
           "email": { "$ref": "/schemata/user#/definitions/email" },
@@ -120,7 +121,7 @@
           "country": { "$ref": "/schemata/user#/definitions/country" },
           "password": { "$ref": "/schemata/user#/definitions/password" }
         },
-        "required":["first_name", "last_name", "email", "city", "state", "country", "password"],
+        "required":["id", "first_name", "last_name", "email", "city", "state", "country", "password"],
         "type": ["object"]
       },
       "title": "Create",
@@ -135,6 +136,9 @@
       "description": "Delete an existing user.",
       "href": "/users/{(%2Fschemata%2Fuser%23%2Fdefinitions%2Fidentity)}",
       "method": "DELETE",
+      "http_header": {
+"Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+      },
       "rel": "destroy",
       "title": "Delete"
     },
@@ -143,10 +147,14 @@
       "href": "/profiles/{(%2Fschemata%2Fuser%23%2Fdefinitions%2Fidentity)}",
       "method": "GET",
       "rel": "self",
+      "http_header": {
+"Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+      },
       "title": "Info",
       "targetSchema": {
         "type": "object",
         "properties": {
+          "id": { "$ref": "/schemata/user#/definitions/id" },
           "first_name": { "$ref": "/schemata/user#/definitions/first_name" },
           "last_name": { "$ref": "/schemata/user#/definitions/last_name" },
           "email": { "$ref": "/schemata/user#/definitions/email" },
@@ -162,12 +170,16 @@
       "href": "/profiles",
       "method": "GET",
       "rel": "instances",
+      "http_header": {
+        "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+      },
       "title": "List",
       "targetSchema": {
         "items": {
           "title": "Profile",
           "type": "object",
           "properties": {
+            "id": { "$ref": "/schemata/user#/definitions/id" },
             "first_name": { "$ref": "/schemata/user#/definitions/first_name" },
             "last_name": { "$ref": "/schemata/user#/definitions/last_name" },
             "email": { "$ref": "/schemata/user#/definitions/email" },
@@ -184,8 +196,12 @@
       "href": "/users/{(%2Fschemata%2Fuser%23%2Fdefinitions%2Fidentity)}",
       "method": "PATCH",
       "rel": "update",
+      "http_header": {
+        "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+      },
       "schema": {
         "properties": {
+          "id": { "$ref": "/schemata/user#/definitions/id" },
           "first_name": { "$ref": "/schemata/user#/definitions/first_name" },
           "last_name": { "$ref": "/schemata/user#/definitions/last_name" },
           "email": { "$ref": "/schemata/user#/definitions/email" },
@@ -194,13 +210,14 @@
           "country": { "$ref": "/schemata/user#/definitions/country" },
           "password": { "$ref": "/schemata/user#/definitions/password" }
         },
-        "required":["first_name", "last_name", "email", "city", "state", "country", "password"],
+        "required":["id", "first_name", "last_name", "email", "city", "state", "country", "password"],
         "type": ["object"]
       },
       "title": "Update",
       "targetSchema": {
         "type": "object",
         "properties": {
+          "id": { "$ref": "/schemata/user#/definitions/id" },
           "first_name": { "$ref": "/schemata/user#/definitions/first_name" },
           "last_name": { "$ref": "/schemata/user#/definitions/last_name" },
           "email": { "$ref": "/schemata/user#/definitions/email" },

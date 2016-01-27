@@ -1,3 +1,258 @@
+## <a name="resource-group"></a>Group
+
+The Group resource for the API
+
+### Attributes
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **city** | *string* | city of group | `"Baltimore"` |
+| **country** | *string* | country of group | `"USA"` |
+| **created_at** | *date-time* | when group was created | `"2015-01-01T12:00:00Z"` |
+| **facebook** | *string* | facebook of group | `"www.facebook.com/waagh"` |
+| **id** | *integer* | unique identifier of group | `1294` |
+| **name** | *string* | name of group | `"Warhamer Wednesdays"` |
+| **state** | *string* | state of group | `"MD"` |
+| **twitter** | *string* | twitter of group | `"@waagh"` |
+| **updated_at** | *date-time* | when group was updated | `"2015-01-01T12:00:00Z"` |
+
+### Group Create
+
+Create a new group.
+
+```
+POST /groups
+```
+
+#### Required Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **id** | *integer* | unique identifier of group | `1294` |
+| **name** | *string* | name of group | `"Warhamer Wednesdays"` |
+
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **city** | *string* | city of group | `"Baltimore"` |
+| **country** | *string* | country of group | `"USA"` |
+| **facebook** | *string* | facebook of group | `"www.facebook.com/waagh"` |
+| **state** | *string* | state of group | `"MD"` |
+| **twitter** | *string* | twitter of group | `"@waagh"` |
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X POST http://localhost:3000/groups \
+  -d '{
+  "id": 1294,
+  "name": "Warhamer Wednesdays",
+  "city": "Baltimore",
+  "state": "MD",
+  "country": "USA",
+  "facebook": "www.facebook.com/waagh",
+  "twitter": "@waagh"
+}' \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 201 Created
+```
+
+```json
+{
+  "id": 1294,
+  "name": "Warhamer Wednesdays",
+  "city": "Baltimore",
+  "state": "MD",
+  "country": "USA",
+  "facebook": "www.facebook.com/waagh",
+  "twitter": "@waagh"
+}
+```
+
+### Group Delete
+
+Delete an existing group.
+
+```
+DELETE /groups/{group_id}
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X DELETE http://localhost:3000/groups/$GROUP_ID \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "created_at": "2015-01-01T12:00:00Z",
+  "id": 1294,
+  "name": "Warhamer Wednesdays",
+  "updated_at": "2015-01-01T12:00:00Z",
+  "city": "Baltimore",
+  "state": "MD",
+  "country": "USA",
+  "facebook": "www.facebook.com/waagh",
+  "twitter": "@waagh"
+}
+```
+
+### Group Info
+
+Info for existing group.
+
+```
+GET /groups/{group_id}
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n http://localhost:3000/groups/$GROUP_ID \
+  -H "Authorization: Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "id": 1294,
+  "name": "Warhamer Wednesdays",
+  "city": "Baltimore",
+  "state": "MD",
+  "country": "USA",
+  "facebook": "www.facebook.com/waagh",
+  "twitter": "@waagh"
+}
+```
+
+### Group List
+
+List existing groups.
+
+```
+GET /groups
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n http://localhost:3000/groups \
+  -H "Authorization: Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+[
+  {
+    "id": 1294,
+    "name": "Warhamer Wednesdays",
+    "city": "Baltimore",
+    "state": "MD",
+    "country": "USA",
+    "facebook": "www.facebook.com/waagh",
+    "twitter": "@waagh"
+  }
+]
+```
+
+### Group Update
+
+Update an existing group.
+
+```
+PATCH /groups/{group_id}
+```
+
+#### Required Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **id** | *integer* | unique identifier of group | `1294` |
+| **name** | *string* | name of group | `"Warhamer Wednesdays"` |
+
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **city** | *string* | city of group | `"Baltimore"` |
+| **country** | *string* | country of group | `"USA"` |
+| **facebook** | *string* | facebook of group | `"www.facebook.com/waagh"` |
+| **state** | *string* | state of group | `"MD"` |
+| **twitter** | *string* | twitter of group | `"@waagh"` |
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X PATCH http://localhost:3000/groups/$GROUP_ID \
+  -d '{
+  "id": 1294,
+  "name": "Warhamer Wednesdays",
+  "city": "Baltimore",
+  "state": "MD",
+  "country": "USA",
+  "facebook": "www.facebook.com/waagh",
+  "twitter": "@waagh"
+}' \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "id": 1294,
+  "name": "Warhamer Wednesdays",
+  "city": "Baltimore",
+  "state": "MD",
+  "country": "USA",
+  "facebook": "www.facebook.com/waagh",
+  "twitter": "@waagh"
+}
+```
+
+
 ## <a name="resource-user"></a>User
 
 The User resource for the API
@@ -10,7 +265,7 @@ The User resource for the API
 | **country** | *string* | country of user | `"USA"` |
 | **created_at** | *date-time* | when user was created | `"2015-01-01T12:00:00Z"` |
 | **first_name** | *string* | first name of user | `"Nate"` |
-| **id** | *integer* | unique identifier of user | `"1294"` |
+| **id** | *integer* | unique identifier of user | `1294` |
 | **last_name** | *string* | last name of user | `"Pauzenga"` |
 | **state** | *string* | state of user | `"Maryland"` |
 | **updated_at** | *date-time* | when user was updated | `"2015-01-01T12:00:00Z"` |
@@ -31,6 +286,7 @@ POST /users
 | **country** | *string* | country of user | `"USA"` |
 | **email** | *string* | unique email of user | `"test@admin.com"` |
 | **first_name** | *string* | first name of user | `"Nate"` |
+| **id** | *integer* | unique identifier of user | `1294` |
 | **last_name** | *string* | last name of user | `"Pauzenga"` |
 | **password** | *string* | password of user | `"helloworld"` |
 | **state** | *string* | state of user | `"Maryland"` |
@@ -42,6 +298,7 @@ POST /users
 ```bash
 $ curl -n -X POST http://localhost:3000/users \
   -d '{
+  "id": 1294,
   "first_name": "Nate",
   "last_name": "Pauzenga",
   "email": "test@admin.com",
@@ -79,7 +336,8 @@ DELETE /users/{user_id_or_email}
 
 ```bash
 $ curl -n -X DELETE http://localhost:3000/users/$USER_ID_OR_EMAIL \
-  -H "Content-Type: application/json"
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
 ```
 
 
@@ -92,7 +350,7 @@ HTTP/1.1 200 OK
 ```json
 {
   "created_at": "2015-01-01T12:00:00Z",
-  "id": "1294",
+  "id": 1294,
   "first_name": "Nate",
   "updated_at": "2015-01-01T12:00:00Z",
   "last_name": "Pauzenga",
@@ -114,7 +372,8 @@ GET /profiles/{user_id_or_email}
 #### Curl Example
 
 ```bash
-$ curl -n http://localhost:3000/profiles/$USER_ID_OR_EMAIL
+$ curl -n http://localhost:3000/profiles/$USER_ID_OR_EMAIL \
+  -H "Authorization: Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
 ```
 
 
@@ -126,6 +385,7 @@ HTTP/1.1 200 OK
 
 ```json
 {
+  "id": 1294,
   "first_name": "Nate",
   "last_name": "Pauzenga",
   "email": "test@admin.com",
@@ -148,7 +408,8 @@ GET /profiles
 #### Curl Example
 
 ```bash
-$ curl -n http://localhost:3000/profiles
+$ curl -n http://localhost:3000/profiles \
+  -H "Authorization: Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
 ```
 
 
@@ -161,6 +422,7 @@ HTTP/1.1 200 OK
 ```json
 [
   {
+    "id": 1294,
     "first_name": "Nate",
     "last_name": "Pauzenga",
     "email": "test@admin.com",
@@ -188,6 +450,7 @@ PATCH /users/{user_id_or_email}
 | **country** | *string* | country of user | `"USA"` |
 | **email** | *string* | unique email of user | `"test@admin.com"` |
 | **first_name** | *string* | first name of user | `"Nate"` |
+| **id** | *integer* | unique identifier of user | `1294` |
 | **last_name** | *string* | last name of user | `"Pauzenga"` |
 | **password** | *string* | password of user | `"helloworld"` |
 | **state** | *string* | state of user | `"Maryland"` |
@@ -199,6 +462,7 @@ PATCH /users/{user_id_or_email}
 ```bash
 $ curl -n -X PATCH http://localhost:3000/users/$USER_ID_OR_EMAIL \
   -d '{
+  "id": 1294,
   "first_name": "Nate",
   "last_name": "Pauzenga",
   "email": "test@admin.com",
@@ -207,7 +471,8 @@ $ curl -n -X PATCH http://localhost:3000/users/$USER_ID_OR_EMAIL \
   "country": "USA",
   "password": "helloworld"
 }' \
-  -H "Content-Type: application/json"
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
 ```
 
 
@@ -219,6 +484,7 @@ HTTP/1.1 200 OK
 
 ```json
 {
+  "id": 1294,
   "first_name": "Nate",
   "last_name": "Pauzenga",
   "email": "test@admin.com",

@@ -4,6 +4,355 @@
     "object"
   ],
   "definitions": {
+    "group": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Group",
+      "description": "The Group resource for the API",
+      "stability": "prototype",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "unique identifier of group",
+          "readOnly": true,
+          "type": [
+            "integer"
+          ],
+          "example": 1294
+        },
+        "name": {
+          "description": "name of group",
+          "readOnly": true,
+          "type": [
+            "string"
+          ],
+          "example": "Warhamer Wednesdays"
+        },
+        "city": {
+          "description": "city of group",
+          "readOnly": true,
+          "type": [
+            "string"
+          ],
+          "example": "Baltimore"
+        },
+        "state": {
+          "description": "state of group",
+          "readOnly": true,
+          "type": [
+            "string"
+          ],
+          "example": "MD"
+        },
+        "country": {
+          "description": "country of group",
+          "readOnly": true,
+          "type": [
+            "string"
+          ],
+          "example": "USA"
+        },
+        "facebook": {
+          "description": "facebook of group",
+          "readOnly": true,
+          "type": [
+            "string"
+          ],
+          "example": "www.facebook.com/waagh"
+        },
+        "twitter": {
+          "description": "twitter of group",
+          "readOnly": true,
+          "type": [
+            "string"
+          ],
+          "example": "@waagh"
+        },
+        "identity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/group/definitions/id"
+            }
+          ]
+        },
+        "created_at": {
+          "description": "when group was created",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        },
+        "updated_at": {
+          "description": "when group was updated",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "links": [
+        {
+          "description": "Create a new group.",
+          "href": "/groups",
+          "method": "POST",
+          "rel": "create",
+          "http_header": {
+            "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+          },
+          "schema": {
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/group/definitions/id"
+              },
+              "name": {
+                "$ref": "#/definitions/group/definitions/name"
+              },
+              "city": {
+                "$ref": "#/definitions/group/definitions/city"
+              },
+              "state": {
+                "$ref": "#/definitions/group/definitions/state"
+              },
+              "country": {
+                "$ref": "#/definitions/group/definitions/country"
+              },
+              "facebook": {
+                "$ref": "#/definitions/group/definitions/facebook"
+              },
+              "twitter": {
+                "$ref": "#/definitions/group/definitions/twitter"
+              }
+            },
+            "required": [
+              "name",
+              "id"
+            ],
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Create",
+          "targetSchema": {
+            "type": [
+              "object"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/group/definitions/id"
+              },
+              "name": {
+                "$ref": "#/definitions/group/definitions/name"
+              },
+              "city": {
+                "$ref": "#/definitions/group/definitions/city"
+              },
+              "state": {
+                "$ref": "#/definitions/group/definitions/state"
+              },
+              "country": {
+                "$ref": "#/definitions/group/definitions/country"
+              },
+              "facebook": {
+                "$ref": "#/definitions/group/definitions/facebook"
+              },
+              "twitter": {
+                "$ref": "#/definitions/group/definitions/twitter"
+              }
+            }
+          }
+        },
+        {
+          "description": "Delete an existing group.",
+          "href": "/groups/{(%23%2Fdefinitions%2Fgroup%2Fdefinitions%2Fidentity)}",
+          "method": "DELETE",
+          "rel": "destroy",
+          "http_header": {
+            "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+          },
+          "title": "Delete"
+        },
+        {
+          "description": "Info for existing group.",
+          "href": "/groups/{(%23%2Fdefinitions%2Fgroup%2Fdefinitions%2Fidentity)}",
+          "method": "GET",
+          "rel": "self",
+          "http_header": {
+            "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+          },
+          "title": "Info",
+          "targetSchema": {
+            "type": [
+              "object"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/group/definitions/id"
+              },
+              "name": {
+                "$ref": "#/definitions/group/definitions/name"
+              },
+              "city": {
+                "$ref": "#/definitions/group/definitions/city"
+              },
+              "state": {
+                "$ref": "#/definitions/group/definitions/state"
+              },
+              "country": {
+                "$ref": "#/definitions/group/definitions/country"
+              },
+              "facebook": {
+                "$ref": "#/definitions/group/definitions/facebook"
+              },
+              "twitter": {
+                "$ref": "#/definitions/group/definitions/twitter"
+              }
+            }
+          }
+        },
+        {
+          "description": "List existing groups.",
+          "href": "/groups",
+          "method": "GET",
+          "rel": "instances",
+          "http_header": {
+            "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+          },
+          "title": "List",
+          "targetSchema": {
+            "items": {
+              "title": "Group",
+              "type": [
+                "object"
+              ],
+              "properties": {
+                "id": {
+                  "$ref": "#/definitions/group/definitions/id"
+                },
+                "name": {
+                  "$ref": "#/definitions/group/definitions/name"
+                },
+                "city": {
+                  "$ref": "#/definitions/group/definitions/city"
+                },
+                "state": {
+                  "$ref": "#/definitions/group/definitions/state"
+                },
+                "country": {
+                  "$ref": "#/definitions/group/definitions/country"
+                },
+                "facebook": {
+                  "$ref": "#/definitions/group/definitions/facebook"
+                },
+                "twitter": {
+                  "$ref": "#/definitions/group/definitions/twitter"
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "Update an existing group.",
+          "href": "/groups/{(%23%2Fdefinitions%2Fgroup%2Fdefinitions%2Fidentity)}",
+          "method": "PATCH",
+          "rel": "update",
+          "http_header": {
+            "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+          },
+          "schema": {
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/group/definitions/id"
+              },
+              "name": {
+                "$ref": "#/definitions/group/definitions/name"
+              },
+              "city": {
+                "$ref": "#/definitions/group/definitions/city"
+              },
+              "state": {
+                "$ref": "#/definitions/group/definitions/state"
+              },
+              "country": {
+                "$ref": "#/definitions/group/definitions/country"
+              },
+              "facebook": {
+                "$ref": "#/definitions/group/definitions/facebook"
+              },
+              "twitter": {
+                "$ref": "#/definitions/group/definitions/twitter"
+              }
+            },
+            "required": [
+              "name",
+              "id"
+            ],
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Update",
+          "targetSchema": {
+            "type": [
+              "object"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/group/definitions/id"
+              },
+              "name": {
+                "$ref": "#/definitions/group/definitions/name"
+              },
+              "city": {
+                "$ref": "#/definitions/group/definitions/city"
+              },
+              "state": {
+                "$ref": "#/definitions/group/definitions/state"
+              },
+              "country": {
+                "$ref": "#/definitions/group/definitions/country"
+              },
+              "facebook": {
+                "$ref": "#/definitions/group/definitions/facebook"
+              },
+              "twitter": {
+                "$ref": "#/definitions/group/definitions/twitter"
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "created_at": {
+          "$ref": "#/definitions/group/definitions/created_at"
+        },
+        "id": {
+          "$ref": "#/definitions/group/definitions/id"
+        },
+        "name": {
+          "$ref": "#/definitions/group/definitions/name"
+        },
+        "updated_at": {
+          "$ref": "#/definitions/group/definitions/updated_at"
+        },
+        "city": {
+          "$ref": "#/definitions/group/definitions/city"
+        },
+        "state": {
+          "$ref": "#/definitions/group/definitions/state"
+        },
+        "country": {
+          "$ref": "#/definitions/group/definitions/country"
+        },
+        "facebook": {
+          "$ref": "#/definitions/group/definitions/facebook"
+        },
+        "twitter": {
+          "$ref": "#/definitions/group/definitions/twitter"
+        }
+      }
+    },
     "user": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "User",
@@ -20,7 +369,7 @@
           "type": [
             "integer"
           ],
-          "example": "1294"
+          "example": 1294
         },
         "first_name": {
           "description": "first name of user",
@@ -118,6 +467,9 @@
           "rel": "create",
           "schema": {
             "properties": {
+              "id": {
+                "$ref": "#/definitions/user/definitions/id"
+              },
               "first_name": {
                 "$ref": "#/definitions/user/definitions/first_name"
               },
@@ -141,6 +493,7 @@
               }
             },
             "required": [
+              "id",
               "first_name",
               "last_name",
               "email",
@@ -169,6 +522,9 @@
           "description": "Delete an existing user.",
           "href": "/users/{(%23%2Fdefinitions%2Fuser%2Fdefinitions%2Fidentity)}",
           "method": "DELETE",
+          "http_header": {
+            "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+          },
           "rel": "destroy",
           "title": "Delete"
         },
@@ -177,12 +533,18 @@
           "href": "/profiles/{(%23%2Fdefinitions%2Fuser%2Fdefinitions%2Fidentity)}",
           "method": "GET",
           "rel": "self",
+          "http_header": {
+            "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+          },
           "title": "Info",
           "targetSchema": {
             "type": [
               "object"
             ],
             "properties": {
+              "id": {
+                "$ref": "#/definitions/user/definitions/id"
+              },
               "first_name": {
                 "$ref": "#/definitions/user/definitions/first_name"
               },
@@ -212,6 +574,9 @@
           "href": "/profiles",
           "method": "GET",
           "rel": "instances",
+          "http_header": {
+            "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+          },
           "title": "List",
           "targetSchema": {
             "items": {
@@ -220,6 +585,9 @@
                 "object"
               ],
               "properties": {
+                "id": {
+                  "$ref": "#/definitions/user/definitions/id"
+                },
                 "first_name": {
                   "$ref": "#/definitions/user/definitions/first_name"
                 },
@@ -250,8 +618,14 @@
           "href": "/users/{(%23%2Fdefinitions%2Fuser%2Fdefinitions%2Fidentity)}",
           "method": "PATCH",
           "rel": "update",
+          "http_header": {
+            "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+          },
           "schema": {
             "properties": {
+              "id": {
+                "$ref": "#/definitions/user/definitions/id"
+              },
               "first_name": {
                 "$ref": "#/definitions/user/definitions/first_name"
               },
@@ -275,6 +649,7 @@
               }
             },
             "required": [
+              "id",
               "first_name",
               "last_name",
               "email",
@@ -293,6 +668,9 @@
               "object"
             ],
             "properties": {
+              "id": {
+                "$ref": "#/definitions/user/definitions/id"
+              },
               "first_name": {
                 "$ref": "#/definitions/user/definitions/first_name"
               },
@@ -347,6 +725,9 @@
     }
   },
   "properties": {
+    "group": {
+      "$ref": "#/definitions/group"
+    },
     "user": {
       "$ref": "#/definitions/user"
     }
