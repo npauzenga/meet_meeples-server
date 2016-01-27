@@ -1,8 +1,10 @@
 RSpec.describe CreateGameNight do
   describe ".call" do
+    let(:user) { create(:confirmed_user) }
+
     let(:game_night_params) do
       {
-        time:             DateTime.new(2016, 1, 22, 16, 02, 00),
+        time:             DateTime.new.utc,
         name:             "Space Hulk Tournament",
         location_name:    "The library",
         location_address: "123 fake st"
@@ -10,7 +12,7 @@ RSpec.describe CreateGameNight do
     end
 
     subject do
-      described_class.call(game_night_params: game_night_params)
+      described_class.call(user: user, game_night_params: game_night_params)
     end
 
     context "when successful" do
@@ -37,9 +39,23 @@ RSpec.describe CreateGameNight do
       end
     end
 
-    context "when invalid input is provided" do
+    context "when params not provided" do
       subject do
         described_class.call(game_night_params: nil)
+      end
+
+      it "fails" do
+        is_expected.to be_a_failure
+      end
+
+      it "returns an error" do
+        expect(subject.errors).to eq("invalid input")
+      end
+    end
+
+    context "when user not provided" do
+      subject do
+        described_class.call(game_night_params: game_night_params)
       end
 
       it "fails" do

@@ -1,6 +1,7 @@
 class GameNightsController < AuthenticationController
   def create
-    result = CreateGameNight.call(game_night_params: game_night_params)
+    result = CreateGameNight.call(user:              current_user,
+                                  game_night_params: game_night_params)
 
     if result.success?
       render json: result.game_night, status: :created
@@ -10,7 +11,8 @@ class GameNightsController < AuthenticationController
   end
 
   def update
-    result = UpdateGameNight.call(id: params[:id], game_night_params: game_night_params)
+    result = UpdateGameNight.call(id:                params[:id],
+                                  game_night_params: game_night_params)
 
     if result.success?
       render json: result.game_night, status: :ok

@@ -4,7 +4,7 @@ RSpec.describe UpdateGameNight do
 
     let(:game_night_params) do
       {
-        time:             DateTime.new(2016, 1, 22, 16, 02, 00),
+        time:             DateTime.new.utc,
         name:             "Space Hulk Tournament",
         location_name:    "The library",
         location_address: "123 fake st"
@@ -13,7 +13,8 @@ RSpec.describe UpdateGameNight do
 
     context "when successful" do
       subject do
-        described_class.call(id: game_night.id, game_night_params: game_night_params)
+        described_class.call(id:                game_night.id,
+                             game_night_params: game_night_params)
       end
 
       it "returns a successful context" do
@@ -55,7 +56,8 @@ RSpec.describe UpdateGameNight do
       end
 
       subject do
-        described_class.call(id: game_night.id, game_night_params: game_night_params)
+        described_class.call(id:                game_night.id,
+                             game_night_params: game_night_params)
       end
 
       it "fails" do

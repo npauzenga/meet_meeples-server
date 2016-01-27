@@ -12,11 +12,13 @@ RSpec.describe GameNightsController do
     end
 
     let(:create_game_night_input) do
-      { game_night_params: {
-        name:             game_night.name,
-        time:             game_night.time,
-        location_name:    game_night.location_name,
-        location_address: game_night.location_address }
+      {
+        user:              user,
+        game_night_params: {
+          name:             game_night.name,
+          time:             game_night.time,
+          location_name:    game_night.location_name,
+          location_address: game_night.location_address }
       }
     end
 
@@ -73,11 +75,13 @@ RSpec.describe GameNightsController do
     end
 
     let(:update_game_night_input) do
-      { game_night_params: {
-        name:             game_night.name,
-        time:             game_night.time,
-        location_name:    game_night.location_name,
-        location_address: game_night.location_address }
+      {
+        id:                game_night.id.to_s,
+        game_night_params: {
+          name:             game_night.name,
+          time:             game_night.time,
+          location_name:    game_night.location_name,
+          location_address: game_night.location_address }
       }
     end
 

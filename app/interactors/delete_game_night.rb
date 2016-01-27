@@ -8,6 +8,12 @@ class DeleteGameNight < StandardInteraction
   end
 
   def validate_output
-    context.fail!(errors: "game night not deleted") unless context.game_night.destroyed?
+    context.fail!(errors: "game night not deleted") unless game_night_destroyed?
+  end
+
+  private
+
+  def game_night_destroyed?
+    context.game_night.destroyed?
   end
 end

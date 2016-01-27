@@ -32,7 +32,8 @@ RSpec.describe DeleteGameNight do
 
     context "when destroy fails" do
       before do
-        allow_any_instance_of(GameNight).to receive(:destroyed?).and_return(false)
+        allow_any_instance_of(GameNight).to receive(:destroyed?).
+          and_return(false)
       end
 
       subject do
