@@ -4,7 +4,7 @@ class CreateGroup < StandardInteraction
   end
 
   def execute
-    context.group = Group.create(context.group_params)
+    context.group = context.user.groups.create(context.group_params)
   end
 
   def validate_output

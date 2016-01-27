@@ -1,5 +1,9 @@
 RSpec.describe CreateGroup do
   describe ".call" do
+    let(:user) do
+      create(:confirmed_user)
+    end
+
     let(:group_params) do
       {
         name:     "Weasley's Kneesleys",
@@ -12,7 +16,7 @@ RSpec.describe CreateGroup do
     end
 
     subject do
-      described_class.call(group_params: group_params)
+      described_class.call(user: user, group_params: group_params)
     end
 
     context "when successful" do

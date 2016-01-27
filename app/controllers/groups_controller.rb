@@ -1,6 +1,6 @@
 class GroupsController < AuthenticationController
   def create
-    result = CreateGroup.call(group_params: group_params)
+    result = CreateGroup.call(user: current_user, group_params: group_params)
 
     if result.success?
       render json: result.group, status: :created

@@ -10,7 +10,7 @@ RSpec.describe GroupsController do
     let(:params) { { group: create_group_input.fetch(:group_params) } }
 
     let(:create_group_input) do
-      { group_params: { name: group.name } }
+      { user: user, group_params: { name: group.name } }
     end
 
     let(:create_group_context) do
