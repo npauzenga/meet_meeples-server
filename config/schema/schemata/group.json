@@ -130,7 +130,6 @@
       "http_header": {
         "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
       },
-
       "title": "Delete"
     },
     {
@@ -188,7 +187,6 @@
       "http_header": {
         "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
       },
-
       "schema": {
         "properties": {
           "id": { "$ref": "/schemata/group#/definitions/id" },

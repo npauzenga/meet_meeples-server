@@ -1,3 +1,228 @@
+## <a name="resource-game_night"></a>GameNight
+
+The GameNight resource for the API
+
+### Attributes
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **created_at** | *date-time* | when game_night was created | `"2015-01-01T12:00:00Z"` |
+| **id** | *integer* | unique identifier of game_night | `1294` |
+| **location_address** | *string* | address of game_night location | `"8401 Fenton st. Silver Spring, MD 20910"` |
+| **location_name** | *string* | name of game_night location | `"Silver Spring Library"` |
+| **time** | *date-time* | time of game_night | `"2013-09-12 22:49:27 +0530"` |
+| **updated_at** | *date-time* | when game_night was updated | `"2015-01-01T12:00:00Z"` |
+
+### GameNight Create
+
+Create a new game_night.
+
+```
+POST /game_nights
+```
+
+#### Required Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **id** | *integer* | unique identifier of game_night | `1294` |
+| **location_name** | *string* | name of game_night location | `"Silver Spring Library"` |
+| **time** | *date-time* | time of game_night | `"2013-09-12 22:49:27 +0530"` |
+
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **location_address** | *string* | address of game_night location | `"8401 Fenton st. Silver Spring, MD 20910"` |
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X POST http://localhost:3000/game_nights \
+  -d '{
+  "id": 1294,
+  "location_name": "Silver Spring Library",
+  "location_address": "8401 Fenton st. Silver Spring, MD 20910",
+  "time": "2013-09-12 22:49:27 +0530"
+}' \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 201 Created
+```
+
+```json
+{
+  "id": 1294,
+  "location_name": "Silver Spring Library",
+  "location_address": "8401 Fenton st. Silver Spring, MD 20910",
+  "time": "2013-09-12 22:49:27 +0530"
+}
+```
+
+### GameNight Delete
+
+Delete an existing game_night.
+
+```
+DELETE /game_nights/{game_night_id}
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X DELETE http://localhost:3000/game_nights/$GAME_NIGHT_ID \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "created_at": "2015-01-01T12:00:00Z",
+  "id": 1294,
+  "location_name": "Silver Spring Library",
+  "location_address": "8401 Fenton st. Silver Spring, MD 20910",
+  "time": "2013-09-12 22:49:27 +0530",
+  "updated_at": "2015-01-01T12:00:00Z"
+}
+```
+
+### GameNight Info
+
+Info for existing game_night.
+
+```
+GET /game_nights/{game_night_id}
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n http://localhost:3000/game_nights/$GAME_NIGHT_ID \
+  -H "Authorization: Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "id": 1294,
+  "location_name": "Silver Spring Library",
+  "location_address": "8401 Fenton st. Silver Spring, MD 20910",
+  "time": "2013-09-12 22:49:27 +0530"
+}
+```
+
+### GameNight List
+
+List existing game_nights.
+
+```
+GET /game_nights
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n http://localhost:3000/game_nights \
+  -H "Authorization: Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+[
+  {
+    "id": 1294,
+    "location_name": "Silver Spring Library",
+    "location_address": "8401 Fenton st. Silver Spring, MD 20910",
+    "time": "2013-09-12 22:49:27 +0530"
+  }
+]
+```
+
+### GameNight Update
+
+Update an existing game_night.
+
+```
+PATCH /game_nights/{game_night_id}
+```
+
+#### Required Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **id** | *integer* | unique identifier of game_night | `1294` |
+| **location_name** | *string* | name of game_night location | `"Silver Spring Library"` |
+| **time** | *date-time* | time of game_night | `"2013-09-12 22:49:27 +0530"` |
+
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **location_address** | *string* | address of game_night location | `"8401 Fenton st. Silver Spring, MD 20910"` |
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X PATCH http://localhost:3000/game_nights/$GAME_NIGHT_ID \
+  -d '{
+  "id": 1294,
+  "location_name": "Silver Spring Library",
+  "location_address": "8401 Fenton st. Silver Spring, MD 20910",
+  "time": "2013-09-12 22:49:27 +0530"
+}' \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "id": 1294,
+  "location_name": "Silver Spring Library",
+  "location_address": "8401 Fenton st. Silver Spring, MD 20910",
+  "time": "2013-09-12 22:49:27 +0530"
+}
+```
+
+
 ## <a name="resource-group"></a>Group
 
 The Group resource for the API
