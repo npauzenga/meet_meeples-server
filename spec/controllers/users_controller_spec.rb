@@ -61,6 +61,11 @@ RSpec.describe UsersController do
         post :create, params
         expect(json["jwt"]).to include("token")
       end
+
+      it "conforms to JSON schema" do
+        post :create, params
+        assert_schema_conform
+      end
     end
 
     context "when CreateUser is a failure" do
@@ -174,6 +179,16 @@ RSpec.describe UsersController do
       it "returns HTTP status 200" do
         patch :update, params
         expect(response).to have_http_status(200)
+      end
+
+      it "renders the user as json" do
+        post :update, params
+        expect(serialize(user)).to eq(response.body)
+      end
+
+      it "conforms to JSON schema" do
+        post :update, params
+        assert_schema_conform
       end
     end
 

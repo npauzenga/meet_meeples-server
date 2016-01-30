@@ -727,7 +727,7 @@
       "links": [
         {
           "description": "Create a new user.",
-          "href": "/users",
+          "href": "/user",
           "method": "POST",
           "rel": "create",
           "schema": {
@@ -785,7 +785,7 @@
         },
         {
           "description": "Delete an existing user.",
-          "href": "/users/{(%23%2Fdefinitions%2Fuser%2Fdefinitions%2Fidentity)}",
+          "href": "/user/{(%23%2Fdefinitions%2Fuser%2Fdefinitions%2Fidentity)}",
           "method": "DELETE",
           "http_header": {
             "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
@@ -877,7 +877,7 @@
         },
         {
           "description": "Update an existing user.",
-          "href": "/users/{(%23%2Fdefinitions%2Fuser%2Fdefinitions%2Fidentity)}",
+          "href": "/user/{(%23%2Fdefinitions%2Fuser%2Fdefinitions%2Fidentity)}",
           "method": "PATCH",
           "rel": "update",
           "http_header": {
