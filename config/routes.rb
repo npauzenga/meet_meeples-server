@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   mount Knock::Engine => "/signin"
 
-  resource :user, except: [:new, :edit]
+  resource  :user, except: [:new, :edit]
+  resources :game_nights, except: [:new, :edit]
   resources :password_resets, only: [:create, :update]
   resources :groups, except: [:new, :edit]
   resources :profiles, only: [:show, :index]
