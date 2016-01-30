@@ -1,0 +1,198 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "GameNight",
+  "description": "The GameNight resource for the API",
+  "stability": "prototype",
+  "strictProperties": true,
+  "type": [
+    "object"
+  ],
+  "definitions": {
+    "id": {
+      "description": "unique identifier of game_night",
+      "readOnly": true,
+      "type": [
+        "integer"
+      ],
+      "example": 1294
+    },
+    "location_name": {
+      "description": "name of game_night location",
+      "readOnly": true,
+      "type": [
+        "string"
+      ],
+      "example": "Silver Spring Library"
+    },
+    "location_address": {
+      "description": "address of game_night location",
+      "readOnly": true,
+      "type": [
+        "string"
+      ],
+      "example": "8401 Fenton st. Silver Spring, MD 20910"
+    },
+    "time": {
+      "description": "time of game_night",
+      "readOnly": true,
+      "format": "date-time",
+      "type": [
+        "string"
+      ],
+      "example": "2013-09-12 22:49:27 +0530"
+    },
+    "identity": {
+      "anyOf": [
+        {
+          "$ref": "/schemata/game_night#/definitions/id"
+        }
+      ]
+    },
+    "created_at": {
+      "description": "when game_night was created",
+      "format": "date-time",
+      "type": [
+        "string"
+      ]
+    },
+    "updated_at": {
+      "description": "when game_night was updated",
+      "format": "date-time",
+      "type": [
+        "string"
+      ]
+    }
+  },
+  "links": [
+    {
+      "description": "Create a new game_night.",
+      "href": "/game_nights",
+      "method": "POST",
+      "rel": "create",
+      "http_header": {
+        "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+      },
+      "schema": {
+        "properties": {
+          "id": { "$ref": "/schemata/game_night#/definitions/id" },
+          "location_name": { "$ref": "/schemata/game_night#/definitions/location_name" },
+          "location_address": { "$ref": "/schemata/game_night#/definitions/location_address" },
+          "time": { "$ref": "/schemata/game_night#/definitions/time" }
+        },
+        "required":["id", "time", "location_name"],
+        "type": ["object"]
+      },
+      "title": "Create",
+      "targetSchema": {
+        "type": "object",
+        "properties": {
+          "id": { "$ref": "/schemata/game_night#/definitions/id" },
+          "location_name": { "$ref": "/schemata/game_night#/definitions/location_name" },
+          "location_address": { "$ref": "/schemata/game_night#/definitions/location_address" },
+          "time": { "$ref": "/schemata/game_night#/definitions/time" }
+        }
+      }
+    },
+    {
+      "description": "Delete an existing game_night.",
+      "href": "/game_nights/{(%2Fschemata%2Fgame_night%23%2Fdefinitions%2Fidentity)}",
+      "method": "DELETE",
+      "rel": "destroy",
+      "http_header": {
+        "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+      },
+      "title": "Delete"
+    },
+    {
+      "description": "Info for existing game_night.",
+      "href": "/game_nights/{(%2Fschemata%2Fgame_night%23%2Fdefinitions%2Fidentity)}",
+      "method": "GET",
+      "rel": "self",
+      "http_header": {
+        "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+      },
+      "title": "Info",
+      "targetSchema": {
+        "type": "object",
+        "properties": {
+          "id": { "$ref": "/schemata/game_night#/definitions/id" },
+          "location_name": { "$ref": "/schemata/game_night#/definitions/location_name" },
+          "location_address": { "$ref": "/schemata/game_night#/definitions/location_address" },
+          "time": { "$ref": "/schemata/game_night#/definitions/time" }
+        }
+      }
+    },
+    {
+      "description": "List existing game_nights.",
+      "href": "/game_nights",
+      "method": "GET",
+      "rel": "instances",
+      "http_header": {
+        "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+      },
+      "title": "List",
+      "targetSchema": {
+        "items": {
+          "title": "game_night",
+          "type": "object",
+          "properties": {
+            "id": { "$ref": "/schemata/game_night#/definitions/id" },
+            "location_name": { "$ref": "/schemata/game_night#/definitions/location_name" },
+            "location_address": { "$ref": "/schemata/game_night#/definitions/location_address" },
+            "time": { "$ref": "/schemata/game_night#/definitions/time" }
+          }
+        }
+      }
+    },
+    {
+      "description": "Update an existing game_night.",
+      "href": "/game_nights/{(%2Fschemata%2Fgame_night%23%2Fdefinitions%2Fidentity)}",
+      "method": "PATCH",
+      "rel": "update",
+      "http_header": {
+        "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+      },
+      "schema": {
+        "properties": {
+          "id": { "$ref": "/schemata/game_night#/definitions/id" },
+          "location_name": { "$ref": "/schemata/game_night#/definitions/location_name" },
+          "location_address": { "$ref": "/schemata/game_night#/definitions/location_address" },
+          "time": { "$ref": "/schemata/game_night#/definitions/time" }
+        },
+        "required":["id", "time", "location_name"],
+        "type": ["object"]
+      },
+      "title": "Update",
+      "targetSchema": {
+        "type": "object",
+        "properties": {
+          "id": { "$ref": "/schemata/game_night#/definitions/id" },
+          "location_name": { "$ref": "/schemata/game_night#/definitions/location_name" },
+          "location_address": { "$ref": "/schemata/game_night#/definitions/location_address" },
+          "time": { "$ref": "/schemata/game_night#/definitions/time" }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "created_at": {
+      "$ref": "/schemata/game_night#/definitions/created_at"
+    },
+    "id": {
+      "$ref": "/schemata/game_night#/definitions/id"
+    },
+    "location_name": {
+      "$ref": "/schemata/game_night#/definitions/location_name"
+    },
+    "location_address": {
+      "$ref": "/schemata/game_night#/definitions/location_address"
+    },
+    "time": {
+      "$ref": "/schemata/game_night#/definitions/time"
+    },
+    "updated_at": {
+      "$ref": "/schemata/game_night#/definitions/updated_at"
+    }
+  },
+  "id": "schemata/game_night"
+}
