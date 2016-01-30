@@ -6,9 +6,9 @@ RSpec.describe ProfilesController do
   let(:last_request)  { request }
 
   describe "GET #show" do
-    let(:user)            { create(:confirmed_user) }
-    let(:params)          { { id: user.id } }
-    let(:show_profile_input) { { id: params.fetch(:id).to_s} }
+    let(:user)               { create(:confirmed_user) }
+    let(:params)             { { id: user.id } }
+    let(:show_profile_input) { { id: params.fetch(:id).to_s } }
 
     let(:show_profile_context) do
       Interactor::Context.new(errors: :val, user: user)
@@ -93,9 +93,9 @@ RSpec.describe ProfilesController do
 
       it "render the profiles as JSON" do
         get :index
-        expect(json["data"][0].has_value?(user.id.to_s)).to be_truthy
-        expect(json["data"][1].has_value?(user2.id.to_s)).to be_truthy
-        expect(json["data"][2].has_value?(user3.id.to_s)).to be_truthy
+        expect(json["data"][0].value?(user.id.to_s)).to be_truthy
+        expect(json["data"][1].value?(user2.id.to_s)).to be_truthy
+        expect(json["data"][2].value?(user3.id.to_s)).to be_truthy
       end
 
       it "conforms to JSON schema" do

@@ -58,4 +58,3 @@ RSpec.resource "Profiles" do
     end
   end
 end
-

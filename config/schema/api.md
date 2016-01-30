@@ -500,7 +500,7 @@ The User resource for the API
 Create a new user.
 
 ```
-POST /users
+POST /user
 ```
 
 #### Required Parameters
@@ -521,7 +521,7 @@ POST /users
 #### Curl Example
 
 ```bash
-$ curl -n -X POST http://localhost:3000/users \
+$ curl -n -X POST http://localhost:3000/user \
   -d '{
   "id": "1294",
   "first_name": "Nate",
@@ -553,14 +553,14 @@ HTTP/1.1 201 Created
 Delete an existing user.
 
 ```
-DELETE /users/{user_id_or_email}
+DELETE /user/{user_id_or_email}
 ```
 
 
 #### Curl Example
 
 ```bash
-$ curl -n -X DELETE http://localhost:3000/users/$USER_ID_OR_EMAIL \
+$ curl -n -X DELETE http://localhost:3000/user/$USER_ID_OR_EMAIL \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
 ```
@@ -663,7 +663,7 @@ HTTP/1.1 200 OK
 Update an existing user.
 
 ```
-PATCH /users/{user_id_or_email}
+PATCH /user/{user_id_or_email}
 ```
 
 #### Required Parameters
@@ -684,7 +684,7 @@ PATCH /users/{user_id_or_email}
 #### Curl Example
 
 ```bash
-$ curl -n -X PATCH http://localhost:3000/users/$USER_ID_OR_EMAIL \
+$ curl -n -X PATCH http://localhost:3000/user/$USER_ID_OR_EMAIL \
   -d '{
   "id": "1294",
   "first_name": "Nate",
