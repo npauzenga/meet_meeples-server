@@ -7,10 +7,10 @@ RSpec.describe GroupsController do
   end
 
   describe "POST #create" do
-    let(:params) { { group: create_group_input } }
+    let(:params) { { group: create_group_input.fetch(:group_params) } }
 
     let(:create_group_input) do
-      { name: group.name }
+      { user: user, group_params: { name: group.name } }
     end
 
     let(:create_group_context) do
@@ -30,12 +30,6 @@ RSpec.describe GroupsController do
     end
 
     context "when CreateGroup is a success" do
-      let(:serializer) { GroupSerializer.new(group) }
-
-      let(:serialization) do
-        ActiveModel::Serializer::Adapter.create(serializer)
-      end
-
       it "returns HTTP status 201" do
         post :create, params
         expect(response).to have_http_status(201)
@@ -49,7 +43,7 @@ RSpec.describe GroupsController do
 
     context "when CreateGroup is a failure" do
       let(:create_group_context) do
-        double(:context, success?: false, group: group)
+        double(:context, success?: false, errors: group.errors, group: group)
       end
 
       it "returns HTTP status 422" do
@@ -119,10 +113,12 @@ RSpec.describe GroupsController do
   end
 
   describe "PATCH #update" do
-    let(:params) { { id: group.id, group: update_group_input } }
+    let(:params) do
+      { id: group.id, group: update_group_input.fetch(:group_params) }
+    end
 
     let(:update_group_input) do
-      { name: group.name }
+      { id: group.id.to_s, group_params: { name: group.name } }
     end
 
     let(:update_group_context) do
@@ -155,7 +151,7 @@ RSpec.describe GroupsController do
 
     context "when UpdateGroup is a failure" do
       let(:update_group_context) do
-        double(:context, success?: false, group: group)
+        double(:context, success?: false, errors: group.errors, group: group)
       end
 
       it "returns HTTP status 422" do

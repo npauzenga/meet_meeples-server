@@ -1,11 +1,11 @@
 class GroupsController < AuthenticationController
   def create
-    result = CreateGroup.call(group_params)
+    result = CreateGroup.call(user: current_user, group_params: group_params)
 
     if result.success?
       render json: result.group, status: :created
     else
-      render json: result.group.errors, status: :unprocessable_entity
+      render json: result.errors, status: :unprocessable_entity
     end
   end
 
@@ -20,12 +20,12 @@ class GroupsController < AuthenticationController
   end
 
   def update
-    result = UpdateGroup.call(group_params)
+    result = UpdateGroup.call(id: params[:id], group_params: group_params)
 
     if result.success?
       render json: result.group, status: :ok
     else
-      render json: result.group.errors, status: :unprocessable_entity
+      render json: result.errors, status: :unprocessable_entity
     end
   end
 
