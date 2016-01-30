@@ -22,6 +22,7 @@ group :developemnt, :test do
   gem "guard-rubocop"
   gem "guard-rspec"
   gem "factory_girl_rails", "~> 4.0"
+  gem "rspec_api_documentation"
 end
 
 group :development do

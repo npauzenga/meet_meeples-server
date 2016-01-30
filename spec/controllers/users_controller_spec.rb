@@ -51,6 +51,11 @@ RSpec.describe UsersController do
         post :create, params
         expect(response).to have_http_status(201)
       end
+
+      it "renders the JWT as json" do
+        post :create, params
+        expect(json["jwt"]).to include("token")
+      end
     end
 
     context "when CreateUser is a failure" do
@@ -113,7 +118,7 @@ RSpec.describe UsersController do
 
     context "when ShowUser fails" do
       let(:show_user_context) do
-        double(:context, error: "invalid", success?: false)
+        double(:context, errors: "invalid", success?: false)
       end
 
       it "returns HTTP status 404" do
@@ -152,15 +157,15 @@ RSpec.describe UsersController do
         delete :destroy, params
       end
 
-      it "returns HTTP status 200" do
+      it "returns HTTP status 204" do
         delete :destroy, params
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(204)
       end
     end
 
     context "when DeleteUser fails" do
       let(:delete_user_context) do
-        double(:context, error: "invalid", success?: false)
+        double(:context, errors: "invalid", success?: false)
       end
 
       it "renders an error" do
@@ -168,20 +173,22 @@ RSpec.describe UsersController do
         expect(response.body).to eq("invalid")
       end
 
-      it "returns HTTP status 404" do
+      it "returns HTTP status 500" do
         delete :destroy, params
-        expect(response).to have_http_status(404)
+        expect(response).to have_http_status(500)
       end
     end
   end
 
   describe "PATCH #update" do
     let(:user)   { create(:confirmed_user) }
-    let(:params) { { id: user.id, user: update_user_input.fetch(:params) } }
+    let(:params) do
+      { id: user.id, user: update_user_input.fetch(:user_params) }
+    end
 
     let(:update_user_input) do
-      { user:   user,
-        params: {
+      { user:        user,
+        user_params: {
           first_name: user.first_name,
           email:      user.email,
           last_name:  user.last_name,
@@ -219,12 +226,13 @@ RSpec.describe UsersController do
 
     context "when Update User fails" do
       let(:update_user_context) do
-        double(:context, error: "invalid", success?: false)
+        double(:context, success?: false, user: user)
       end
 
       it "renders an error" do
+        user.errors.add(:email, "error")
         patch :update, params
-        expect(response.body).to eq("invalid")
+        expect(json["email"]).to eq(["error"])
       end
 
       it "returns HTTP status 500" do

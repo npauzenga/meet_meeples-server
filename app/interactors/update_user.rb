@@ -1,6 +1,6 @@
 class UpdateUser < StandardInteraction
   def validate_input
-    context.fail!(error: "invalid input") unless context.user && context.params
+    context.fail!(errors: "invalid input") unless valid_input
   end
 
   def execute
@@ -9,7 +9,11 @@ class UpdateUser < StandardInteraction
 
   private
 
+  def valid_input
+    context.user && context.user_params
+  end
+
   def update_user
-    context.user.update(context.params.fetch(:user))
+    context.user.update(context.user_params)
   end
 end
