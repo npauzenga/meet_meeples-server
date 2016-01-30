@@ -15,7 +15,7 @@ class UsersController < AuthenticationController
 
   # PATCH /user
   def update
-    result = UpdateUser.call(user: current_user, params: user_params)
+    result = UpdateUser.call(user: current_user, user_params: user_params)
 
     if result.success?
       render json: result.user, status: :ok
