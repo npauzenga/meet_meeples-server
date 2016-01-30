@@ -1,7 +1,7 @@
 class UsersController < AuthenticationController
   skip_before_action :authenticate, only: :create
 
-  # POST /users
+  # POST /user
   def create
     result = CreateUser.call(user_params: user_params)
 
@@ -13,20 +13,9 @@ class UsersController < AuthenticationController
     end
   end
 
-  # GET /users/1
-  def show
-    result = ShowUser.call(id: params[:id])
-
-    if result.success?
-      render json: result.user, status: :ok
-    else
-      render json: result.errors, status: :not_found
-    end
-  end
-
-  # PATCH /users/1
+  # PATCH /user
   def update
-    result = UpdateUser.call(user: current_user, user_params: user_params)
+    result = UpdateUser.call(user: current_user, params: user_params)
 
     if result.success?
       render json: result.user, status: :ok
@@ -35,7 +24,7 @@ class UsersController < AuthenticationController
     end
   end
 
-  # DELETE /users/1
+  # DELETE /user
   def destroy
     result = DeleteUser.call(id: current_user.id)
 
