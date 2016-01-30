@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:create, :update]
   resources :groups, except: [:new, :edit]
   resources :profiles, only: [:show, :index]
+  resources :group_memberships, only: [:create]
 end
