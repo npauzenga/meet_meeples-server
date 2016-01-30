@@ -1,8 +1,14 @@
+include Committee::Test::Methods
+
 RSpec.describe ProfilesController do
+  let(:schema_path)   { "#{Rails.root}/config/schema/api.json" }
+  let(:last_response) { response }
+  let(:last_request)  { request }
+
   describe "GET #show" do
     let(:user)            { create(:confirmed_user) }
     let(:params)          { { id: user.id } }
-    let(:show_profile_input) { { id: params.fetch(:id).to_s } }
+    let(:show_profile_input) { { id: params.fetch(:id).to_s} }
 
     let(:show_profile_context) do
       Interactor::Context.new(errors: :val, user: user)
@@ -31,6 +37,11 @@ RSpec.describe ProfilesController do
       it "render the user as JSON" do
         get :show, params
         expect(serialize(user)).to eq(response.body)
+      end
+
+      it "conforms to JSON schema" do
+        get :show, params
+        assert_schema_conform
       end
     end
 
@@ -82,8 +93,14 @@ RSpec.describe ProfilesController do
 
       it "render the profiles as JSON" do
         get :index
-        expect(response.body).
-          to eq([serialize(user), serialize(user2), serialize(user3)])
+        expect(json["data"][0].has_value?(user.id.to_s)).to be_truthy
+        expect(json["data"][1].has_value?(user2.id.to_s)).to be_truthy
+        expect(json["data"][2].has_value?(user3.id.to_s)).to be_truthy
+      end
+
+      it "conforms to JSON schema" do
+        get :index
+        assert_schema_conform
       end
     end
 

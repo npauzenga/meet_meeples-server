@@ -9,6 +9,10 @@ RSpec.resource "User" do
     Knock::AuthToken.new(payload: { sub: authenticated_user.id }).token
   end
 
+  def schema_path
+    "./config/schema/schemata/user.json"
+  end
+
   shared_context "user parameters" do
     parameter "first_name", <<-DESC, scope: :user, required: true
       The first name of the user.
@@ -63,9 +67,6 @@ RSpec.resource "User" do
     let(:password)   { "helloworld" }
 
     header "Authorization", :auth_token
-
-    # Currently update will only update the current user, no matter the id
-    let(:id) { authenticated_user.id }
 
     example_request "PATCH /user" do
       expect(status).to eq 200

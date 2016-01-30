@@ -490,7 +490,7 @@ The User resource for the API
 | **country** | *string* | country of user | `"USA"` |
 | **created_at** | *date-time* | when user was created | `"2015-01-01T12:00:00Z"` |
 | **first_name** | *string* | first name of user | `"Nate"` |
-| **id** | *integer* | unique identifier of user | `1294` |
+| **id** | *string* | unique identifier of user | `"1294"` |
 | **last_name** | *string* | last name of user | `"Pauzenga"` |
 | **state** | *string* | state of user | `"Maryland"` |
 | **updated_at** | *date-time* | when user was updated | `"2015-01-01T12:00:00Z"` |
@@ -511,7 +511,7 @@ POST /users
 | **country** | *string* | country of user | `"USA"` |
 | **email** | *string* | unique email of user | `"test@admin.com"` |
 | **first_name** | *string* | first name of user | `"Nate"` |
-| **id** | *integer* | unique identifier of user | `1294` |
+| **id** | *string* | unique identifier of user | `"1294"` |
 | **last_name** | *string* | last name of user | `"Pauzenga"` |
 | **password** | *string* | password of user | `"helloworld"` |
 | **state** | *string* | state of user | `"Maryland"` |
@@ -523,7 +523,7 @@ POST /users
 ```bash
 $ curl -n -X POST http://localhost:3000/users \
   -d '{
-  "id": 1294,
+  "id": "1294",
   "first_name": "Nate",
   "last_name": "Pauzenga",
   "email": "test@admin.com",
@@ -575,7 +575,7 @@ HTTP/1.1 200 OK
 ```json
 {
   "created_at": "2015-01-01T12:00:00Z",
-  "id": 1294,
+  "id": "1294",
   "first_name": "Nate",
   "updated_at": "2015-01-01T12:00:00Z",
   "last_name": "Pauzenga",
@@ -610,14 +610,13 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "id": 1294,
+  "id": "1294",
   "first_name": "Nate",
   "last_name": "Pauzenga",
   "email": "test@admin.com",
   "city": "Annapolis",
   "state": "Maryland",
-  "country": "USA",
-  "password": "helloworld"
+  "country": "USA"
 }
 ```
 
@@ -647,7 +646,7 @@ HTTP/1.1 200 OK
 ```json
 [
   {
-    "id": 1294,
+    "id": "1294",
     "first_name": "Nate",
     "last_name": "Pauzenga",
     "email": "test@admin.com",
@@ -675,7 +674,7 @@ PATCH /users/{user_id_or_email}
 | **country** | *string* | country of user | `"USA"` |
 | **email** | *string* | unique email of user | `"test@admin.com"` |
 | **first_name** | *string* | first name of user | `"Nate"` |
-| **id** | *integer* | unique identifier of user | `1294` |
+| **id** | *string* | unique identifier of user | `"1294"` |
 | **last_name** | *string* | last name of user | `"Pauzenga"` |
 | **password** | *string* | password of user | `"helloworld"` |
 | **state** | *string* | state of user | `"Maryland"` |
@@ -687,7 +686,7 @@ PATCH /users/{user_id_or_email}
 ```bash
 $ curl -n -X PATCH http://localhost:3000/users/$USER_ID_OR_EMAIL \
   -d '{
-  "id": 1294,
+  "id": "1294",
   "first_name": "Nate",
   "last_name": "Pauzenga",
   "email": "test@admin.com",
@@ -709,14 +708,13 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "id": 1294,
+  "id": "1294",
   "first_name": "Nate",
   "last_name": "Pauzenga",
   "email": "test@admin.com",
   "city": "Annapolis",
   "state": "Maryland",
-  "country": "USA",
-  "password": "helloworld"
+  "country": "USA"
 }
 ```
 

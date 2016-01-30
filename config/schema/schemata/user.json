@@ -12,9 +12,9 @@
       "description": "unique identifier of user",
       "readOnly": true,
       "type": [
-        "integer"
+        "string"
       ],
-      "example": 1294
+      "example": "1294"
     },
     "first_name": {
       "description": "first name of user",
@@ -148,7 +148,7 @@
       "method": "GET",
       "rel": "self",
       "http_header": {
-"Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
+        "Authorization": "Bearer: iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTM5MzkwMjYsImF1ZCI6bnVsbCwic3ViIjoxfQ.TSgJie1vAWxR_ym_uazjKs43rpQ50OKmb2KZ2N6ALs4"
       },
       "title": "Info",
       "targetSchema": {
@@ -160,8 +160,7 @@
           "email": { "$ref": "/schemata/user#/definitions/email" },
           "city": { "$ref": "/schemata/user#/definitions/city" },
           "state": { "$ref": "/schemata/user#/definitions/state" },
-          "country": { "$ref": "/schemata/user#/definitions/country" },
-          "password": { "$ref": "/schemata/user#/definitions/password" }
+          "country": { "$ref": "/schemata/user#/definitions/country" }
         }
       }
     },
@@ -223,8 +222,7 @@
           "email": { "$ref": "/schemata/user#/definitions/email" },
           "city": { "$ref": "/schemata/user#/definitions/city" },
           "state": { "$ref": "/schemata/user#/definitions/state" },
-          "country": { "$ref": "/schemata/user#/definitions/country" },
-          "password": { "$ref": "/schemata/user#/definitions/password" }
+          "country": { "$ref": "/schemata/user#/definitions/country" }
         }
       }
     }

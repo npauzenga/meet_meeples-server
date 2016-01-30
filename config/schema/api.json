@@ -632,9 +632,9 @@
           "description": "unique identifier of user",
           "readOnly": true,
           "type": [
-            "integer"
+            "string"
           ],
-          "example": 1294
+          "example": "1294"
         },
         "first_name": {
           "description": "first name of user",
@@ -827,9 +827,6 @@
               },
               "country": {
                 "$ref": "#/definitions/user/definitions/country"
-              },
-              "password": {
-                "$ref": "#/definitions/user/definitions/password"
               }
             }
           }
@@ -953,9 +950,6 @@
               },
               "country": {
                 "$ref": "#/definitions/user/definitions/country"
-              },
-              "password": {
-                "$ref": "#/definitions/user/definitions/password"
               }
             }
           }
