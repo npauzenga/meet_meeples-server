@@ -1,6 +1,6 @@
 RSpec.describe ShowGroup do
   describe ".call" do
-    let(:group) { create(:group) }
+    let(:group) { create(:group, id: 876) }
 
     context "when successful" do
       subject do
@@ -27,6 +27,20 @@ RSpec.describe ShowGroup do
 
       it "returns an error" do
         expect(subject.errors).to eq("invalid input")
+      end
+    end
+
+    context "when a Group was not found" do
+      subject do
+        described_class.call(id: 9999)
+      end
+
+      it "fails" do
+        is_expected.to be_a_failure
+      end
+
+      it "returns an error" do
+        expect(subject.errors).to eq("invalid output")
       end
     end
   end
