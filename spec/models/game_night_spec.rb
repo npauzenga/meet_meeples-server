@@ -32,31 +32,27 @@ RSpec.describe GameNight do
     let(:group)      { create(:group) }
 
     let(:game_night) do
-      create(:game_night, group_id: group.id, organizer_id: user1.id)
+      create(:game_night, group_id: group.id)
     end
 
     before do
-      UserGameNightAttendee.create(user_id:       user1.id,
-                                   game_night_id: game_night.id)
+      UserGameNightAttendance.create(user_id:       user1.id,
+                                     game_night_id: game_night.id)
 
-      UserGameNightAttendee.create(user_id:       user2.id,
-                                   game_night_id: game_night.id)
+      UserGameNightAttendance.create(user_id:       user2.id,
+                                     game_night_id: game_night.id)
     end
 
     it "belongs to group" do
       expect(game_night.group).to be_a(Group)
     end
 
-    it "has many user_game_night_attendees" do
+    it "has many user_game_night_attendances" do
       expect(game_night.user_game_night_attendees.count).to eq(2)
     end
 
-    it "has many users through user_game_night_attendees" do
+    it "has many users through user_game_night_attendance" do
       expect(game_night.users.count).to eq(2)
-    end
-
-    it "has one organizer" do
-      expect(game_night.organizer).to eq(user1)
     end
   end
 end
