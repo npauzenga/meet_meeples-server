@@ -1,6 +1,6 @@
 require "rspec_api_documentation/dsl"
 
-RSpec.resource "User" do
+RSpec.resource "Profiles" do
   let(:authenticated_user) do
     create(:confirmed_user)
   end
@@ -33,55 +33,25 @@ RSpec.resource "User" do
     DESC
   end
 
-  post "/user" do
-    include_context "user parameters"
-
-    let(:first_name) { "Nate" }
-    let(:email)      { "admin@test.com" }
-    let(:last_name)  { "Pauzenga" }
-    let(:city)       { "Annapolis" }
-    let(:state)      { "MD" }
-    let(:country)    { "USA" }
-    let(:password)   { "helloworld" }
-
-    example_request "POST /user" do
-      expect(status).to eq 201
-      json_response = JSON.parse(response_body)
-      expect(json_response["jwt"]).to include("payload")
-    end
-  end
-
-  patch "/user" do
-    include_context "user parameters"
-
-    let(:first_name) { "John Doe" }
-    let(:email)      { "admin@test.com" }
-    let(:last_name)  { "Pauzenga" }
-    let(:city)       { "Annapolis" }
-    let(:state)      { "MD" }
-    let(:country)    { "USA" }
-    let(:password)   { "helloworld" }
-
+  get "/profiles/:id" do
     header "Authorization", :auth_token
 
-    # Currently update will only update the current user, no matter the id
     let(:id) { authenticated_user.id }
 
-    example_request "PATCH /user" do
+    example_request "GET /profiles/:id" do
       expect(status).to eq 200
       user = JSON.parse(response_body)
       expect(user["data"]["attributes"]["first_name"]).
-        to eq public_send(:first_name)
+        to eq(authenticated_user.first_name)
     end
   end
 
-  delete "/user" do
+  get "/profiles" do
     header "Authorization", :auth_token
 
-    let(:id) { authenticated_user.id }
-
-    example_request "DELETE /users/:id" do
-      expect(status).to eq 204
+    example_request "GET /profiles" do
+      expect(status).to eq 200
     end
   end
 end
+
