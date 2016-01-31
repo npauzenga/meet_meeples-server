@@ -9,6 +9,7 @@ gem "interactor"
 gem "figaro"
 gem "knock"
 gem "active_model_serializers"
+gem "committee"
 
 group :developemnt, :test do
   gem "pry-byebug"
@@ -24,7 +25,6 @@ group :developemnt, :test do
   gem "factory_girl_rails", "~> 4.0"
   gem "rspec_api_documentation"
   gem "prmd"
-  gem "committee"
 end
 
 group :development do
