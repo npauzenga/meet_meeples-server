@@ -1,4 +1,5 @@
 class GameNightsController < AuthenticationController
+  # POST /game_nights
   def create
     result = CreateGameNight.call(user:              current_user,
                                   game_night_params: game_night_params)
@@ -10,6 +11,7 @@ class GameNightsController < AuthenticationController
     end
   end
 
+  # PATCH /game_nights
   def update
     result = UpdateGameNight.call(id:                params[:id],
                                   game_night_params: game_night_params)
@@ -21,6 +23,7 @@ class GameNightsController < AuthenticationController
     end
   end
 
+  # GET /game_nights/:id
   def show
     result = ShowGameNight.call(id: params[:id])
 
@@ -31,6 +34,18 @@ class GameNightsController < AuthenticationController
     end
   end
 
+  # GET /game_nights
+  def index
+    result = IndexGameNight.call
+
+    if result.success?
+      render json: result.game_nights, status: :ok
+    else
+      render json: result.errors, status: :internal_server_error
+    end
+  end
+
+  # DELETE /game_nights/:id
   def destroy
     result = DeleteGameNight.call(id: params[:id])
 
