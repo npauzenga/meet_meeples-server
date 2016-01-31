@@ -57,6 +57,13 @@ RSpec.resource "Groups" do
 
       expect(json_response["data"]["attributes"]["name"]).
         to eq public_send(:name)
+
+      expect(authenticated_user.groups.first.name).
+        to eq public_send(:name)
+
+      group = Group.first
+
+      expect(group.users.first).to eq authenticated_user
     end
   end
 
