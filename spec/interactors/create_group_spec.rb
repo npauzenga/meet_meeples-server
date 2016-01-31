@@ -25,7 +25,7 @@ RSpec.describe CreateGroup do
       end
 
       it "creates a new group" do
-        expect(subject.group).to be_a Group
+        expect(subject.resource).to be_a Group
       end
     end
 

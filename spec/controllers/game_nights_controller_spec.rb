@@ -13,12 +13,13 @@ RSpec.describe GameNightsController do
 
   describe "POST #create" do
     let(:params) do
-      { game_night: create_game_night_input.fetch(:game_night_params) }
+      { game_night: create_game_night_organizer_input[:game_night_params] }
     end
 
-    let(:create_game_night_input) do
+    let(:create_game_night_organizer_input) do
       {
         user:              user,
+        role:              :organizer,
         game_night_params: {
           name:             game_night.name,
           time:             game_night.time,
@@ -27,18 +28,19 @@ RSpec.describe GameNightsController do
       }
     end
 
-    let(:create_game_night_context) do
-      Interactor::Context.new(errors: :val, game_night: game_night)
+    let(:create_game_night_organizer_context) do
+      Interactor::Context.new(errors: :val, resource: game_night)
     end
 
     before do
-      allow(CreateGameNight).to receive(:call).with(create_game_night_input).
-        and_return(create_game_night_context)
+      allow(CreateGameNightOrganizer).to receive(:call).
+        with(create_game_night_organizer_input).
+        and_return(create_game_night_organizer_context)
     end
 
     context "when called" do
-      it "calls the CreateGameNight interactor" do
-        expect(CreateGameNight).to receive(:call)
+      it "calls the CreateGameNightOrganizer interactor" do
+        expect(CreateGameNightOrganizer).to receive(:call)
         post :create, params
       end
     end
@@ -61,8 +63,8 @@ RSpec.describe GameNightsController do
     end
 
     context "when CreateGameNight is a failure" do
-      let(:create_game_night_context) do
-        double(:context, success?: false, game_night: game_night)
+      let(:create_game_night_organizer_context) do
+        double(:context, success?: false, errors: game_night.errors)
       end
 
       it "returns HTTP status 422" do

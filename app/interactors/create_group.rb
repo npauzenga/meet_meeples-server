@@ -4,14 +4,18 @@ class CreateGroup < StandardInteraction
   end
 
   def execute
-    context.group = context.user.groups.create(context.group_params)
+    context.resource = context.user.groups.create(context.group_params)
   end
 
   def validate_output
-    context.fail!(errors: context.group.errors) unless context.group.persisted?
+    context.fail!(errors: context.resource.errors) unless resource_persisted?
   end
 
   private
+
+  def resource_persisted?
+    context.resource.persisted?
+  end
 
   def valid_input?
     context.group_params && context.user

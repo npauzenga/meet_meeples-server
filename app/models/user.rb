@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  rolify
   attr_accessor :reset_token
 
   has_secure_password

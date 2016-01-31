@@ -21,7 +21,7 @@ RSpec.describe CreateGameNight do
       end
 
       it "creates a new game_night" do
-        expect(subject.game_night).to be_a GameNight
+        expect(subject.resource).to be_a GameNight
       end
     end
 

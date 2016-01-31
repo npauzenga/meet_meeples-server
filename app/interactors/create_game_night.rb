@@ -4,17 +4,17 @@ class CreateGameNight < StandardInteraction
   end
 
   def execute
-    context.game_night = create_game_night
+    context.resource = create_game_night
   end
 
   def validate_output
-    context.fail!(errors: context.game_night.errors) unless game_night_saved?
+    context.fail!(errors: context.resource.errors) unless game_night_saved?
   end
 
   private
 
   def game_night_saved?
-    context.game_night.persisted?
+    context.resource.persisted?
   end
 
   def valid_input?

@@ -43,9 +43,10 @@ RSpec.resource "Groups" do
     header "Authorization", :auth_token
 
     example_request "POST /groups" do
-      expect(status).to eq 201
-
+      group = Group.first
       json_response = JSON.parse(response_body)
+
+      expect(status).to eq 201
 
       expect(json_response["data"]["attributes"]["name"]).
         to eq public_send(:name)
@@ -53,9 +54,10 @@ RSpec.resource "Groups" do
       expect(authenticated_user.groups.first.name).
         to eq public_send(:name)
 
-      group = Group.first
-
       expect(group.users.first).to eq authenticated_user
+
+      expect(authenticated_user.has_role?(:moderator, group)).
+        to be_truthy
     end
   end
 
