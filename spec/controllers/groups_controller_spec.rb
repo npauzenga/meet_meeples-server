@@ -36,7 +36,7 @@ RSpec.describe GroupsController do
     end
 
     context "when called" do
-      it "calls the CreateGroup interactor" do
+      it "calls the CreateGroupOrganizer interactor" do
         expect(CreateGroupOrganizer).to receive(:call)
         post :create, params
       end

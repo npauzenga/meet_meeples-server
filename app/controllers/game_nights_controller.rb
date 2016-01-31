@@ -1,13 +1,14 @@
 class GameNightsController < AuthenticationController
   # POST /game_nights
   def create
-    result = CreateGameNight.call(user:              current_user,
-                                  game_night_params: game_night_params)
+    result = CreateGameNightOrganizer.call(user:              current_user,
+                                           role:              :organizer,
+                                           game_night_params: game_night_params)
 
     if result.success?
-      render json: result.game_night, status: :created
+      render json: result.resource, status: :created
     else
-      render json: result.game_night.errors, status: :unprocessable_entity
+      render json: result.errors, status: :unprocessable_entity
     end
   end
 

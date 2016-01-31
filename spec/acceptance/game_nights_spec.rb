@@ -35,9 +35,10 @@ RSpec.resource "GameNights" do
     header "Authorization", :auth_token
 
     example_request "POST /game_nights" do
-      expect(status).to eq 201
-
+      game_night = GameNight.first
       json_response = JSON.parse(response_body)
+
+      expect(status).to eq 201
 
       expect(json_response["data"]["attributes"]["name"]).
         to eq public_send(:name)
@@ -45,9 +46,10 @@ RSpec.resource "GameNights" do
       expect(authenticated_user.game_nights.first.name).
         to eq public_send(:name)
 
-      game_night = GameNight.first
-
       expect(game_night.users.first).to eq authenticated_user
+
+      expect(authenticated_user.has_role? :organizer, game_night).
+        to be_truthy
     end
   end
 
