@@ -14,7 +14,8 @@ RSpec.describe IndexGameNight do
       end
 
       it "sets game_nights to an array of game_nights" do
-        expect(subject.game_nights).to eq([game_night1, game_night2, game_night3])
+        expect(subject.game_nights).
+          to eq([game_night1, game_night2, game_night3])
       end
     end
 

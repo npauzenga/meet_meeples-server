@@ -54,7 +54,7 @@ RSpec.describe GameNightsController do
         expect(serialize(game_night)).to eq(response.body)
       end
 
-    it "conforms to JSON schema" do
+      it "conforms to JSON schema" do
         post :create, params
         assert_schema_conform
       end
@@ -249,13 +249,14 @@ RSpec.describe GameNightsController do
   end
 
   describe "GET #index" do
-    let(:game_night1)  { create(:game_night) }
+    let(:game_night1) { create(:game_night) }
     let(:game_night2) { create(:game_night) }
     let(:game_night3) { create(:game_night) }
 
+    let(:list) { [game_night1, game_night2, game_night3] }
+
     let(:index_profile_context) do
-      Interactor::Context.new(errors:   :val,
-                              game_nights: [game_night1, game_night2, game_night3])
+      Interactor::Context.new(errors: :val, game_nights: list)
     end
 
     before(:example) do
