@@ -9,6 +9,7 @@ gem "interactor"
 gem "figaro"
 gem "knock"
 gem "active_model_serializers"
+gem "rolify"
 
 group :developemnt, :test do
   gem "pry-byebug"

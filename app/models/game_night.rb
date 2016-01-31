@@ -1,4 +1,6 @@
 class GameNight < ActiveRecord::Base
+  resourcify
+
   validates :time, presence: true
   validates :location_name, presence: true
 

@@ -1,10 +1,12 @@
 class GroupsController < AuthenticationController
   # POST /groups
   def create
-    result = CreateGroup.call(user: current_user, group_params: group_params)
+    result = CreateGroupOrganizer.call(user:         current_user,
+                                       group_params: group_params,
+                                       role:         :moderator)
 
     if result.success?
-      render json: result.group, status: :created
+      render json: result.resource, status: :created
     else
       render json: result.errors, status: :unprocessable_entity
     end

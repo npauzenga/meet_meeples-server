@@ -46,7 +46,9 @@ RSpec.resource "User" do
 
     example_request "POST /user" do
       expect(status).to eq 201
+
       json_response = JSON.parse(response_body)
+
       expect(json_response["jwt"]).to include("payload")
     end
   end
@@ -66,7 +68,9 @@ RSpec.resource "User" do
 
     example_request "PATCH /user" do
       expect(status).to eq 200
+
       user = JSON.parse(response_body)
+
       expect(user["data"]["attributes"]["first_name"]).
         to eq public_send(:first_name)
     end

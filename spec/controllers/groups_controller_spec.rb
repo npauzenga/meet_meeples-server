@@ -13,24 +13,31 @@ RSpec.describe GroupsController do
   end
 
   describe "POST #create" do
-    let(:params) { { group: create_group_input.fetch(:group_params) } }
-
-    let(:create_group_input) do
-      { user: user, group_params: { name: group.name } }
+    let(:params) do
+      { group: create_group_organizer_input.fetch(:group_params) }
     end
 
-    let(:create_group_context) do
-      Interactor::Context.new(errors: :val, group: group)
+    let(:create_group_organizer_input) do
+      {
+        user:         user,
+        group_params: { name: group.name },
+        role:         :moderator
+      }
+    end
+
+    let(:create_group_organizer_context) do
+      Interactor::Context.new(errors: :val, resource: group)
     end
 
     before do
-      allow(CreateGroup).to receive(:call).with(create_group_input).
-        and_return(create_group_context)
+      allow(CreateGroupOrganizer).to receive(:call).
+        with(create_group_organizer_input).
+        and_return(create_group_organizer_context)
     end
 
     context "when called" do
       it "calls the CreateGroup interactor" do
-        expect(CreateGroup).to receive(:call)
+        expect(CreateGroupOrganizer).to receive(:call)
         post :create, params
       end
     end
@@ -53,7 +60,7 @@ RSpec.describe GroupsController do
     end
 
     context "when CreateGroup is a failure" do
-      let(:create_group_context) do
+      let(:create_group_organizer_context) do
         double(:context, success?: false, errors: group.errors, group: group)
       end
 
