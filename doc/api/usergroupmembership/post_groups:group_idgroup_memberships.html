@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Users API</title>
+    <title>UserGroupMembership API</title>
     <meta charset="utf-8">
     <style>
       
@@ -106,25 +106,48 @@ table th, table td {
   </head>
   <body>
     <div class="container">
-      <h1>Users API</h1>
+      <h1>UserGroupMembership API</h1>
 
       <div class="article">
-        <h2>GET /users/:id</h2>
-        <h3>GET /users/:id</h3>
+        <h2>POST /groups/:group_id/group_memberships</h2>
+        <h3>POST /groups/:group_id/group_memberships</h3>
 
+          <h3>Parameters</h3>
+          <table class="parameters table table-striped table-bordered table-condensed">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="required">
+                    <span class="name">group[group_id]</span>
+                </td>
+                <td>
+                  <span class="description">      The unique id of the group to which the game_night belongs.
+</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
 
           <h3>Request</h3>
 
             <h4>Headers</h4>
-            <pre class="request headers">Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTMyNDAxODksImF1ZCI6bnVsbCwic3ViIjo2Njg5fQ.aY7Dn6NZ9VWIXkV-WnQu-Y-Zl4A9SQTf5-MYS6sNA88
+            <pre class="request headers">Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTQzNjgyMjUsImF1ZCI6bnVsbCwic3ViIjoyOTU1fQ.b31cdN3mvjBMMBBU096RZz6y4q_eyH-tJWB82bDwkB8
 Host: example.org
+Content-Type: application/x-www-form-urlencoded
 Cookie: </pre>
 
           <h4>Route</h4>
-          <pre class="request route highlight">GET /users/6689</pre>
+          <pre class="request route highlight">POST /groups/1278/group_memberships</pre>
 
 
+            <h4>Body</h4>
+            <pre class="request body">group[group_id]=1278</pre>
 
 
             <h3>Response</h3>
@@ -132,29 +155,11 @@ Cookie: </pre>
               <pre class="response headers">X-Frame-Options: SAMEORIGIN
 X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
-Content-Type: application/json; charset=utf-8
-ETag: W/&quot;a7c3ef777deda762ce861774d2f2299c&quot;
-Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 04958cc9-66a3-4774-9422-42e57849ee4a
-X-Runtime: 0.003206
-Content-Length: 184</pre>
+Cache-Control: no-cache
+X-Request-Id: 73edea6d-3829-4482-91d8-69fb221fc861
+X-Runtime: 0.010834</pre>
             <h4>Status</h4>
-            <pre class="response status">200 OK</pre>
-              <h4>Body</h4>
-              <pre class="response body">{
-  &quot;data&quot;: {
-    &quot;id&quot;: &quot;6689&quot;,
-    &quot;type&quot;: &quot;users&quot;,
-    &quot;attributes&quot;: {
-      &quot;first_name&quot;: &quot;Dario&quot;,
-      &quot;last_name&quot;: &quot;Marks&quot;,
-      &quot;email&quot;: &quot;vernice@bruenpagac.org&quot;,
-      &quot;city&quot;: &quot;Jacobsstad&quot;,
-      &quot;state&quot;: &quot;Colorado&quot;,
-      &quot;country&quot;: &quot;Guinea&quot;
-    }
-  }
-}</pre>
+            <pre class="response status">204 No Content</pre>
       </div>
     </div>
   </body>

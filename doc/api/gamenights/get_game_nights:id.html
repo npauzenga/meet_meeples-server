@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Users API</title>
+    <title>GameNights API</title>
     <meta charset="utf-8">
     <style>
       
@@ -106,24 +106,43 @@ table th, table td {
   </head>
   <body>
     <div class="container">
-      <h1>Users API</h1>
+      <h1>GameNights API</h1>
 
       <div class="article">
-        <h2>DELETE /users/:id</h2>
-        <h3>DELETE /users/:id</h3>
+        <h2>GET /game_nights/:id</h2>
+        <h3>GET /game_nights/:id</h3>
 
+          <h3>Parameters</h3>
+          <table class="parameters table table-striped table-bordered table-condensed">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="required">
+                    <span class="name">id</span>
+                </td>
+                <td>
+                  <span class="description">      The id of the game_night.
+</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
 
           <h3>Request</h3>
 
             <h4>Headers</h4>
-            <pre class="request headers">Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTMyNDAxODksImF1ZCI6bnVsbCwic3ViIjo2Njg4fQ.6PqwgP9Q4cfl593EQ0cXhnqRCQ3CdYHm-NX-e_n3p8k
+            <pre class="request headers">Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTQzNjgyMjUsImF1ZCI6bnVsbCwic3ViIjoyOTQ1fQ.ug3H9Up9VlAM_oFrJmToQ9o6XtRpPyh4y9UIUmecUAI
 Host: example.org
-Content-Type: application/x-www-form-urlencoded
 Cookie: </pre>
 
           <h4>Route</h4>
-          <pre class="request route highlight">DELETE /users/6688</pre>
+          <pre class="request route highlight">GET /game_nights/1464</pre>
 
 
 
@@ -133,11 +152,27 @@ Cookie: </pre>
               <pre class="response headers">X-Frame-Options: SAMEORIGIN
 X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
-Cache-Control: no-cache
-X-Request-Id: 5256559e-b72c-4627-a1d5-ff4c06a7b4de
-X-Runtime: 0.005371</pre>
+Content-Type: application/json; charset=utf-8
+ETag: W/&quot;571905e3689050b008b805cdb38c6c98&quot;
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: 94ba4b14-50da-4e2c-974d-b3bf88f966d3
+X-Runtime: 0.021847
+Content-Length: 184</pre>
             <h4>Status</h4>
-            <pre class="response status">204 No Content</pre>
+            <pre class="response status">200 OK</pre>
+              <h4>Body</h4>
+              <pre class="response body">{
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;1464&quot;,
+    &quot;type&quot;: &quot;game_nights&quot;,
+    &quot;attributes&quot;: {
+      &quot;name&quot;: &quot;Massachusetts goats&quot;,
+      &quot;time&quot;: &quot;2016-02-05T00:00:00.000Z&quot;,
+      &quot;location_name&quot;: &quot;Upton Inc&quot;,
+      &quot;location_address&quot;: &quot;Penelope Fort&quot;
+    }
+  }
+}</pre>
       </div>
     </div>
   </body>

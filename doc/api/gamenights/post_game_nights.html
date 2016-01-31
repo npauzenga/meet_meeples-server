@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Users API</title>
+    <title>GameNights API</title>
     <meta charset="utf-8">
     <style>
       
@@ -106,11 +106,11 @@ table th, table td {
   </head>
   <body>
     <div class="container">
-      <h1>Users API</h1>
+      <h1>GameNights API</h1>
 
       <div class="article">
-        <h2>POST /users</h2>
-        <h3>POST /users</h3>
+        <h2>POST /game_nights</h2>
+        <h3>POST /game_nights</h3>
 
           <h3>Parameters</h3>
           <table class="parameters table table-striped table-bordered table-condensed">
@@ -122,65 +122,38 @@ table th, table td {
             </thead>
             <tbody>
               <tr>
-                <td class="required">
-                    <span class="name">user[first_name]</span>
+                <td>
+                    <span class="name">game_night[name]</span>
                 </td>
                 <td>
-                  <span class="description">      The first name of the user.
+                  <span class="description">      The name of the game_night.
 </span>
                 </td>
               </tr>
               <tr>
                 <td class="required">
-                    <span class="name">user[email]</span>
+                    <span class="name">game_night[time]</span>
                 </td>
                 <td>
-                  <span class="description">      The email of the user.
+                  <span class="description">      The time of the game_night.
 </span>
                 </td>
               </tr>
               <tr>
                 <td class="required">
-                    <span class="name">user[last_name]</span>
+                    <span class="name">game_night[location_name]</span>
                 </td>
                 <td>
-                  <span class="description">      The last name of the user.
+                  <span class="description">      The location of the game_night.
 </span>
                 </td>
               </tr>
               <tr>
-                <td class="required">
-                    <span class="name">user[password]</span>
+                <td>
+                    <span class="name">game_night[location_address]</span>
                 </td>
                 <td>
-                  <span class="description">      The password of the user.
-</span>
-                </td>
-              </tr>
-              <tr>
-                <td class="required">
-                    <span class="name">user[city]</span>
-                </td>
-                <td>
-                  <span class="description">      The city of the user.
-</span>
-                </td>
-              </tr>
-              <tr>
-                <td class="required">
-                    <span class="name">user[state]</span>
-                </td>
-                <td>
-                  <span class="description">      The state of the user.
-</span>
-                </td>
-              </tr>
-              <tr>
-                <td class="required">
-                    <span class="name">user[country]</span>
-                </td>
-                <td>
-                  <span class="description">      The country of the user.
+                  <span class="description">      The address of the game_night.
 </span>
                 </td>
               </tr>
@@ -191,16 +164,17 @@ table th, table td {
           <h3>Request</h3>
 
             <h4>Headers</h4>
-            <pre class="request headers">Host: example.org
+            <pre class="request headers">Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTQzNjgyMjUsImF1ZCI6bnVsbCwic3ViIjoyOTQ2fQ.7FBUKo4Yo78qHXEvT9FvmNZc4B8txu_rsIlZHek3_jQ
+Host: example.org
 Content-Type: application/x-www-form-urlencoded
 Cookie: </pre>
 
           <h4>Route</h4>
-          <pre class="request route highlight">POST /users</pre>
+          <pre class="request route highlight">POST /game_nights</pre>
 
 
             <h4>Body</h4>
-            <pre class="request body">user[first_name]=Nate&user[email]=admin%40test.com&user[last_name]=Pauzenga&user[password]=helloworld&user[city]=Annapolis&user[state]=MD&user[country]=USA</pre>
+            <pre class="request body">game_night[name]=Waaggh&game_night[time]=2015-09-12+22%3A49%3A27+%2B0530&game_night[location_name]=Library&game_night[location_address]=999+main+st.+Silver+Spring%2C+MD+20910</pre>
 
 
             <h3>Response</h3>
@@ -209,20 +183,24 @@ Cookie: </pre>
 X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;3265b85548f8b872ae2c6d39ae7ae3c0&quot;
+ETag: W/&quot;b6ab8b70fa6211b23691024b424cfc97&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 7a68ed4d-1e4f-458c-8486-18a84c51d7db
-X-Runtime: 0.006931
-Content-Length: 178</pre>
+X-Request-Id: 0ce9a0c6-19f1-4106-bf68-48a9b2637229
+X-Runtime: 0.069457
+Content-Length: 192</pre>
             <h4>Status</h4>
             <pre class="response status">201 Created</pre>
               <h4>Body</h4>
               <pre class="response body">{
-  &quot;jwt&quot;: {
-    &quot;payload&quot;: {
-      &quot;sub&quot;: 6687
-    },
-    &quot;token&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTMyNDAxODksImF1ZCI6bnVsbCwic3ViIjo2Njg3fQ.wNrgLx7UDvlEyjENVyd4Kf5Og6Q8ruNMJkjj81EaFGg&quot;
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;1465&quot;,
+    &quot;type&quot;: &quot;game_nights&quot;,
+    &quot;attributes&quot;: {
+      &quot;name&quot;: &quot;Waaggh&quot;,
+      &quot;time&quot;: &quot;2015-09-12T17:19:27.000Z&quot;,
+      &quot;location_name&quot;: &quot;Library&quot;,
+      &quot;location_address&quot;: &quot;999 main st. Silver Spring, MD 20910&quot;
+    }
   }
 }</pre>
       </div>

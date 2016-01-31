@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Users API</title>
+    <title>Groups API</title>
     <meta charset="utf-8">
     <style>
       
@@ -106,11 +106,11 @@ table th, table td {
   </head>
   <body>
     <div class="container">
-      <h1>Users API</h1>
+      <h1>Groups API</h1>
 
       <div class="article">
-        <h2>PATCH /users/:id</h2>
-        <h3>PATCH /users/:id</h3>
+        <h2>PATCH /groups/:id</h2>
+        <h3>PATCH /groups/:id</h3>
 
           <h3>Parameters</h3>
           <table class="parameters table table-striped table-bordered table-condensed">
@@ -123,64 +123,64 @@ table th, table td {
             <tbody>
               <tr>
                 <td class="required">
-                    <span class="name">user[first_name]</span>
+                    <span class="name">group[name]</span>
                 </td>
                 <td>
-                  <span class="description">      The first name of the user.
+                  <span class="description">      The name of the group.
 </span>
                 </td>
               </tr>
               <tr>
                 <td class="required">
-                    <span class="name">user[email]</span>
+                    <span class="name">group[city]</span>
                 </td>
                 <td>
-                  <span class="description">      The email of the user.
+                  <span class="description">      The city where the group is located.
 </span>
                 </td>
               </tr>
               <tr>
                 <td class="required">
-                    <span class="name">user[last_name]</span>
+                    <span class="name">group[state]</span>
                 </td>
                 <td>
-                  <span class="description">      The last name of the user.
+                  <span class="description">      The state where the group is located.
 </span>
                 </td>
               </tr>
               <tr>
                 <td class="required">
-                    <span class="name">user[password]</span>
+                    <span class="name">group[country]</span>
                 </td>
                 <td>
-                  <span class="description">      The password of the user.
+                  <span class="description">      The country where the group is located.
 </span>
                 </td>
               </tr>
               <tr>
                 <td class="required">
-                    <span class="name">user[city]</span>
+                    <span class="name">group[facebook]</span>
                 </td>
                 <td>
-                  <span class="description">      The city of the user.
+                  <span class="description">      The facebook address for the group.
 </span>
                 </td>
               </tr>
               <tr>
                 <td class="required">
-                    <span class="name">user[state]</span>
+                    <span class="name">group[twitter]</span>
                 </td>
                 <td>
-                  <span class="description">      The state of the user.
+                  <span class="description">      The twitter address for the group.
 </span>
                 </td>
               </tr>
               <tr>
                 <td class="required">
-                    <span class="name">user[country]</span>
+                    <span class="name">id</span>
                 </td>
                 <td>
-                  <span class="description">      The country of the user.
+                  <span class="description">      The id of the group.
 </span>
                 </td>
               </tr>
@@ -191,17 +191,17 @@ table th, table td {
           <h3>Request</h3>
 
             <h4>Headers</h4>
-            <pre class="request headers">Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTMyNDAxODksImF1ZCI6bnVsbCwic3ViIjo2Njg2fQ.WQHvCtYD3lJD4GDYg50bPYAQJ8wZlXeGWH5sDHhPnLc
+            <pre class="request headers">Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTQzNjgyMjUsImF1ZCI6bnVsbCwic3ViIjoyOTU5fQ.9Lf_t9B_-9HX1cEAUPql0frKZ1kda53t6dNF53xzvvE
 Host: example.org
 Content-Type: application/x-www-form-urlencoded
 Cookie: </pre>
 
           <h4>Route</h4>
-          <pre class="request route highlight">PATCH /users/6686</pre>
+          <pre class="request route highlight">PATCH /groups/1282</pre>
 
 
             <h4>Body</h4>
-            <pre class="request body">user[first_name]=John+Doe&user[email]=admin%40test.com&user[last_name]=Pauzenga&user[password]=helloworld&user[city]=Annapolis&user[state]=MD&user[country]=USA</pre>
+            <pre class="request body">group[name]=Zombicide+Tuesdays&group[city]=Washington&group[state]=DC&group[country]=USA&group[facebook]=facebook.com%2Fzombie&group[twitter]=%40zombie</pre>
 
 
             <h3>Response</h3>
@@ -210,25 +210,25 @@ Cookie: </pre>
 X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;b060c6d47c4c325d755bc73722e04ef3&quot;
+ETag: W/&quot;98e97da658695c68baa76eafb8e93680&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: c325dacc-f102-4c53-9a2e-64199ad5caa6
-X-Runtime: 0.020260
-Content-Length: 172</pre>
+X-Request-Id: 6a3e6593-aa9b-4ed5-9155-381dbbb51da1
+X-Runtime: 0.006144
+Content-Length: 183</pre>
             <h4>Status</h4>
             <pre class="response status">200 OK</pre>
               <h4>Body</h4>
               <pre class="response body">{
   &quot;data&quot;: {
-    &quot;id&quot;: &quot;6686&quot;,
-    &quot;type&quot;: &quot;users&quot;,
+    &quot;id&quot;: &quot;1282&quot;,
+    &quot;type&quot;: &quot;groups&quot;,
     &quot;attributes&quot;: {
-      &quot;first_name&quot;: &quot;John Doe&quot;,
-      &quot;last_name&quot;: &quot;Pauzenga&quot;,
-      &quot;email&quot;: &quot;admin@test.com&quot;,
-      &quot;city&quot;: &quot;Annapolis&quot;,
-      &quot;state&quot;: &quot;MD&quot;,
-      &quot;country&quot;: &quot;USA&quot;
+      &quot;name&quot;: &quot;Zombicide Tuesdays&quot;,
+      &quot;city&quot;: &quot;Washington&quot;,
+      &quot;state&quot;: &quot;DC&quot;,
+      &quot;country&quot;: &quot;USA&quot;,
+      &quot;facebook&quot;: &quot;facebook.com/zombie&quot;,
+      &quot;twitter&quot;: &quot;@zombie&quot;
     }
   }
 }</pre>
