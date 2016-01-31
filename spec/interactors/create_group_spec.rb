@@ -43,9 +43,23 @@ RSpec.describe CreateGroup do
       end
     end
 
-    context "when invalid input is provided" do
+    context "when group_params are not provided" do
       subject do
         described_class.call(group_params: nil)
+      end
+
+      it "fails" do
+        is_expected.to be_a_failure
+      end
+
+      it "returns an error" do
+        expect(subject.errors).to eq("invalid input")
+      end
+    end
+
+    context "when user is not provided" do
+      subject do
+        described_class.call(group_params: group_params, user: nil)
       end
 
       it "fails" do

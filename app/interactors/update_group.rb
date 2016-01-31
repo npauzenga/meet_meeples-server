@@ -10,7 +10,7 @@ class UpdateGroup < StandardInteraction
   private
 
   def update_group
-    Group.update(context.id, context.group_params)
+    context.group = Group.update(context.id, context.group_params)
   end
 
   def valid_input?

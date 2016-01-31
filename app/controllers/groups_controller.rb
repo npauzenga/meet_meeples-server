@@ -1,4 +1,5 @@
 class GroupsController < AuthenticationController
+  # POST /groups
   def create
     result = CreateGroup.call(user: current_user, group_params: group_params)
 
@@ -9,6 +10,7 @@ class GroupsController < AuthenticationController
     end
   end
 
+  # GET /groups/:id
   def show
     result = ShowGroup.call(id: params[:id])
 
@@ -19,6 +21,7 @@ class GroupsController < AuthenticationController
     end
   end
 
+  # PATCH /groups/:id
   def update
     result = UpdateGroup.call(id: params[:id], group_params: group_params)
 
@@ -29,6 +32,18 @@ class GroupsController < AuthenticationController
     end
   end
 
+  # GET /groups
+  def index
+    result = IndexGroup.call
+
+    if result.success?
+      render json: result.groups, status: :ok
+    else
+      render json: result.errors, status: :internal_server_error
+    end
+  end
+
+  # DELETE /groups/:id
   def destroy
     result = DeleteGroup.call(id: params[:id])
 
