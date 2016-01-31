@@ -1,4 +1,10 @@
+include Committee::Test::Methods
+
 RSpec.describe GroupsController do
+  let(:schema_path)   { "#{Rails.root}/config/schema/api.json" }
+  let(:last_response) { response }
+  let(:last_request)  { request }
+
   let(:user) { create(:confirmed_user) }
   let(:group) { create(:group) }
 
@@ -38,6 +44,11 @@ RSpec.describe GroupsController do
       it "renders the group as JSON" do
         post :create, params
         expect(serialize(group)).to eq(response.body)
+      end
+
+      it "conforms to JSON schema" do
+        post :create, params
+        assert_schema_conform
       end
     end
 
@@ -89,6 +100,11 @@ RSpec.describe GroupsController do
       it "renders the group as JSON" do
         get :show, params
         expect(serialize(group)).to eq(response.body)
+      end
+
+      it "conforms to JSON schema" do
+        get :show, params
+        assert_schema_conform
       end
     end
 
@@ -147,6 +163,11 @@ RSpec.describe GroupsController do
         patch :update, params
         expect(serialize(group)).to eq(response.body)
       end
+
+      it "conforms to JSON schema" do
+        patch :update, params
+        assert_schema_conform
+      end
     end
 
     context "when UpdateGroup is a failure" do
@@ -163,6 +184,64 @@ RSpec.describe GroupsController do
         group.errors.add(:name, "error")
         patch :update, params
         expect(json["name"]).to eq(["error"])
+      end
+    end
+  end
+
+  describe "GET #index" do
+    let(:group1) { create(:group) }
+    let(:group2) { create(:group) }
+    let(:group3) { create(:group) }
+
+    let(:index_group_context) do
+      Interactor::Context.new(errors: :val, groups: [group1, group2, group3])
+    end
+
+    before(:example) do
+      allow(IndexGroup).to receive(:call).and_return(index_group_context)
+    end
+
+    before do
+      authenticate
+    end
+
+    context "when succesful" do
+      it "calls the IndexGroup interactor" do
+        expect(IndexGroup).to receive(:call)
+        get :index
+      end
+
+      it "returns HTTP status 200" do
+        get :index
+        expect(response).to have_http_status(200)
+      end
+
+      it "render the groups as JSON" do
+        get :index
+        expect(json["data"][0].value?(group1.id.to_s)).to be_truthy
+        expect(json["data"][1].value?(group2.id.to_s)).to be_truthy
+        expect(json["data"][2].value?(group3.id.to_s)).to be_truthy
+      end
+
+      it "conforms to JSON schema" do
+        get :index
+        assert_schema_conform
+      end
+    end
+
+    context "when IndexGroup fails" do
+      let(:index_group_context) do
+        double(:context, errors: "internal server error", success?: false)
+      end
+
+      it "returns HTTP status 500" do
+        get :index
+        expect(response).to have_http_status(500)
+      end
+
+      it "renders an error" do
+        get :index
+        expect(response.body).to eq("internal server error")
       end
     end
   end
