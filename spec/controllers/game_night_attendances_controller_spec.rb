@@ -2,8 +2,12 @@ RSpec.describe GameNightAttendancesController do
   describe "POST #create" do
     let(:user)       { create(:confirmed_user) }
     let(:game_night) { create(:game_night) }
-    let(:params)     { { id: game_night.id.to_s } }
-    let(:arguments)  { { user_id: user.id, game_night_id: params[:id] } }
+    let(:params)     { { game_night_id: game_night.id.to_s } }
+
+    let(:arguments)  do
+      { user_id: user.id, game_night_id: params[:game_night_id] }
+    end
+
     let(:context)    { double(:context, success?: true) }
 
     before(:example) do

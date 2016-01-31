@@ -16,7 +16,7 @@ RSpec.resource "UserGroupMembership" do
   end
 
   post "/groups/:group_id/group_memberships" do
-    include_context "game_night parameters"
+    include_context "user_group_membership parameters"
 
     let!(:group)    { create(:group) }
     let(:group_id)  { group.id }
