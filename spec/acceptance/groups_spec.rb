@@ -9,10 +9,6 @@ RSpec.resource "Groups" do
     Knock::AuthToken.new(payload: { sub: authenticated_user.id }).token
   end
 
-  def schema_path
-    "./config/schema/schemata/group.json"
-  end
-
   shared_context "group parameters" do
     parameter "name", <<-DESC, scope: :group, required: true
       The name of the group.
@@ -35,10 +31,6 @@ RSpec.resource "Groups" do
   end
 
   post "/groups" do
-    let(:schema_path)   { "#{Rails.root}/config/schema/api.json" }
-    let(:last_response) { response }
-    let(:last_request)  { request }
-
     include_context "group parameters"
 
     let(:name)     { "Waaggh" }

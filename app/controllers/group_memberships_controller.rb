@@ -1,4 +1,5 @@
 class GroupMembershipsController < AuthenticationController
+  # POST /groups/:group_id/group_memberships
   def create
     result = CreateGroupMembership.call(user_id:  current_user.id,
                                         group_id: params[:group_id])

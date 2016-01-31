@@ -9,10 +9,6 @@ RSpec.resource "GameNights" do
     Knock::AuthToken.new(payload: { sub: authenticated_user.id }).token
   end
 
-  def schema_path
-    "./config/schema/schemata/game_night.json"
-  end
-
   shared_context "game_night parameters" do
     parameter "name", <<-DESC, scope: :game_night
       The name of the game_night.
@@ -29,10 +25,6 @@ RSpec.resource "GameNights" do
   end
 
   post "/game_nights" do
-    let(:schema_path)   { "#{Rails.root}/config/schema/api.json" }
-    let(:last_response) { response }
-    let(:last_request)  { request }
-
     include_context "game_night parameters"
 
     let(:name)              { "Waaggh" }

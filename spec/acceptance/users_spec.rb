@@ -9,10 +9,6 @@ RSpec.resource "User" do
     Knock::AuthToken.new(payload: { sub: authenticated_user.id }).token
   end
 
-  def schema_path
-    "./config/schema/schemata/user.json"
-  end
-
   shared_context "user parameters" do
     parameter "first_name", <<-DESC, scope: :user, required: true
       The first name of the user.

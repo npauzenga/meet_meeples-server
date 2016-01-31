@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :game_night do
-    name Faker::Hipster.words(2)
+    name Faker::Team.name
     time { rand(7).days.from_now.to_date }
-    location_name Faker::Hipster.words(2)
+    location_name Faker::Company.name
     location_address Faker::Address.street_name
   end
 end

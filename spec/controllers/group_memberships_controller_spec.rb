@@ -2,8 +2,8 @@ RSpec.describe GroupMembershipsController do
   describe "POST #create" do
     let(:user)      { create(:confirmed_user) }
     let(:group)     { create(:group) }
-    let(:params)    { { id: group.id } }
-    let(:arguments) { { user_id: user.id, group_id: params[:group_id] } }
+    let(:params)    { { group_id: group.id } }
+    let(:arguments) { { user_id: user.id, group_id: params[:group_id].to_s } }
     let(:context)   { double(:context, success?: true) }
 
     before(:example) do
