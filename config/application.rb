@@ -32,5 +32,12 @@ module MeetMeeplesServer
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
+    # Middleware for validating JSON schema on request and response
+    schema_file = "#{Rails.root}/schema/api.json"
+    if File.exists?(schema_file)
+      config.middleware.use Committee::Middleware::RequestValidation, schema: JSON.parse(File.read(schema_file)), strict: true
+      config.middleware.use Committee::Middleware::ResponseValidation, schema: JSON.parse(File.read(schema_file))
+    end
   end
 end

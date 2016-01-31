@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Users API</title>
+    <title>GameNights API</title>
     <meta charset="utf-8">
     <style>
       
@@ -106,11 +106,11 @@ table th, table td {
   </head>
   <body>
     <div class="container">
-      <h1>Users API</h1>
+      <h1>GameNights API</h1>
 
       <div class="article">
-        <h2>PATCH /users/:id</h2>
-        <h3>PATCH /users/:id</h3>
+        <h2>PATCH /game_nights/:id</h2>
+        <h3>PATCH /game_nights/:id</h3>
 
           <h3>Parameters</h3>
           <table class="parameters table table-striped table-bordered table-condensed">
@@ -122,65 +122,47 @@ table th, table td {
             </thead>
             <tbody>
               <tr>
-                <td class="required">
-                    <span class="name">user[first_name]</span>
+                <td>
+                    <span class="name">game_night[name]</span>
                 </td>
                 <td>
-                  <span class="description">      The first name of the user.
+                  <span class="description">      The name of the game_night.
 </span>
                 </td>
               </tr>
               <tr>
                 <td class="required">
-                    <span class="name">user[email]</span>
+                    <span class="name">game_night[time]</span>
                 </td>
                 <td>
-                  <span class="description">      The email of the user.
+                  <span class="description">      The time of the game_night.
 </span>
                 </td>
               </tr>
               <tr>
                 <td class="required">
-                    <span class="name">user[last_name]</span>
+                    <span class="name">game_night[location_name]</span>
                 </td>
                 <td>
-                  <span class="description">      The last name of the user.
+                  <span class="description">      The location of the game_night.
+</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">game_night[location_address]</span>
+                </td>
+                <td>
+                  <span class="description">      The address of the game_night.
 </span>
                 </td>
               </tr>
               <tr>
                 <td class="required">
-                    <span class="name">user[password]</span>
+                    <span class="name">id</span>
                 </td>
                 <td>
-                  <span class="description">      The password of the user.
-</span>
-                </td>
-              </tr>
-              <tr>
-                <td class="required">
-                    <span class="name">user[city]</span>
-                </td>
-                <td>
-                  <span class="description">      The city of the user.
-</span>
-                </td>
-              </tr>
-              <tr>
-                <td class="required">
-                    <span class="name">user[state]</span>
-                </td>
-                <td>
-                  <span class="description">      The state of the user.
-</span>
-                </td>
-              </tr>
-              <tr>
-                <td class="required">
-                    <span class="name">user[country]</span>
-                </td>
-                <td>
-                  <span class="description">      The country of the user.
+                  <span class="description">      The id of the game_night.
 </span>
                 </td>
               </tr>
@@ -191,17 +173,17 @@ table th, table td {
           <h3>Request</h3>
 
             <h4>Headers</h4>
-            <pre class="request headers">Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTMyNDAxODksImF1ZCI6bnVsbCwic3ViIjo2Njg2fQ.WQHvCtYD3lJD4GDYg50bPYAQJ8wZlXeGWH5sDHhPnLc
+            <pre class="request headers">Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTQzMzgwNTYsImF1ZCI6bnVsbCwic3ViIjo2MDk2fQ.SJWh39JdexCdYWXkEL_vCLK9Z9BwuZbyJm0tHIymdXU
 Host: example.org
 Content-Type: application/x-www-form-urlencoded
 Cookie: </pre>
 
           <h4>Route</h4>
-          <pre class="request route highlight">PATCH /users/6686</pre>
+          <pre class="request route highlight">PATCH /game_nights/1768</pre>
 
 
             <h4>Body</h4>
-            <pre class="request body">user[first_name]=John+Doe&user[email]=admin%40test.com&user[last_name]=Pauzenga&user[password]=helloworld&user[city]=Annapolis&user[state]=MD&user[country]=USA</pre>
+            <pre class="request body">game_night[name]=New+Name&game_night[time]=2015-09-12+22%3A49%3A27+%2B0530&game_night[location_name]=Library&game_night[location_address]=999+main+st.+Silver+Spring%2C+MD+20910</pre>
 
 
             <h3>Response</h3>
@@ -210,25 +192,23 @@ Cookie: </pre>
 X-XSS-Protection: 1; mode=block
 X-Content-Type-Options: nosniff
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;b060c6d47c4c325d755bc73722e04ef3&quot;
+ETag: W/&quot;14d3781b4157bc8cf8e71e9a3a4a0639&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: c325dacc-f102-4c53-9a2e-64199ad5caa6
-X-Runtime: 0.020260
-Content-Length: 172</pre>
+X-Request-Id: 28399e9c-d3ac-4e5e-91b8-74ded8264df6
+X-Runtime: 0.007642
+Content-Length: 194</pre>
             <h4>Status</h4>
             <pre class="response status">200 OK</pre>
               <h4>Body</h4>
               <pre class="response body">{
   &quot;data&quot;: {
-    &quot;id&quot;: &quot;6686&quot;,
-    &quot;type&quot;: &quot;users&quot;,
+    &quot;id&quot;: &quot;1768&quot;,
+    &quot;type&quot;: &quot;game_nights&quot;,
     &quot;attributes&quot;: {
-      &quot;first_name&quot;: &quot;John Doe&quot;,
-      &quot;last_name&quot;: &quot;Pauzenga&quot;,
-      &quot;email&quot;: &quot;admin@test.com&quot;,
-      &quot;city&quot;: &quot;Annapolis&quot;,
-      &quot;state&quot;: &quot;MD&quot;,
-      &quot;country&quot;: &quot;USA&quot;
+      &quot;name&quot;: &quot;New Name&quot;,
+      &quot;time&quot;: &quot;2015-09-12T17:19:27.000Z&quot;,
+      &quot;location_name&quot;: &quot;Library&quot;,
+      &quot;location_address&quot;: &quot;999 main st. Silver Spring, MD 20910&quot;
     }
   }
 }</pre>
