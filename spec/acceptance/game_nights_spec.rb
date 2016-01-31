@@ -48,7 +48,7 @@ RSpec.resource "GameNights" do
 
       expect(game_night.users.first).to eq authenticated_user
 
-      expect(authenticated_user.has_role? :organizer, game_night).
+      expect(authenticated_user.has_role?(:organizer, game_night)).
         to be_truthy
     end
   end

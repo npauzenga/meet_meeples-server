@@ -56,7 +56,7 @@ RSpec.resource "Groups" do
 
       expect(group.users.first).to eq authenticated_user
 
-      expect(authenticated_user.has_role? :moderator, group).
+      expect(authenticated_user.has_role?(:moderator, group)).
         to be_truthy
     end
   end

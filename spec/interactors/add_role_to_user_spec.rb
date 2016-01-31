@@ -14,7 +14,7 @@ RSpec.describe AddRoleToUser do
       end
 
       it "adds the appropriate role to user" do
-        expect(subject.user.has_role? role, group).to be_truthy
+        expect(subject.user.has_role?(role, group)).to be_truthy
       end
     end
 
