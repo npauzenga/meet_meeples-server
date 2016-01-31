@@ -1,3 +1,3 @@
 class GameNightSerializer < ActiveModel::Serializer
-  attributes :id, :time, :location_name, :location_address
+  attributes :id, :name, :time, :location_name, :location_address
 end

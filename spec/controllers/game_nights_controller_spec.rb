@@ -1,6 +1,11 @@
+include Committee::Test::Methods
+
 RSpec.describe GameNightsController do
   let(:user)       { create(:confirmed_user) }
   let(:game_night) { create(:game_night) }
+  let(:schema_path) { "#{Rails.root}/config/schema/api.json" }
+  let(:last_response) { response }
+  let(:last_request) { request }
 
   before do
     authenticate
@@ -47,6 +52,11 @@ RSpec.describe GameNightsController do
       it "renders the game_night as JSON" do
         post :create, params
         expect(serialize(game_night)).to eq(response.body)
+      end
+
+    it "conforms to JSON schema" do
+        post :create, params
+        assert_schema_conform
       end
     end
 
@@ -111,6 +121,11 @@ RSpec.describe GameNightsController do
         patch :update, params
         expect(serialize(game_night)).to eq(response.body)
       end
+
+      it "conforms to JSON schema" do
+        patch :update, params
+        assert_schema_conform
+      end
     end
 
     context "when UpdateGameNight is a failure" do
@@ -160,6 +175,11 @@ RSpec.describe GameNightsController do
       it "renders the GameNight as JSON" do
         get :show, params
         expect(serialize(game_night)).to eq(response.body)
+      end
+
+      it "conforms to JSON schema" do
+        get :show, params
+        assert_schema_conform
       end
     end
 
@@ -224,6 +244,65 @@ RSpec.describe GameNightsController do
       it "renders an error" do
         delete :destroy, params
         expect(json["id"]).to eq(["invalid"])
+      end
+    end
+  end
+
+  describe "GET #index" do
+    let(:game_night1)  { create(:game_night) }
+    let(:game_night2) { create(:game_night) }
+    let(:game_night3) { create(:game_night) }
+
+    let(:index_profile_context) do
+      Interactor::Context.new(errors:   :val,
+                              game_nights: [game_night1, game_night2, game_night3])
+    end
+
+    before(:example) do
+      allow(IndexGameNight).to receive(:call).and_return(index_profile_context)
+    end
+
+    before do
+      authenticate
+    end
+
+    context "when succesful" do
+      it "calls the IndexProfile interactor" do
+        expect(IndexGameNight).to receive(:call)
+        get :index
+      end
+
+      it "returns HTTP status 200" do
+        get :index
+        expect(response).to have_http_status(200)
+      end
+
+      it "render the profiles as JSON" do
+        get :index
+        expect(json["data"][0].value?(game_night1.id.to_s)).to be_truthy
+        expect(json["data"][1].value?(game_night2.id.to_s)).to be_truthy
+        expect(json["data"][2].value?(game_night3.id.to_s)).to be_truthy
+      end
+
+      it "conforms to JSON schema" do
+        get :index
+        assert_schema_conform
+      end
+    end
+
+    context "when IndexProfile fails" do
+      let(:index_profile_context) do
+        double(:context, errors: "internal server error", success?: false)
+      end
+
+      it "returns HTTP status 500" do
+        get :index
+        expect(response).to have_http_status(500)
+      end
+
+      it "renders an error" do
+        get :index
+        expect(response.body).to eq("internal server error")
       end
     end
   end

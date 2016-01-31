@@ -10,7 +10,7 @@ class UpdateGameNight < StandardInteraction
   private
 
   def update_game_night
-    GameNight.update(context.id, context.game_night_params)
+    context.game_night = GameNight.update(context.id, context.game_night_params)
   end
 
   def valid_input?
