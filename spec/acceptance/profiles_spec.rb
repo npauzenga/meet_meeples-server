@@ -9,32 +9,12 @@ RSpec.resource "Profiles" do
     Knock::AuthToken.new(payload: { sub: authenticated_user.id }).token
   end
 
-  shared_context "user parameters" do
-    parameter "first_name", <<-DESC, scope: :user, required: true
-      The first name of the user.
-    DESC
-    parameter "email", <<-DESC, scope: :user, required: true
-      The email of the user.
-    DESC
-    parameter "last_name", <<-DESC, scope: :user, required: true
-      The last name of the user.
-    DESC
-    parameter "password", <<-DESC, scope: :user, required: true
-      The password of the user.
-    DESC
-    parameter "city", <<-DESC, scope: :user, required: true
-      The city of the user.
-    DESC
-    parameter "state", <<-DESC, scope: :user, required: true
-      The state of the user.
-    DESC
-    parameter "country", <<-DESC, scope: :user, required: true
-      The country of the user.
-    DESC
-  end
-
   get "/profiles/:id" do
     header "Authorization", :auth_token
+
+    parameter "id", <<-DESC, required: true
+      The unique ID of the user.
+    DESC
 
     let(:id) { authenticated_user.id }
 
