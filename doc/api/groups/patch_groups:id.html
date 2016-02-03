@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Groups API</title>
+    <meta charset="utf-8">
+    <style>
+      
+body {
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 18px;
+  color: #404040;
+}
+
+.container {
+  width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+  zoom: 1;
+}
+
+pre {
+  background-color: #f5f5f5;
+  display: block;
+  padding: 8.5px;
+  margin: 0 0 18px;
+  line-height: 18px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+td.required .name:after {
+  float: right;
+  content: "required";
+  font-weight: normal;
+  color: #F08080;
+}
+
+a{
+  color: #0069d6;
+  text-decoration: none;
+  line-height: inherit;
+  font-weight: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  color: #404040;
+}
+
+h1 {
+  margin-bottom: 18px;
+  font-size: 30px;
+  line-height: 36px;
+}
+h2 {
+  font-size: 24px;
+  line-height: 36px;
+}
+h3{
+  font-size: 18px;
+  line-height: 36px;
+}
+h4 {
+  font-size: 16px;
+  line-height: 36px;
+}
+
+table{
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 0;
+  border-collapse: separate;
+  font-size: 13px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+}
+
+table th {
+  padding-top: 9px;
+  font-weight: bold;
+  vertical-align: middle;
+  border-bottom: 1px solid #ddd;
+}
+table th+th, table td+td {
+  border-left: 1px solid #ddd;
+}
+table th, table td {
+  padding: 10px 10px 9px;
+  line-height: 18px;
+  text-align: left;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Groups API</h1>
+
+      <div class="article">
+        <h2>PATCH /groups/:id</h2>
+        <h3>PATCH /groups/:id</h3>
+
+          <h3>Parameters</h3>
+          <table class="parameters table table-striped table-bordered table-condensed">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="required">
+                    <span class="name">group[name]</span>
+                </td>
+                <td>
+                  <span class="description">      The name of the group.
+</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="required">
+                    <span class="name">group[city]</span>
+                </td>
+                <td>
+                  <span class="description">      The city where the group is located.
+</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="required">
+                    <span class="name">group[state]</span>
+                </td>
+                <td>
+                  <span class="description">      The state where the group is located.
+</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="required">
+                    <span class="name">group[country]</span>
+                </td>
+                <td>
+                  <span class="description">      The country where the group is located.
+</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="required">
+                    <span class="name">group[facebook]</span>
+                </td>
+                <td>
+                  <span class="description">      The facebook address for the group.
+</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="required">
+                    <span class="name">group[twitter]</span>
+                </td>
+                <td>
+                  <span class="description">      The twitter address for the group.
+</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="required">
+                    <span class="name">id</span>
+                </td>
+                <td>
+                  <span class="description">      The id of the group.
+</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+          <h3>Request</h3>
+
+            <h4>Headers</h4>
+            <pre class="request headers">Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTQzNjgyMjUsImF1ZCI6bnVsbCwic3ViIjoyOTU5fQ.9Lf_t9B_-9HX1cEAUPql0frKZ1kda53t6dNF53xzvvE
+Host: example.org
+Content-Type: application/x-www-form-urlencoded
+Cookie: </pre>
+
+          <h4>Route</h4>
+          <pre class="request route highlight">PATCH /groups/1282</pre>
+
+
+            <h4>Body</h4>
+            <pre class="request body">group[name]=Zombicide+Tuesdays&group[city]=Washington&group[state]=DC&group[country]=USA&group[facebook]=facebook.com%2Fzombie&group[twitter]=%40zombie</pre>
+
+
+            <h3>Response</h3>
+              <h4>Headers</h4>
+              <pre class="response headers">X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Content-Type: application/json; charset=utf-8
+ETag: W/&quot;98e97da658695c68baa76eafb8e93680&quot;
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: 6a3e6593-aa9b-4ed5-9155-381dbbb51da1
+X-Runtime: 0.006144
+Content-Length: 183</pre>
+            <h4>Status</h4>
+            <pre class="response status">200 OK</pre>
+              <h4>Body</h4>
+              <pre class="response body">{
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;1282&quot;,
+    &quot;type&quot;: &quot;groups&quot;,
+    &quot;attributes&quot;: {
+      &quot;name&quot;: &quot;Zombicide Tuesdays&quot;,
+      &quot;city&quot;: &quot;Washington&quot;,
+      &quot;state&quot;: &quot;DC&quot;,
+      &quot;country&quot;: &quot;USA&quot;,
+      &quot;facebook&quot;: &quot;facebook.com/zombie&quot;,
+      &quot;twitter&quot;: &quot;@zombie&quot;
+    }
+  }
+}</pre>
+      </div>
+    </div>
+  </body>
+</html>

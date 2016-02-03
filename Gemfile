@@ -7,6 +7,9 @@ gem "pg"
 gem "puma"
 gem "interactor"
 gem "figaro"
+gem "knock"
+gem "active_model_serializers"
+gem "rolify"
 
 group :developemnt, :test do
   gem "pry-byebug"
@@ -20,6 +23,9 @@ group :developemnt, :test do
   gem "guard-rubocop"
   gem "guard-rspec"
   gem "factory_girl_rails", "~> 4.0"
+  gem "rspec_api_documentation"
+  gem "prmd"
+  gem "committee"
 end
 
 group :development do
