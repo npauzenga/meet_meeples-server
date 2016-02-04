@@ -20,4 +20,4 @@ This repo represents the Rails back-end to the upcoming Ember front-end.
 
 ## Documentation and Endpoints
 - See the [docs](https://github.com/npauzenga/meet_meeples-server/blob/master/doc/api/index.html) for details including example cURL requests and actual JSON responses
-- See the [schema](https://github.com/npauzenga/meet_meeples-server/blob/master/config/schema/api.md) for the in-progress JSON-API-compliant schema used for request and response validations
+- See the [schema](https://github.com/npauzenga/meet_meeples-server/blob/master/config/schema/api.md) for the in-progress JSON-API-compliant schema used for request and response validations (in progress)
