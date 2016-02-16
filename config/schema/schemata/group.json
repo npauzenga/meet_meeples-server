@@ -109,17 +109,20 @@
         "type": ["object"]
       },
       "title": "Create",
-      "targetSchema": {
+      "targetSchema": { "$ref": "/schemata/jsonapi#/definitions/response"
         "type": "object",
         "properties": {
-          "id": { "$ref": "/schemata/group#/definitions/id" },
-          "name": { "$ref": "/schemata/group#/definitions/name" },
-          "city": { "$ref": "/schemata/group#/definitions/city" },
-          "state": { "$ref": "/schemata/group#/definitions/state" },
-          "country": { "$ref": "/schemata/group#/definitions/country" },
-          "facebook": { "$ref": "/schemata/group#/definitions/facebook" },
-          "twitter": { "$ref": "/schemata/group#/definitions/twitter" }
-        }
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": { },
+              "type": {},
+              "attributes": {}
+            },
+            "required": ["id", "type", "attributes"]
+          }
+        },
+        "required":["data"],
       }
     },
     {
