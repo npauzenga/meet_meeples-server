@@ -1,4 +1,4 @@
-require "rspec_api_documentation/dsl"
+require "rspec_api_documentation_helper"
 
 RSpec.resource "GameNights" do
   let(:authenticated_user) do

@@ -1,0 +1,38 @@
+{
+  "resource": "UserGroupMembership",
+  "http_method": "POST",
+  "route": "/groups/:group_id/group_memberships",
+  "description": "POST /groups/:group_id/group_memberships",
+  "explanation": null,
+  "parameters": [
+    {
+      "scope": "group",
+      "required": true,
+      "name": "group_id",
+      "description": "      The unique id of the group to which the game_night belongs.\n"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "POST",
+      "request_path": "/groups/2345/group_memberships",
+      "request_body": "group[group_id]=2345",
+      "request_headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/x-www-form-urlencoded",
+      "response_status": 204,
+      "response_status_text": "No Content",
+      "response_body": null,
+      "response_headers": {
+      },
+      "response_content_type": null,
+      "curl": null
+    }
+  ]
+}

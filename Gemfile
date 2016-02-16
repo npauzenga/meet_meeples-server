@@ -10,6 +10,7 @@ gem "figaro"
 gem "knock"
 gem "active_model_serializers"
 gem "rolify"
+gem "apitome"
 
 group :developemnt, :test do
   gem "pry-byebug"
