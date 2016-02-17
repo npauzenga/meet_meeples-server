@@ -7,7 +7,7 @@ A social network for board game geeks. The goal of the site is to connect users 
 join and create groups, and schedule Game Nights within their groups.
 
 ## The API
-This repo represents the Rails back-end to the upcoming Ember front-end.
+This repo represents the Rails back-end to the upcoming Ember front-end. It lives at `api.meetmeeples.com`
 
 ## Installation and setup
 1) Fork and clone the repo
@@ -19,5 +19,5 @@ This repo represents the Rails back-end to the upcoming Ember front-end.
 4) Run `$rails s` to start the server
 
 ## Documentation and Endpoints
-- See the [docs](https://github.com/npauzenga/meet_meeples-server/blob/master/doc/api/index.html) for details including example cURL requests and actual JSON responses
-- See the [schema](https://github.com/npauzenga/meet_meeples-server/blob/master/config/schema/api.md) for the in-progress JSON-API-compliant schema used for request and response validations (in progress)
+- See the [docs](http://api.meetmeeples.com/docs) for details including example requests and JSON responses
+- See the [schema](https://github.com/npauzenga/meet_meeples-server/blob/master/config/schema/api.md) for the in-progress JSON-API-compliant schema used for request and response validations
