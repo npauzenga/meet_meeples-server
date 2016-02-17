@@ -1,0 +1,33 @@
+{
+  "resource": "Profile",
+  "http_method": "GET",
+  "route": "/profiles",
+  "description": "GET /profiles",
+  "explanation": null,
+  "parameters": [
+
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "/profiles",
+      "request_body": null,
+      "request_headers": {
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": null,
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"data\": [\n    {\n      \"id\": \"8873\",\n      \"type\": \"users\",\n      \"attributes\": {\n        \"first_name\": \"Arlo\",\n        \"last_name\": \"Corkery\",\n        \"email\": \"noemie@stokes.co\",\n        \"city\": \"Rowenaton\",\n        \"state\": \"Washington\",\n        \"country\": \"Democratic People's Republic of Korea\"\n      }\n    }\n  ]\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

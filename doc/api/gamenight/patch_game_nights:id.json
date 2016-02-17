@@ -1,0 +1,60 @@
+{
+  "resource": "GameNight",
+  "http_method": "PATCH",
+  "route": "/game_nights/:id",
+  "description": "PATCH /game_nights/:id",
+  "explanation": null,
+  "parameters": [
+    {
+      "scope": "game_night",
+      "name": "name",
+      "description": "      The name of the game_night.\n"
+    },
+    {
+      "scope": "game_night",
+      "required": true,
+      "name": "time",
+      "description": "      The time of the game_night.\n"
+    },
+    {
+      "scope": "game_night",
+      "required": true,
+      "name": "location_name",
+      "description": "      The location of the game_night.\n"
+    },
+    {
+      "scope": "game_night",
+      "name": "location_address",
+      "description": "      The address of the game_night.\n"
+    },
+    {
+      "required": true,
+      "name": "id",
+      "description": "      The id of the game_night.\n"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "PATCH",
+      "request_path": "/game_nights/3721",
+      "request_body": "game_night[name]=New+Name&game_night[time]=2015-09-12+22%3A49%3A27+%2B0530&game_night[location_name]=Library&game_night[location_address]=999+main+st.+Silver+Spring%2C+MD+20910",
+      "request_headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/x-www-form-urlencoded",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"data\": {\n    \"id\": \"3721\",\n    \"type\": \"game_nights\",\n    \"attributes\": {\n      \"name\": \"New Name\",\n      \"time\": \"2015-09-12T17:19:27.000Z\",\n      \"location_name\": \"Library\",\n      \"location_address\": \"999 main st. Silver Spring, MD 20910\"\n    }\n  }\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

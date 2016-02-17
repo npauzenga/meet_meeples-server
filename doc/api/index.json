@@ -1,0 +1,153 @@
+{
+  "resources": [
+    {
+      "name": "GameNight",
+      "examples": [
+        {
+          "description": "DELETE /game_nights/:id",
+          "link": "gamenight/delete_game_nights:id.json",
+          "groups": "all",
+          "route": "/game_nights/:id",
+          "method": "delete"
+        },
+        {
+          "description": "POST /game_nights",
+          "link": "gamenight/post_game_nights.json",
+          "groups": "all",
+          "route": "/game_nights",
+          "method": "post"
+        },
+        {
+          "description": "GET /game_nights/:id",
+          "link": "gamenight/get_game_nights:id.json",
+          "groups": "all",
+          "route": "/game_nights/:id",
+          "method": "get"
+        },
+        {
+          "description": "GET /game_nights/",
+          "link": "gamenight/get_game_nights.json",
+          "groups": "all",
+          "route": "/game_nights/",
+          "method": "get"
+        },
+        {
+          "description": "PATCH /game_nights/:id",
+          "link": "gamenight/patch_game_nights:id.json",
+          "groups": "all",
+          "route": "/game_nights/:id",
+          "method": "patch"
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "examples": [
+        {
+          "description": "DELETE /users/:id",
+          "link": "user/delete_users:id.json",
+          "groups": "all",
+          "route": "/user",
+          "method": "delete"
+        },
+        {
+          "description": "POST /user",
+          "link": "user/post_user.json",
+          "groups": "all",
+          "route": "/user",
+          "method": "post"
+        },
+        {
+          "description": "PATCH /user",
+          "link": "user/patch_user.json",
+          "groups": "all",
+          "route": "/user",
+          "method": "patch"
+        }
+      ]
+    },
+    {
+      "name": "UserGameNightAttendance",
+      "examples": [
+        {
+          "description": "POST /game_nights/:game_night_id/game_night_attendances",
+          "link": "usergamenightattendance/post_game_nights:game_night_idgame_night_attendances.json",
+          "groups": "all",
+          "route": "/game_nights/:game_night_id/game_night_attendances",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "name": "Profile",
+      "examples": [
+        {
+          "description": "GET /profiles",
+          "link": "profile/get_profiles.json",
+          "groups": "all",
+          "route": "/profiles",
+          "method": "get"
+        },
+        {
+          "description": "GET /profiles/:id",
+          "link": "profile/get_profiles:id.json",
+          "groups": "all",
+          "route": "/profiles/:id",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "name": "UserGroupMembership",
+      "examples": [
+        {
+          "description": "POST /groups/:group_id/group_memberships",
+          "link": "usergroupmembership/post_groups:group_idgroup_memberships.json",
+          "groups": "all",
+          "route": "/groups/:group_id/group_memberships",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "name": "Group",
+      "examples": [
+        {
+          "description": "DELETE /groups/:id",
+          "link": "group/delete_groups:id.json",
+          "groups": "all",
+          "route": "/groups/:id",
+          "method": "delete"
+        },
+        {
+          "description": "PATCH /groups/:id",
+          "link": "group/patch_groups:id.json",
+          "groups": "all",
+          "route": "/groups/:id",
+          "method": "patch"
+        },
+        {
+          "description": "GET /groups/",
+          "link": "group/get_groups.json",
+          "groups": "all",
+          "route": "/groups/",
+          "method": "get"
+        },
+        {
+          "description": "GET /groups/:id",
+          "link": "group/get_groups:id.json",
+          "groups": "all",
+          "route": "/groups/:id",
+          "method": "get"
+        },
+        {
+          "description": "POST /groups",
+          "link": "group/post_groups.json",
+          "groups": "all",
+          "route": "/groups",
+          "method": "post"
+        }
+      ]
+    }
+  ]
+}

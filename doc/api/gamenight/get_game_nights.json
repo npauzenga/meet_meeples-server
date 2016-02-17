@@ -1,0 +1,33 @@
+{
+  "resource": "GameNight",
+  "http_method": "GET",
+  "route": "/game_nights/",
+  "description": "GET /game_nights/",
+  "explanation": null,
+  "parameters": [
+
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "/game_nights/",
+      "request_body": null,
+      "request_headers": {
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": null,
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"data\": [\n    {\n      \"id\": \"3718\",\n      \"type\": \"game_nights\",\n      \"attributes\": {\n        \"name\": \"Louisiana griffins\",\n        \"time\": \"2016-02-23T00:00:00.000Z\",\n        \"location_name\": \"Kozey-Marquardt\",\n        \"location_address\": \"Larson Circle\"\n      }\n    },\n    {\n      \"id\": \"3719\",\n      \"type\": \"game_nights\",\n      \"attributes\": {\n        \"name\": \"Louisiana griffins\",\n        \"time\": \"2016-02-18T00:00:00.000Z\",\n        \"location_name\": \"Kozey-Marquardt\",\n        \"location_address\": \"Larson Circle\"\n      }\n    },\n    {\n      \"id\": \"3720\",\n      \"type\": \"game_nights\",\n      \"attributes\": {\n        \"name\": \"Louisiana griffins\",\n        \"time\": \"2016-02-20T00:00:00.000Z\",\n        \"location_name\": \"Kozey-Marquardt\",\n        \"location_address\": \"Larson Circle\"\n      }\n    }\n  ]\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}
