@@ -17,7 +17,7 @@
   "requests": [
     {
       "request_method": "DELETE",
-      "request_path": "/game_nights/3715",
+      "request_path": "/game_nights/3889",
       "request_body": null,
       "request_headers": {
         "Content-Type": "application/x-www-form-urlencoded"

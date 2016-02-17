@@ -17,7 +17,7 @@
   "requests": [
     {
       "request_method": "DELETE",
-      "request_path": "/groups/3655",
+      "request_path": "/groups/3841",
       "request_body": null,
       "request_headers": {
         "Content-Type": "application/x-www-form-urlencoded"

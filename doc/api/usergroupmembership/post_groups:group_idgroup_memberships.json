@@ -18,8 +18,8 @@
   "requests": [
     {
       "request_method": "POST",
-      "request_path": "/groups/3654/group_memberships",
-      "request_body": "group[group_id]=3654",
+      "request_path": "/groups/3834/group_memberships",
+      "request_body": "group[group_id]=3834",
       "request_headers": {
         "Content-Type": "application/x-www-form-urlencoded"
       },

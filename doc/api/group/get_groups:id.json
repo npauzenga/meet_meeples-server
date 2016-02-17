@@ -17,7 +17,7 @@
   "requests": [
     {
       "request_method": "GET",
-      "request_path": "/groups/3660",
+      "request_path": "/groups/3839",
       "request_body": null,
       "request_headers": {
       },
@@ -26,7 +26,7 @@
       "request_content_type": null,
       "response_status": 200,
       "response_status_text": "OK",
-      "response_body": "{\n  \"data\": {\n    \"id\": \"3660\",\n    \"type\": \"groups\",\n    \"attributes\": {\n      \"name\": \"Wyoming kangaroos\",\n      \"city\": \"Jordymouth\",\n      \"state\": \"Texas\",\n      \"country\": \"Austria\",\n      \"facebook\": \"http://facebook.com/maiya\",\n      \"twitter\": \"http://twitter.com/mariah.hagenes\"\n    }\n  }\n}",
+      "response_body": "{\n  \"data\": {\n    \"id\": \"3839\",\n    \"type\": \"groups\",\n    \"attributes\": {\n      \"name\": \"Minnesota wolves\",\n      \"city\": \"North Kallie\",\n      \"state\": \"Georgia\",\n      \"country\": \"Malta\",\n      \"facebook\": \"http://facebook.com/antonette\",\n      \"twitter\": \"http://twitter.com/darrell\"\n    }\n  }\n}",
       "response_headers": {
         "Content-Type": "application/json; charset=utf-8"
       },

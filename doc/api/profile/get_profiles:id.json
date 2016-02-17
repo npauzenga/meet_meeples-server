@@ -17,7 +17,7 @@
   "requests": [
     {
       "request_method": "GET",
-      "request_path": "/profiles/8874",
+      "request_path": "/profiles/9324",
       "request_body": null,
       "request_headers": {
       },
@@ -26,7 +26,7 @@
       "request_content_type": null,
       "response_status": 200,
       "response_status_text": "OK",
-      "response_body": "{\n  \"data\": {\n    \"id\": \"8874\",\n    \"type\": \"users\",\n    \"attributes\": {\n      \"first_name\": \"Arlo\",\n      \"last_name\": \"Corkery\",\n      \"email\": \"noemie@stokes.co\",\n      \"city\": \"Rowenaton\",\n      \"state\": \"Washington\",\n      \"country\": \"Democratic People's Republic of Korea\"\n    }\n  }\n}",
+      "response_body": "{\n  \"data\": {\n    \"id\": \"9324\",\n    \"type\": \"users\",\n    \"attributes\": {\n      \"first_name\": \"Fay\",\n      \"last_name\": \"Oberbrunner\",\n      \"email\": \"caesar@jacobson.biz\",\n      \"city\": \"Lake Lesleyshire\",\n      \"state\": \"New Hampshire\",\n      \"country\": \"Lesotho\"\n    }\n  }\n}",
       "response_headers": {
         "Content-Type": "application/json; charset=utf-8"
       },
