@@ -18,8 +18,8 @@
   "requests": [
     {
       "request_method": "POST",
-      "request_path": "/game_nights/2476/game_night_attendances",
-      "request_body": "game_night[game_night_id]=2476",
+      "request_path": "/game_nights/3722/game_night_attendances",
+      "request_body": "game_night[game_night_id]=3722",
       "request_headers": {
         "Content-Type": "application/x-www-form-urlencoded"
       },

@@ -1,4 +1,4 @@
-Apitome Documentation
+Meet Meeples API Documentation
 =====================
 
-This file was automatically generated, and can be found at `doc/api.md`.
+A social network for board game geeks.

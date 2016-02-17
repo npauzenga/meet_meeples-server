@@ -1,5 +1,5 @@
 {
-  "resource": "Profiles",
+  "resource": "Profile",
   "http_method": "GET",
   "route": "/profiles",
   "description": "GET /profiles",
@@ -22,7 +22,7 @@
       "request_content_type": null,
       "response_status": 200,
       "response_status_text": "OK",
-      "response_body": "{\n  \"data\": [\n    {\n      \"id\": \"5511\",\n      \"type\": \"users\",\n      \"attributes\": {\n        \"first_name\": \"Kaley\",\n        \"last_name\": \"Little\",\n        \"email\": \"taurean_wiza@herman.net\",\n        \"city\": \"Ullrichborough\",\n        \"state\": \"Alaska\",\n        \"country\": \"Marshall Islands\"\n      }\n    }\n  ]\n}",
+      "response_body": "{\n  \"data\": [\n    {\n      \"id\": \"8873\",\n      \"type\": \"users\",\n      \"attributes\": {\n        \"first_name\": \"Arlo\",\n        \"last_name\": \"Corkery\",\n        \"email\": \"noemie@stokes.co\",\n        \"city\": \"Rowenaton\",\n        \"state\": \"Washington\",\n        \"country\": \"Democratic People's Republic of Korea\"\n      }\n    }\n  ]\n}",
       "response_headers": {
         "Content-Type": "application/json; charset=utf-8"
       },

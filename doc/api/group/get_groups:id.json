@@ -1,5 +1,5 @@
 {
-  "resource": "Groups",
+  "resource": "Group",
   "http_method": "GET",
   "route": "/groups/:id",
   "description": "GET /groups/:id",
@@ -17,7 +17,7 @@
   "requests": [
     {
       "request_method": "GET",
-      "request_path": "/groups/2343",
+      "request_path": "/groups/3660",
       "request_body": null,
       "request_headers": {
       },
@@ -26,7 +26,7 @@
       "request_content_type": null,
       "response_status": 200,
       "response_status_text": "OK",
-      "response_body": "{\n  \"data\": {\n    \"id\": \"2343\",\n    \"type\": \"groups\",\n    \"attributes\": {\n      \"name\": \"South Dakota tigers\",\n      \"city\": \"Terryfurt\",\n      \"state\": \"Alabama\",\n      \"country\": \"Central African Republic\",\n      \"facebook\": \"http://facebook.com/leonardo\",\n      \"twitter\": \"http://twitter.com/ada_sipes\"\n    }\n  }\n}",
+      "response_body": "{\n  \"data\": {\n    \"id\": \"3660\",\n    \"type\": \"groups\",\n    \"attributes\": {\n      \"name\": \"Wyoming kangaroos\",\n      \"city\": \"Jordymouth\",\n      \"state\": \"Texas\",\n      \"country\": \"Austria\",\n      \"facebook\": \"http://facebook.com/maiya\",\n      \"twitter\": \"http://twitter.com/mariah.hagenes\"\n    }\n  }\n}",
       "response_headers": {
         "Content-Type": "application/json; charset=utf-8"
       },

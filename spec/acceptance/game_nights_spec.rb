@@ -1,6 +1,6 @@
 require "rspec_api_documentation_helper"
 
-RSpec.resource "GameNights" do
+RSpec.resource "GameNight" do
   let(:authenticated_user) do
     create(:confirmed_user)
   end

@@ -1,5 +1,5 @@
 {
-  "resource": "GameNights",
+  "resource": "GameNight",
   "http_method": "GET",
   "route": "/game_nights/:id",
   "description": "GET /game_nights/:id",
@@ -17,7 +17,7 @@
   "requests": [
     {
       "request_method": "GET",
-      "request_path": "/game_nights/2482",
+      "request_path": "/game_nights/3717",
       "request_body": null,
       "request_headers": {
       },
@@ -26,7 +26,7 @@
       "request_content_type": null,
       "response_status": 200,
       "response_status_text": "OK",
-      "response_body": "{\n  \"data\": {\n    \"id\": \"2482\",\n    \"type\": \"game_nights\",\n    \"attributes\": {\n      \"name\": \"North Dakota dragons\",\n      \"time\": \"2016-02-21T00:00:00.000Z\",\n      \"location_name\": \"Thiel LLC\",\n      \"location_address\": \"Nash Highway\"\n    }\n  }\n}",
+      "response_body": "{\n  \"data\": {\n    \"id\": \"3717\",\n    \"type\": \"game_nights\",\n    \"attributes\": {\n      \"name\": \"Louisiana griffins\",\n      \"time\": \"2016-02-23T00:00:00.000Z\",\n      \"location_name\": \"Kozey-Marquardt\",\n      \"location_address\": \"Larson Circle\"\n    }\n  }\n}",
       "response_headers": {
         "Content-Type": "application/json; charset=utf-8"
       },

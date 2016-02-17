@@ -1,5 +1,5 @@
 {
-  "resource": "Groups",
+  "resource": "Group",
   "http_method": "POST",
   "route": "/groups",
   "description": "POST /groups",
@@ -58,7 +58,7 @@
       "request_content_type": "application/x-www-form-urlencoded",
       "response_status": 201,
       "response_status_text": "Created",
-      "response_body": "{\n  \"data\": {\n    \"id\": \"2344\",\n    \"type\": \"groups\",\n    \"attributes\": {\n      \"name\": \"Waaggh\",\n      \"city\": \"Washington\",\n      \"state\": \"DC\",\n      \"country\": \"USA\",\n      \"facebook\": \"facebook.com/waaaggh\",\n      \"twitter\": \"@waaggh\"\n    }\n  }\n}",
+      "response_body": "{\n  \"data\": {\n    \"id\": \"3661\",\n    \"type\": \"groups\",\n    \"attributes\": {\n      \"name\": \"Waaggh\",\n      \"city\": \"Washington\",\n      \"state\": \"DC\",\n      \"country\": \"USA\",\n      \"facebook\": \"facebook.com/waaaggh\",\n      \"twitter\": \"@waaggh\"\n    }\n  }\n}",
       "response_headers": {
         "Content-Type": "application/json; charset=utf-8"
       },

@@ -64,7 +64,7 @@
       "request_content_type": "application/x-www-form-urlencoded",
       "response_status": 200,
       "response_status_text": "OK",
-      "response_body": "{\n  \"data\": {\n    \"id\": \"5526\",\n    \"type\": \"users\",\n    \"attributes\": {\n      \"first_name\": \"John Doe\",\n      \"last_name\": \"Pauzenga\",\n      \"email\": \"admin@test.com\",\n      \"city\": \"Annapolis\",\n      \"state\": \"MD\",\n      \"country\": \"USA\"\n    }\n  }\n}",
+      "response_body": "{\n  \"data\": {\n    \"id\": \"8871\",\n    \"type\": \"users\",\n    \"attributes\": {\n      \"first_name\": \"John Doe\",\n      \"last_name\": \"Pauzenga\",\n      \"email\": \"admin@test.com\",\n      \"city\": \"Annapolis\",\n      \"state\": \"MD\",\n      \"country\": \"USA\"\n    }\n  }\n}",
       "response_headers": {
         "Content-Type": "application/json; charset=utf-8"
       },

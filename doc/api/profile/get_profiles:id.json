@@ -1,5 +1,5 @@
 {
-  "resource": "Profiles",
+  "resource": "Profile",
   "http_method": "GET",
   "route": "/profiles/:id",
   "description": "GET /profiles/:id",
@@ -17,7 +17,7 @@
   "requests": [
     {
       "request_method": "GET",
-      "request_path": "/profiles/5512",
+      "request_path": "/profiles/8874",
       "request_body": null,
       "request_headers": {
       },
@@ -26,7 +26,7 @@
       "request_content_type": null,
       "response_status": 200,
       "response_status_text": "OK",
-      "response_body": "{\n  \"data\": {\n    \"id\": \"5512\",\n    \"type\": \"users\",\n    \"attributes\": {\n      \"first_name\": \"Kaley\",\n      \"last_name\": \"Little\",\n      \"email\": \"taurean_wiza@herman.net\",\n      \"city\": \"Ullrichborough\",\n      \"state\": \"Alaska\",\n      \"country\": \"Marshall Islands\"\n    }\n  }\n}",
+      "response_body": "{\n  \"data\": {\n    \"id\": \"8874\",\n    \"type\": \"users\",\n    \"attributes\": {\n      \"first_name\": \"Arlo\",\n      \"last_name\": \"Corkery\",\n      \"email\": \"noemie@stokes.co\",\n      \"city\": \"Rowenaton\",\n      \"state\": \"Washington\",\n      \"country\": \"Democratic People's Republic of Korea\"\n    }\n  }\n}",
       "response_headers": {
         "Content-Type": "application/json; charset=utf-8"
       },

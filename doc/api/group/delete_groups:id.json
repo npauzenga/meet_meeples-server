@@ -1,14 +1,14 @@
 {
-  "resource": "GameNights",
+  "resource": "Group",
   "http_method": "DELETE",
-  "route": "/game_nights/:id",
-  "description": "DELETE /game_nights/:id",
+  "route": "/groups/:id",
+  "description": "DELETE /groups/:id",
   "explanation": null,
   "parameters": [
     {
       "required": true,
       "name": "id",
-      "description": "      The id of the game_night.\n"
+      "description": "      The id of the group.\n"
     }
   ],
   "response_fields": [
@@ -17,7 +17,7 @@
   "requests": [
     {
       "request_method": "DELETE",
-      "request_path": "/game_nights/2481",
+      "request_path": "/groups/3655",
       "request_body": null,
       "request_headers": {
         "Content-Type": "application/x-www-form-urlencoded"
