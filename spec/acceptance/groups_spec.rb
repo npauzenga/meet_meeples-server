@@ -1,6 +1,6 @@
 require "rspec_api_documentation/dsl"
 
-RSpec.resource "Groups" do
+RSpec.resource "Group" do
   let(:authenticated_user) do
     create(:confirmed_user)
   end

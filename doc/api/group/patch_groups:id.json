@@ -1,0 +1,74 @@
+{
+  "resource": "Group",
+  "http_method": "PATCH",
+  "route": "/groups/:id",
+  "description": "PATCH /groups/:id",
+  "explanation": null,
+  "parameters": [
+    {
+      "scope": "group",
+      "required": true,
+      "name": "name",
+      "description": "      The name of the group.\n"
+    },
+    {
+      "scope": "group",
+      "required": true,
+      "name": "city",
+      "description": "      The city where the group is located.\n"
+    },
+    {
+      "scope": "group",
+      "required": true,
+      "name": "state",
+      "description": "      The state where the group is located.\n"
+    },
+    {
+      "scope": "group",
+      "required": true,
+      "name": "country",
+      "description": "      The country where the group is located.\n"
+    },
+    {
+      "scope": "group",
+      "required": true,
+      "name": "facebook",
+      "description": "      The facebook address for the group.\n"
+    },
+    {
+      "scope": "group",
+      "required": true,
+      "name": "twitter",
+      "description": "      The twitter address for the group.\n"
+    },
+    {
+      "required": true,
+      "name": "id",
+      "description": "      The id of the group.\n"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "PATCH",
+      "request_path": "/groups/3840",
+      "request_body": "group[name]=Zombicide+Tuesdays&group[city]=Washington&group[state]=DC&group[country]=USA&group[facebook]=facebook.com%2Fzombie&group[twitter]=%40zombie",
+      "request_headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/x-www-form-urlencoded",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "{\n  \"data\": {\n    \"id\": \"3840\",\n    \"type\": \"groups\",\n    \"attributes\": {\n      \"name\": \"Zombicide Tuesdays\",\n      \"city\": \"Washington\",\n      \"state\": \"DC\",\n      \"country\": \"USA\",\n      \"facebook\": \"facebook.com/zombie\",\n      \"twitter\": \"@zombie\"\n    }\n  }\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

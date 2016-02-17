@@ -1,0 +1,75 @@
+{
+  "resource": "User",
+  "http_method": "POST",
+  "route": "/user",
+  "description": "POST /user",
+  "explanation": null,
+  "parameters": [
+    {
+      "scope": "user",
+      "required": true,
+      "name": "first_name",
+      "description": "      The first name of the user.\n"
+    },
+    {
+      "scope": "user",
+      "required": true,
+      "name": "email",
+      "description": "      The email of the user.\n"
+    },
+    {
+      "scope": "user",
+      "required": true,
+      "name": "last_name",
+      "description": "      The last name of the user.\n"
+    },
+    {
+      "scope": "user",
+      "required": true,
+      "name": "password",
+      "description": "      The password of the user.\n"
+    },
+    {
+      "scope": "user",
+      "required": true,
+      "name": "city",
+      "description": "      The city of the user.\n"
+    },
+    {
+      "scope": "user",
+      "required": true,
+      "name": "state",
+      "description": "      The state of the user.\n"
+    },
+    {
+      "scope": "user",
+      "required": true,
+      "name": "country",
+      "description": "      The country of the user.\n"
+    }
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "POST",
+      "request_path": "/user",
+      "request_body": "user[first_name]=Nate&user[email]=admin%40test.com&user[last_name]=Pauzenga&user[password]=helloworld&user[city]=Annapolis&user[state]=MD&user[country]=USA",
+      "request_headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/x-www-form-urlencoded",
+      "response_status": 201,
+      "response_status_text": "Created",
+      "response_body": "{\n  \"jwt\": {\n    \"payload\": {\n      \"sub\": 9335\n    },\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTU3NjI2OTgsImF1ZCI6bnVsbCwic3ViIjo5MzM1fQ.7s-kfylRFch_UdyGPlscKLTKEF5Av5QV_fj1KZ4g3V0\"\n  }\n}",
+      "response_headers": {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

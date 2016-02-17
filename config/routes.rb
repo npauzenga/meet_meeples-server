@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Apitome::Engine => "/docs"
   mount Knock::Engine => "/signin"
 
   resource  :user, except: [:new, :edit]
