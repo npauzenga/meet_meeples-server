@@ -81,7 +81,7 @@ RSpec.resource "User" do
 
     let(:id) { authenticated_user.id }
 
-    example_request "DELETE /users/:id" do
+    example_request "DELETE /user" do
       expect(status).to eq 204
     end
   end

@@ -64,7 +64,7 @@
       "request_content_type": "application/x-www-form-urlencoded",
       "response_status": 201,
       "response_status_text": "Created",
-      "response_body": "{\n  \"jwt\": {\n    \"payload\": {\n      \"sub\": 8870\n    },\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTU3NjA3MzUsImF1ZCI6bnVsbCwic3ViIjo4ODcwfQ.RaQAHpsMfr5_m6ekS_zEiiKnIb6zR5D99GY7vt1CCDY\"\n  }\n}",
+      "response_body": "{\n  \"jwt\": {\n    \"payload\": {\n      \"sub\": 9335\n    },\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NTU3NjI2OTgsImF1ZCI6bnVsbCwic3ViIjo5MzM1fQ.7s-kfylRFch_UdyGPlscKLTKEF5Av5QV_fj1KZ4g3V0\"\n  }\n}",
       "response_headers": {
         "Content-Type": "application/json; charset=utf-8"
       },

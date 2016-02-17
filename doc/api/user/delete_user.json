@@ -2,7 +2,7 @@
   "resource": "User",
   "http_method": "DELETE",
   "route": "/user",
-  "description": "DELETE /users/:id",
+  "description": "DELETE /user",
   "explanation": null,
   "parameters": [
 
