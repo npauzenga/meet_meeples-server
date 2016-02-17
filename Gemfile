@@ -11,6 +11,7 @@ gem "knock"
 gem "active_model_serializers"
 gem "rolify"
 gem "apitome"
+gem "uglifier"
 
 group :developemnt, :test do
   gem "pry-byebug"
