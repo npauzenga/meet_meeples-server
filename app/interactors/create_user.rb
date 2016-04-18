@@ -1,6 +1,6 @@
 class CreateUser < StandardInteraction
-  def validate_input
-    context.fail!(errors: "invalid user params") unless context.user_params
+  def validate_input(input: :user_params)
+    super
   end
 
   def execute

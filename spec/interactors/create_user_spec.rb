@@ -52,7 +52,7 @@ RSpec.describe CreateUser do
       end
 
       it "returns an error" do
-        expect(subject.errors).to eq("invalid user params")
+        expect(subject.errors).to eq(CreateUser: "invalid Interactor input")
       end
     end
   end
